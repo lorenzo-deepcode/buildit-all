@@ -1,0 +1,84 @@
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'docker'
+apply plugin: 'com.novoda.bintray-release'
+
+mainClassName = 'com.buildit.encryptor.api.Main'
+
+build.dependsOn dependsOn: ['copyApp', 'copyDockerFiles']
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven {
+        url 'https://dl.bintray.com/buildit/maven'
+    }
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath 'se.transmode.gradle:gradle-docker:1.2'
+    }
+    dependencies {
+        classpath 'com.novoda:bintray-release:0.8.0'
+    }
+}
+
+publish {
+    userOrg = 'buildit'
+    groupId = "${project.groupId}"
+    artifactId = "${project.artifactId}"
+    publishVersion = "${project.version}"
+    website = 'https://bintray.com/buildit/maven'
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': "${mainClassName}"
+    }
+    baseName = project.name
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+task copyApp(type: Copy, dependsOn: fatJar) {
+    from fatJar
+    into "${project.buildDir}"
+    rename { String fileName ->
+        'app.jar'
+    }
+}
+
+task copyDockerFiles(type: Copy, dependsOn: fatJar) {
+    from 'src/main/docker'
+    into "${project.buildDir}"
+}
+
+task buildDocker(type: Docker, dependsOn: fatJar) {
+    push = true
+    applicationName = "builditdigital/${fatJar.baseName}"
+    dockerfile = file('src/main/docker/Dockerfile')
+    doFirst {
+        copy {
+            from fatJar
+            into stageDir
+            rename { String fileName ->
+                'app.jar'
+            }
+        }
+    }
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    compile "com.sparkjava:spark-core:2.6.0"
+    compile "org.apache.commons:commons-lang3:3.5"
+    compile "com.buildit:encryptor:2.1.0"
+    testCompile 'com.jayway.restassured:rest-assured:2.9.0'
+    testCompile "junit:junit:4.11"
+}

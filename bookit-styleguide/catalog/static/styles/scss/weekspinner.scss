@@ -1,0 +1,34 @@
+@import 'global/colors';
+@import 'global/typography';
+
+.weekSpinner {
+  display: flex;
+  flex-direction: row;
+  margin: 20px auto;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+
+  .controls {
+    flex: 0 1 50px;
+    justify-content: center;
+    font-size: 32px;
+    text-align: center;
+    cursor: pointer;
+    span {
+        text-decoration: none;
+        color: $green;
+    }
+}
+
+.week {
+    width: 200px;
+    flex: 0 0 auto;
+    text-align: center;
+    font-weight: normal;
+    font-family: $base-font-family;
+    color: $black;
+
+}
+}
+

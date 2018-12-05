@@ -1,0 +1,67 @@
+{
+  "name": "@buildit/twig-api-wrapper",
+  "version": "0.2.0",
+  "description": "wrapper functions for accessing twig-api",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "lint": "tslint 'src/**/*.ts'",
+    "test": "nyc mocha '**/*.spec.ts'",
+    "test:e2e": "mocha '**/*.e2e.ts'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/buildit/twig-api-wrapper.git"
+  },
+  "keywords": [
+    "twig",
+    "twig-api"
+  ],
+  "author": "Ben Hernandez",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/buildit/twig-api-wrapper/issues"
+  },
+  "homepage": "https://github.com/buildit/twig-api-wrapper#readme",
+  "dependencies": {
+    "ramda": "^0.24.1",
+    "request": "^2.81.0",
+    "request-promise-native": "^1.0.4",
+    "rxjs": "^5.4.2"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.0.0",
+    "@types/mocha": "^2.2.41",
+    "@types/node": "^7.0.27",
+    "@types/ramda": "^0.24.3",
+    "@types/request-promise-native": "^1.0.6",
+    "chai": "^4.0.1",
+    "mocha": "^3.4.2",
+    "nyc": "^11.0.2",
+    "source-map-support": "^0.4.15",
+    "ts-node": "^3.0.4",
+    "tslint": "^5.4.2",
+    "typescript": "^2.3.4",
+    "typings": "^2.1.1"
+  },
+  "nyc": {
+    "include": [
+      "*.ts"
+    ],
+    "exclude": [
+      "*.spec.ts"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "lcov",
+      "html"
+    ],
+    "sourceMap": true,
+    "instrument": true
+  }
+}

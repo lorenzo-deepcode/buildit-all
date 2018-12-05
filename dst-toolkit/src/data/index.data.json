@@ -1,0 +1,139 @@
+{
+  "title": "BP Workshop",
+  "nav": [
+    {"anchor": "Intro", "title": "Intro", "class": "intro", "href": "#intro"},
+    {"anchor": "Empathize", "title": "Empathize", "class": "one", "href": "#one"},
+    {"anchor": "Define", "title": "Define", "class": "two", "href": "#two"},
+    {"anchor": "Ideate", "title": "Ideate", "class": "three", "href": "#three"},
+    {"anchor": "Prototype", "title": "Prototype", "class": "four", "href": "#four"},
+    {"anchor": "Test", "title": "Test", "class": "five", "href": "#five"},
+    {"anchor": "Iterate", "title": "Iterate", "class": "six", "href": "#six"}
+  ],
+  "slides": [
+    {
+      "styles": {
+        "id": "intro",
+        "class": "style1 center"
+      },
+      "img": {
+        "src": "sunbury/placeholder.jpg",
+        "position": "30% 50%"
+      },
+      "copy": {
+        "headingOne": "BP - Wipro Digital Workshop",
+        "paragraph": "A multi-disciplinary team iteratively exploring BP decommissioning opportunities through design thinking."
+      },
+      "actions": [
+        {"anchor": "The journey", "href": "#one", "class": "button next"}
+      ]
+    },
+    {
+      "styles": {
+        "id": "one",
+        "class": "style2 left"
+      },
+      "img": {
+        "src": "sunbury/placeholder.jpg",
+        "position": "center"
+      },
+      "copy": {
+        "headingTwo": "Empathize<br />User - Client / Operator - Supplier",
+        "paragraph": "Empathy is the cornerstone of a human-centered design process.<br />The Empathize phase focuses on the understanding of people, within the context of the challenges. This effort enabled the participants to understand the way a chosen persona does things and why, including physical and emotional needs and what is meaningful to them."
+      },
+      "actions": [
+        {"anchor": "Work &amp; Photos", "href": "empathize.html", "class": "button special"},
+        {"anchor": "Assets <span>(Dropbox)</span>", "href": "https://www.dropbox.com/sh/bjdd72dqc5icr73/AACMNI-Rl9ivJZh0dXicZ73Da?dl=0", "class": "button", "target": "_blank"}
+      ]
+    },
+    {
+      "styles": {
+        "id": "two",
+        "class": "style2 left"
+      },
+      "img": {
+        "src": "sunbury/placeholder.jpg",
+        "position": "left"
+      },
+      "copy": {
+        "headingTwo": "Define<br />(re)define the problem statement",
+        "paragraph": "The goal of the Define mode was to craft a meaningful and actionable problem statement. The statement focuses on insights and needs of a particular persona from the empathize phase. Collectively 12 problem statement were created from the original identified opportunites."
+      },
+      "actions": [
+        {"anchor": "Work &amp; Photos", "href": "define.html", "class": "button special"},
+        {"anchor": "Assets <span>(Dropbox)</span>", "href": "https://www.dropbox.com/sh/fk50soh5inlr0f1/AACi2H1wpnCfYWMTxxsCXBZma?dl=0", "class": "button", "target": "_blank"}
+      ]
+    },
+    {
+      "styles": {
+        "id": "three",
+        "class": "style2 left"
+      },
+      "img": {
+        "src": "sunbury/placeholder.jpg",
+        "position": "left"
+      },
+      "copy": {
+        "headingTwo": "Ideate<br />No holds barred Idea generation",
+        "paragraph": "Ideate is the mode of the design phase in which the team concentrated on idea generation. Group voting secured the most pressing 4 problem statements as a combination of achievable, path of least resistance and Wow, we feel as though this would bring an exceptional opportunity to the market."
+      },
+      "actions": [
+        {"anchor": "Work &amp; Photos", "href": "ideate.html", "class": "button special"},
+        {"anchor": "Assets <span>(Dropbox)</span>", "href": "https://www.dropbox.com/sh/1hmrwyow6qji11t/AADjcrTWtaXGq6lyDQSRkimia?dl=0", "class": "button", "target": "_blank"}
+      ]
+    },
+    {
+      "styles": {
+        "id": "four",
+        "class": "style2 left"
+      },
+      "img": {
+        "src": "sunbury/placeholder.jpg",
+        "position": "left"
+      },
+      "copy": {
+        "headingTwo": "Prototype<br />Make something",
+        "paragraph": "The Prototype phase is the iterative generation of artifacts, use cases intended to for the Persona to build out the idea connected with the problem statement."
+      },
+      "actions": [
+        {"anchor": "Work &amp; Photos", "href": "prototypes.html", "class": "button special"},
+        {"anchor": "Assets <span>(Dropbox)</span>", "href": "#", "class": "button", "target": "_blank"}
+      ]
+    },
+    {
+      "styles": {
+        "id": "five",
+        "class": "style2 left"
+      },
+      "img": {
+        "src": "sunbury/placeholder.jpg",
+        "position": "left"
+      },
+      "copy": {
+        "headingTwo": "Test<br />Ask the user",
+        "paragraph": "Return to your users foor feedback.<br />Listen, adapt, retry. Be bold again. Iterate."
+      },
+      "actions": [
+        {"anchor": "Work &amp; Photos", "href": "test.html", "class": "button special"},
+        {"anchor": "Assets <span>(Dropbox)</span>", "href": "#", "class": "button", "target": "_blank"}
+      ]
+    },
+    {
+      "styles": {
+        "id": "six",
+        "class": "style2 left"
+      },
+      "img": {
+        "src": "sunbury/placeholder.jpg",
+        "position": "left"
+      },
+      "copy": {
+        "headingTwo": "Iterate / Implement<br />Make it real",
+        "paragraph": "Put your vision into effect. Fail quick. Iterate.<br />Go back if needed. Succeed."
+      },
+      "actions": [
+        {"anchor": "Work &amp; Photos", "href": "iterate.html", "class": "button special"},
+        {"anchor": "Assets <span>(Dropbox)</span>", "href": "#", "class": "button", "target": "_blank"}
+      ]
+    }
+  ]
+}

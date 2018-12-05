@@ -1,0 +1,24 @@
+{
+  "storybook": {
+    "blabbr": {
+      "db": {
+        "user": "ds-demo",
+        "pwd": "designsystem",
+        "host": "localhost:5984"
+      },
+      "slack": {
+        "endPoint": "https://hooks.slack.com/services/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"
+      },
+      "ui": {
+        "avatar": true
+      }
+    },
+    "versions": {
+      "availableVersions": [
+      ],
+      "hostname": "localhost:8000",
+      "localhost": "localhost:9001",
+	  "regex": "\/([^\/]+?)\/?$"
+    }
+  }
+}

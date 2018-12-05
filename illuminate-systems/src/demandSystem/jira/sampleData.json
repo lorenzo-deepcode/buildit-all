@@ -1,0 +1,279 @@
+
+//  SAMPLE JIRA DATA HEADER
+
+{
+    "expand": "schema,names",
+    "startAt": 0,
+    "maxResults": 50,
+    "total": 355,
+    "issues":
+    [
+
+
+//  SAMPLE JIRA ITEM DATA
+
+//    Of note here is the history item of resolution.  Workflows in Jira can be customized.
+//    Some of those workflows define status values as resolutions.  (think bug tracking)
+//    Others do not.  Thus the algoritm needs to support resolution as a status change.
+
+//    Also a "released" issue has a history item of Fix Version.
+//    Will figure out what to do about this.
+
+{
+  "_id": "16607",
+  "expand": "operations,versionedRepresentations,editmeta,changelog,renderedFields",
+  "id": "16607",
+  "self": "https://digitalrig.atlassian.net/rest/api/latest/issue/16607",
+  "key": "NETWRKDIAG-14",
+  "changelog": {
+    "startAt": 0,
+    "maxResults": 8,
+    "total": 8,
+    "histories": [
+      {
+        "id": "33115",
+        "author": {
+          "self": "https://digitalrig.atlassian.net/rest/api/2/user?username=david.moss",
+          "name": "david.moss",
+          "key": "david.moss",
+          "emailAddress": "david.moss@wipro.com",
+          "avatarUrls": {
+            "48x48": "https://digitalrig.atlassian.net/secure/useravatar?ownerId=david.moss&avatarId=11700",
+            "24x24": "https://digitalrig.atlassian.net/secure/useravatar?size=small&ownerId=david.moss&avatarId=11700",
+            "16x16": "https://digitalrig.atlassian.net/secure/useravatar?size=xsmall&ownerId=david.moss&avatarId=11700",
+            "32x32": "https://digitalrig.atlassian.net/secure/useravatar?size=medium&ownerId=david.moss&avatarId=11700"
+          },
+          "displayName": "David Moss",
+          "active": true,
+          "timeZone": "America/Denver"
+        },
+        "created": "2016-04-06T03:55:07.314-0600",
+        "items": {
+          "field": "Rank",
+          "fieldtype": "custom",
+          "from": "",
+          "fromString": "",
+          "to": "",
+          "toString": "Ranked higher"
+        }
+      },
+      {
+        "id": "33123",
+        "author": {
+          "self": "https://digitalrig.atlassian.net/rest/api/2/user?username=david.moss",
+          "name": "david.moss",
+          "key": "david.moss",
+          "emailAddress": "david.moss@wipro.com",
+          "avatarUrls": {
+            "48x48": "https://digitalrig.atlassian.net/secure/useravatar?ownerId=david.moss&avatarId=11700",
+            "24x24": "https://digitalrig.atlassian.net/secure/useravatar?size=small&ownerId=david.moss&avatarId=11700",
+            "16x16": "https://digitalrig.atlassian.net/secure/useravatar?size=xsmall&ownerId=david.moss&avatarId=11700",
+            "32x32": "https://digitalrig.atlassian.net/secure/useravatar?size=medium&ownerId=david.moss&avatarId=11700"
+          },
+          "displayName": "David Moss",
+          "active": true,
+          "timeZone": "America/Denver"
+        },
+        "created": "2016-04-06T04:16:38.749-0600",
+        "items": {
+          "field": "status",
+          "fieldtype": "jira",
+          "from": "10000",
+          "fromString": "Backlog",
+          "to": "10501",
+          "toString": "In Progress"
+        }
+      },
+      {
+        "id": "33124",
+        "author": {
+          "self": "https://digitalrig.atlassian.net/rest/api/2/user?username=david.moss",
+          "name": "david.moss",
+          "key": "david.moss",
+          "emailAddress": "david.moss@wipro.com",
+          "avatarUrls": {
+            "48x48": "https://digitalrig.atlassian.net/secure/useravatar?ownerId=david.moss&avatarId=11700",
+            "24x24": "https://digitalrig.atlassian.net/secure/useravatar?size=small&ownerId=david.moss&avatarId=11700",
+            "16x16": "https://digitalrig.atlassian.net/secure/useravatar?size=xsmall&ownerId=david.moss&avatarId=11700",
+            "32x32": "https://digitalrig.atlassian.net/secure/useravatar?size=medium&ownerId=david.moss&avatarId=11700"
+          },
+          "displayName": "David Moss",
+          "active": true,
+          "timeZone": "America/Denver"
+        },
+        "created": "2016-04-06T04:16:40.482-0600",
+        "items": {
+          "field": "assignee",
+          "fieldtype": "jira",
+          "from": null,
+          "fromString": null,
+          "to": "david.moss",
+          "toString": "David Moss"
+        }
+      },
+      {
+        "id": "33144",
+        "author": {
+          "self": "https://digitalrig.atlassian.net/rest/api/2/user?username=david.moss",
+          "name": "david.moss",
+          "key": "david.moss",
+          "emailAddress": "david.moss@wipro.com",
+          "avatarUrls": {
+            "48x48": "https://digitalrig.atlassian.net/secure/useravatar?ownerId=david.moss&avatarId=11700",
+            "24x24": "https://digitalrig.atlassian.net/secure/useravatar?size=small&ownerId=david.moss&avatarId=11700",
+            "16x16": "https://digitalrig.atlassian.net/secure/useravatar?size=xsmall&ownerId=david.moss&avatarId=11700",
+            "32x32": "https://digitalrig.atlassian.net/secure/useravatar?size=medium&ownerId=david.moss&avatarId=11700"
+          },
+          "displayName": "David Moss",
+          "active": true,
+          "timeZone": "America/Denver"
+        },
+        "created": "2016-04-06T06:49:15.171-0600",
+        "items": {
+          "field": "resolution",
+          "fieldtype": "jira",
+          "from": null,
+          "fromString": null,
+          "to": "10000",
+          "toString": "Done"
+        }
+      },
+      {
+        "id": "33147",
+        "author": {
+          "self": "https://digitalrig.atlassian.net/rest/api/2/user?username=david.moss",
+          "name": "david.moss",
+          "key": "david.moss",
+          "emailAddress": "david.moss@wipro.com",
+          "avatarUrls": {
+            "48x48": "https://digitalrig.atlassian.net/secure/useravatar?ownerId=david.moss&avatarId=11700",
+            "24x24": "https://digitalrig.atlassian.net/secure/useravatar?size=small&ownerId=david.moss&avatarId=11700",
+            "16x16": "https://digitalrig.atlassian.net/secure/useravatar?size=xsmall&ownerId=david.moss&avatarId=11700",
+            "32x32": "https://digitalrig.atlassian.net/secure/useravatar?size=medium&ownerId=david.moss&avatarId=11700"
+          },
+          "displayName": "David Moss",
+          "active": true,
+          "timeZone": "America/Denver"
+        },
+        "created": "2016-04-06T06:49:37.405-0600",
+        "items": {
+          "field": "summary",
+          "fieldtype": "jira",
+          "from": null,
+          "fromString": "Auto size nodes",
+          "to": null,
+          "toString": "Relative sized nodes"
+        }
+      },
+      {
+        "id": "33165",
+        "author": {
+          "self": "https://digitalrig.atlassian.net/rest/api/2/user?username=david.moss",
+          "name": "david.moss",
+          "key": "david.moss",
+          "emailAddress": "david.moss@wipro.com",
+          "avatarUrls": {
+            "48x48": "https://digitalrig.atlassian.net/secure/useravatar?ownerId=david.moss&avatarId=11700",
+            "24x24": "https://digitalrig.atlassian.net/secure/useravatar?size=small&ownerId=david.moss&avatarId=11700",
+            "16x16": "https://digitalrig.atlassian.net/secure/useravatar?size=xsmall&ownerId=david.moss&avatarId=11700",
+            "32x32": "https://digitalrig.atlassian.net/secure/useravatar?size=medium&ownerId=david.moss&avatarId=11700"
+          },
+          "displayName": "David Moss",
+          "active": true,
+          "timeZone": "America/Denver"
+        },
+        "created": "2016-04-06T10:02:44.412-0600",
+        "items": {
+          "field": "project",
+          "fieldtype": "jira",
+          "from": "12403",
+          "fromString": "Kaban With Cadence ",
+          "to": "12404",
+          "toString": "Organization Communication Network Digaram"
+        }
+      },
+      {
+        "id": "33213",
+        "author": {
+          "self": "https://digitalrig.atlassian.net/rest/api/2/user?username=david.moss",
+          "name": "david.moss",
+          "key": "david.moss",
+          "emailAddress": "david.moss@wipro.com",
+          "avatarUrls": {
+            "48x48": "https://digitalrig.atlassian.net/secure/useravatar?ownerId=david.moss&avatarId=11700",
+            "24x24": "https://digitalrig.atlassian.net/secure/useravatar?size=small&ownerId=david.moss&avatarId=11700",
+            "16x16": "https://digitalrig.atlassian.net/secure/useravatar?size=xsmall&ownerId=david.moss&avatarId=11700",
+            "32x32": "https://digitalrig.atlassian.net/secure/useravatar?size=medium&ownerId=david.moss&avatarId=11700"
+          },
+          "displayName": "David Moss",
+          "active": true,
+          "timeZone": "America/Denver"
+        },
+        "created": "2016-04-08T08:10:01.227-0600",
+        "items": {
+          "field": "Rank",
+          "fieldtype": "custom",
+          "from": "",
+          "fromString": "",
+          "to": "",
+          "toString": "Ranked higher"
+        }
+      },
+      {
+        "id": "36187",
+        "author": {
+          "self": "https://digitalrig.atlassian.net/rest/api/2/user?username=david.moss",
+          "name": "david.moss",
+          "key": "david.moss",
+          "emailAddress": "david.moss@wipro.com",
+          "avatarUrls": {
+            "48x48": "https://digitalrig.atlassian.net/secure/useravatar?ownerId=david.moss&avatarId=11700",
+            "24x24": "https://digitalrig.atlassian.net/secure/useravatar?size=small&ownerId=david.moss&avatarId=11700",
+            "16x16": "https://digitalrig.atlassian.net/secure/useravatar?size=xsmall&ownerId=david.moss&avatarId=11700",
+            "32x32": "https://digitalrig.atlassian.net/secure/useravatar?size=medium&ownerId=david.moss&avatarId=11700"
+          },
+          "displayName": "David Moss",
+          "active": true,
+          "timeZone": "America/Denver"
+        },
+        "created": "2016-05-25T08:16:23.817-0600",
+        "items": {
+          "field": "Fix Version",
+          "fieldtype": "jira",
+          "from": null,
+          "fromString": null,
+          "to": "11500",
+          "toString": "0.1"
+        }
+      }
+    ]
+  },
+  "fields": {
+    "summary": "Relative sized nodes",
+    "issuetype": {
+      "self": "https://digitalrig.atlassian.net/rest/api/2/issuetype/10001",
+      "id": "10001",
+      "description": "A user story. Created by JIRA Software - do not edit or delete.",
+      "iconUrl": "https://digitalrig.atlassian.net/secure/viewavatar?size=xsmall&avatarId=10315&avatarType=issuetype",
+      "name": "Story",
+      "subtask": false,
+      "avatarId": 10315
+    },
+    "updated": "2016-05-25T08:16:23.000-0600",
+    "created": "2016-04-06T03:22:14.000-0600",
+    "status": {
+      "self": "https://digitalrig.atlassian.net/rest/api/2/status/10002",
+      "description": "Issues can only move to done after they've been tested",
+      "iconUrl": "https://digitalrig.atlassian.net/images/icons/subtask.gif",
+      "name": "Done",
+      "id": "10002",
+      "statusCategory": {
+        "self": "https://digitalrig.atlassian.net/rest/api/2/statuscategory/3",
+        "id": 3,
+        "key": "done",
+        "colorName": "green",
+        "name": "Done"
+      }
+    }
+  }
+}

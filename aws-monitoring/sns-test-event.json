@@ -1,0 +1,10 @@
+{
+  "Records": [
+    {
+      "Sns": {
+        "Subject": "Test Invocation by Serverless",
+        "Message": "Test message text"
+      }
+    }
+  ]
+}

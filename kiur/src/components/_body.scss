@@ -1,0 +1,12 @@
+////
+/// @group Components
+////
+
+body {
+  /// Main document background color
+  $base-background-color: #fff !default;
+  margin: 0;
+  box-sizing: border-box;
+
+  background-color: $base-background-color;
+}

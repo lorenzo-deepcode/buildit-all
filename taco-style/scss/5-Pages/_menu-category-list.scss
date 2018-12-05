@@ -1,0 +1,25 @@
+.menu-holder {
+  width: 375px;
+  overflow-y: hidden;
+}
+
+.menu-category-list {
+  display: flex;
+   width: 375px;
+   height: 40px;
+   padding-left: 40px;
+   background-color: $grey_1;
+}
+.menu-category-item {
+  margin-right: 63px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .category-name {
+    font-size: 21px;
+    color: $warm-grey;
+    text-transform: uppercase;
+  }
+}

@@ -1,0 +1,40 @@
+@import "~@buildit/ds-demo-lib/dist/unicorn-inc";  // This is needed for the pink var
+
+.appPanel {
+  .content-wrapper();
+  .grid-container();
+  margin-top: @dsdemo-space-md;
+  margin-bottom: @dsdemo-space-md;
+
+  .mainContent {
+    .grid-element(9);
+  }
+
+  table {
+    width: 100%;
+
+    th,
+    td {
+      padding: (@dsdemo-space-sm / 2) @dsdemo-space-sm;
+    }
+
+
+    th {
+      color: @dsdemo-color-fg-inverted;
+      background-color: @dsdemo-color-bg-inverted;
+    }
+
+    tbody tr:nth-child(even) td {
+      background-color: @dsdemo-color-bg-inverted;
+    }
+
+    .financialValue {
+      text-align: right;
+    }
+  }
+
+
+  .sidebar {
+    .grid-element(3);
+  }
+}

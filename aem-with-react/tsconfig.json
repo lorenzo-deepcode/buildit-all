@@ -1,0 +1,26 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "target": "es5",
+    "sourceMap": true,
+    "module": "commonjs",
+    "jsx": "react",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": false,
+    "outDir": "./"
+  },
+  "files": [
+    "./src/ComponentManager.tsx",
+    "./src/BaseComponent.tsx",
+    "./src/ServerRenderer.tsx",
+    "./src/component/ResourceComponent.tsx",
+    "./src/component/ReactParsys.tsx",
+    "./src/container.tsx",
+    "./src/include.tsx",
+    "./src/CqUtils.tsx",
+    "./src/references.d.ts",
+    "./typings/tsd.d.ts"
+
+  ]
+}

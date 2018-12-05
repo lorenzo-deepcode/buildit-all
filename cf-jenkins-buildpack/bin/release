@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# bin/release <build-dir>
+cat << EOF
+addons: []
+config_vars: []
+default_process_types:
+  web: unzip -o jenkins.zip && chmod +x scripts/init.sh && scripts/init.sh && java -DJENKINS_HOME=/home/vcap/jenkins_home -jar war/jenkins-*.war  --httpPort=\$PORT
+EOF

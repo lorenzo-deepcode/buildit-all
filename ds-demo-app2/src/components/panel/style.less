@@ -1,0 +1,32 @@
+@import "~@buildit/ds-demo-lib/dist/unicorn-inc";
+
+.appPanel {
+  .content-wrapper();
+  .grid-container();
+
+  .mainContent {
+
+    .grid-element(9);
+
+    .row {
+      padding-top: @dsdemo-space-sm / 2;
+      padding-bottom: @dsdemo-space-sm / 2;
+      width: 100%;
+
+      label {
+        margin-right: 25px;
+        width: 150px;
+        display: inline-block;
+      }
+
+      input {
+        width: 150px;
+        display: inline-block;
+      }
+    }
+  }
+
+  .sidebar {
+    .grid-element(3);
+  }
+}

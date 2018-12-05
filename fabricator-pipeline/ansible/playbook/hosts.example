@@ -1,0 +1,3 @@
+[webservers]
+int-web-server ansible_ssh_host=<<public IP address of the target host>> ansible_ssh_port=22
+stg-web-server ansible_ssh_host=<<public IP address of the target host>> ansible_ssh_port=22

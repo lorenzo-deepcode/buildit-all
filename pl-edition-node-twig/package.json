@@ -1,0 +1,59 @@
+{
+  "name": "@buildit/pl-edition-node-twig",
+  "version": "0.0.1",
+  "description": "Pattern Lab (Node) edition that uses the Twig engine and Gulp for builds.",
+  "homepage": "https://github.com/buildit/pl-edition-node-twig",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp patternlab:serve",
+    "gulp": "gulp -- "
+  },
+  "keywords": [
+    "Pattern",
+    "Lab",
+    "Atomic",
+    "Web",
+    "Design",
+    "node",
+    "gulp",
+    "twig",
+    "edition",
+    "style",
+    "guide",
+    "pattern",
+    "library",
+    "design",
+    "system",
+    "web"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:buildit/pl-edition-node-twig.git"
+  },
+  "bugs": "https://github.com/buildit/pl-edition-node-twig/issues",
+  "author": {
+    "name": "Buildit",
+    "url": "http://buildit.wiprodigital.com/"
+  },
+  "contributors": [
+    {
+      "name": "James Nash",
+      "email": "james.nash@wipro.com"
+    }
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.18.8",
+    "chalk": "^1.1.3",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "minimist": "^1.2.0",
+    "patternengine-node-twig": "^0.1.0",
+    "patternlab-node": "^2.9.1",
+    "styleguidekit-assets-default": "^3.4.0",
+    "styleguidekit-mustache-default": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=5.0"
+  }
+}

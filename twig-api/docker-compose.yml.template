@@ -1,0 +1,17 @@
+version: '2'
+services:
+  node:
+    restart: always
+    image: ${registryBase}/twig-api:${tag}
+    labels:
+      - convox.port.443.protocol=https
+    ports:
+      - 80:3000
+      - 443:3000
+    environment:
+      - ENABLE_TEST_USER=${enable_test_user}
+      - NODE_ENV=production
+      - TWIG_API_LOG_CONSOLE=true
+      - TWIG_API_LOG_FILE=true
+      - TWIG_API_LOG_LEVEL=info
+      - TWIG_API_DB_URL=http://couchdb.riglet:5984

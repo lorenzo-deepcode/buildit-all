@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col">
+    <div ngbDropdown class="d-inline-block maindropdown">
+      <button class="bs-lsg-navigation-button-add-on selectbox" id="modelDropdownMenu" ngbDropdownToggle>
+        <span id="current-model-info" *ngIf="model.get(MODEL.NAME)">
+          <span class="col-6">{{ model.get(MODEL.NAME) }}</span>
+          <span class="col-6 text-right">
+            <span (click)="cloneModel($event, model.get(MODEL.NAME))" *ngIf="userState.get(USERSTATE.USER)">
+              <i class="fa fa-files-o model-action" ngbTooltip="clone" container="body"></i>
+            </span>
+            <span (click)="renameModel($event, model.get(MODEL.NAME))" *ngIf="userState.get(USERSTATE.USER)">
+              <i class="fa fa-pencil model-action" ngbTooltip="rename" container="body"></i>
+            </span>
+            <span (click)="deleteModel($event, model.get(MODEL.NAME))" *ngIf="userState.get(USERSTATE.USER)">
+              <i class="fa fa-trash model-action warning" ngbTooltip="delete" container="body"></i>
+            </span>
+          </span>
+          </span>
+        <span id="please-select-a-model" *ngIf="!model.get(MODEL.NAME)">Select or Clone Model</span>
+      </button>
+      <ul ngbDropdownMenu aria-labelledby="modelDropdownMenu">
+        <li class="dropdown-item model-list-item" *ngFor="let model of models">
+          <span class="clickable col-6" (click)="loadModel(model.get(MODEL.NAME))">{{ model.get(MODEL.NAME) }}</span>
+          <span class="col-6 text-right">
+            <span (click)="cloneModel(null, model.get(MODEL.NAME))" *ngIf="userState.get(USERSTATE.USER)">
+              <i class="fa fa-files-o model-action" ngbTooltip="clone" container="body"></i>
+            </span>
+            <span (click)="renameModel(null, model.get(MODEL.NAME))" *ngIf="userState.get(USERSTATE.USER)">
+              <i class="fa fa-pencil model-action" ngbTooltip="rename" container="body"></i>
+            </span>
+            <span (click)="deleteModel(null, model.get(MODEL.NAME))" *ngIf="userState.get(USERSTATE.USER)">
+              <i class="fa fa-trash model-action" ngbTooltip="delete" container="body"></i>
+            </span>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

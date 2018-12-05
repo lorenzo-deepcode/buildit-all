@@ -1,0 +1,21 @@
+{
+  "name": "",
+  "version": "0.0.0-semantic-release",
+  "description": "An SCSS repository",
+  "main": "scss/main.scss",
+  "scripts": {
+    "setup": "./node_modules/.bin/semantic-release-cli setup",
+    "build": "",
+    "brandai": ""
+  },
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "giri-kur": "^1.0.0",
+    "condition-circle": "^1.5.0",
+    "semantic-release-cli": "^3.0.3"
+  },
+  "release": {
+    "verifyConditions": "condition-circle"
+  }
+}

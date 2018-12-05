@@ -1,0 +1,20 @@
+////
+/// @group Components
+////
+
+/**
+ * Prevent `sup` elements from affecting the line height in
+ * all browsers.
+ */
+
+sup {
+  /// Font size for `<sup>` tags
+  $sup-font-size: 75% !default;
+  /// Offset from the typographic base grid for `<sup>` tags
+  $sup-top-offset: -.5em !default;
+  font-size: $sup-font-size;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+  top: $sup-top-offset;
+}

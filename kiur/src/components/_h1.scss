@@ -1,0 +1,9 @@
+////
+/// @group Components
+////
+
+h1 {
+  /// Font size for an `<h1>` tag
+  $h1-font-size: 1rem !default;
+  font-size: $h1-font-size;
+}

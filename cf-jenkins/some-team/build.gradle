@@ -1,0 +1,49 @@
+apply plugin: 'groovy'
+apply from: "plugins.gradle"
+apply from: "war.gradle"
+
+def target = "${project.buildDir}"
+def temp = "${target}/temp"
+
+build.dependsOn dependsOn: ['cleanTemp', 'copyWar', 'copyPlugins', 'unzipArchive', 'copyLocalFiles', 'zipMergedArchive']
+
+configurations {
+    cfjenkins
+}
+
+repositories {
+  mavenLocal()
+}
+
+dependencies {
+    //TODO: re-instate this line once I figure out race condition
+    //cfjenkins "com.lloydsbanking.ci:cf-jenkins-buildpack:0.0.1:@zip"
+    cfjenkins files("${project.rootDir}/common/build/common.zip")
+}
+
+task cleanTemp(type: Delete) {
+  delete temp
+}
+
+task unzipArchive(type: Copy, dependsOn: 'copyPlugins'){
+  configurations.cfjenkins.each {
+    from zipTree(it)
+  }
+  into temp
+}
+
+task copyLocalFiles(type: Copy) {
+  from ("."){
+     exclude 'build**'
+     exclude 'tests/**'
+     exclude '*gradle'
+     exclude '**/build'
+  }
+  into temp
+}
+
+task zipMergedArchive(type:Zip) {
+  baseName = "jenkins"
+  from (temp)
+  destinationDir file(target)
+}

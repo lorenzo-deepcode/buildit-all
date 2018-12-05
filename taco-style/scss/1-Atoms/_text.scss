@@ -1,0 +1,104 @@
+@import url(https://fonts.google.com/specimen/Oswald?selection.family=Oswald);
+
+@font-face {
+    font-family: FranchiseFree;
+    src: url(https://s3.amazonaws.com/project-taco-assets/Franchise-Free-Bold.otf);
+}
+
+@font-face {
+    font-family: BrandonText;
+    src: url(https://s3.amazonaws.com/project-taco-assets/BrandonText-Regular.otf);
+}
+
+.Big {
+  font-family: FranchiseFree;
+  font-size: 78px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+H1 {
+  font-family: FranchiseFree;
+  font-size: 30px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+}
+
+H2 {
+  font-family: FranchiseFree;
+  font-size: 26px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+H3 {
+  font-family: FranchiseFree;
+  font-size: 24px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 0.96;
+  letter-spacing: normal;
+  text-align: center;
+}
+
+H4 {
+  font-family: Oswald;
+  font-size: 21px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: normal;
+}
+
+H5 {
+  font-family: Oswald;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.06;
+  letter-spacing: normal;
+}
+
+.Paragraph {
+  font-family: BrandonText;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.21;
+  letter-spacing: normal;
+}
+
+H6 {
+  font-family: Oswald;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.64;
+  letter-spacing: normal;
+}
+
+Small {
+  font-family: Oswald;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.31;
+  letter-spacing: normal;
+  text-align: right;
+}

@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+
+  web:
+    container_name: bookit_web
+    image: 006393696278.dkr.ecr.us-east-1.amazonaws.com/buildit-bookit-web-ecr-repo:latest
+    ports:
+     - "80:80"
+    links:
+      - "server:bookitapi"
+    environment:
+      - BOOKIT_API_BASE_URL=/api
+    command: /bin/sh -c "envsubst < /opt/app/config.js.template > /opt/app/config.js && nginx -g 'daemon off;'"
+
+  server:
+    container_name: bookit_server
+    image: 006393696278.dkr.ecr.us-east-1.amazonaws.com/buildit-bookit-server-ecr-repo:latest
+    ports:
+      - "8888:8888"
+    environment:
+      - USE_AZURE=true
+      - CLOUD_CONFIG
+      - BUILDIT_SECRET

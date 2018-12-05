@@ -1,0 +1,30 @@
+{
+  "title": "Prototypes",
+  "closeHref": "prototypes.html",
+  "copy": {
+    "headingOne": "Healthy <b>Pleasure</b>",
+    "headingTwoA": "Problem statement",
+    "paragraphA": "As a consumer I want to be able find a socially acceptable product that has less impact on others so I can enjoy smoking responsibility.",
+    "headingTwoB": "Idea to test",
+    "paragraphB": "Prototype a simple consumption tracking app to accompany the new heat-not-burn device. The first tests suggested iteration with more of an emphasis on pleasure than health.",
+    "headingTwoC": "Storyboard",
+    "imgSrc": "placeholder.jpg",
+    "actions": [
+      {
+        "anchor": "View Walkthrough",
+        "href": "#"
+      }
+    ]
+  },
+  "nav": {
+    "next": {
+      "href": "two.html"
+    }
+  },
+  "demo": {
+    "href": "#",
+    "slides": [
+      "pic01.jpg", "pic02.jpg", "pic03.jpg", "pic04.jpg", "pic03.jpg", "pic04.jpg"
+    ]
+  }
+}

@@ -1,0 +1,66 @@
+@import '../variables';
+
+// General body copy styles
+p,
+ul,
+ol {
+  font-family: $body-font-family-primary;
+
+  font-size: 0.9em;
+  line-height: 160%;
+  margin-bottom: 0.8em;
+
+  &.font-secondary {
+    font-family: $body-font-family-secondary;
+  }
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 600;
+}
+
+// A wrapper div for page content
+.page {
+  position: relative;
+}
+
+.brand-background-colour-primary {
+  background: $brand-primary-colour;
+}
+
+.brand-background-colour-secondary {
+  background: $brand-secondary-colour;
+}
+
+.brand-background-colour-white {
+  background: $brand-colour-white;
+}
+
+.brand-font-colour-primary {
+  color: $brand-primary-colour;
+}
+
+.brand-font-colour-secondary {
+  color: $brand-secondary-colour;
+}
+
+.brand-font-colour-white {
+  color: $brand-colour-white;
+}
+
+/*hr {
+  height: 2px;
+}
+
+.center {
+  text-align: center;
+}
+
+.full-width {
+  clear: both;
+  width: 100%;
+}
+
+*/

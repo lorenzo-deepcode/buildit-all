@@ -1,0 +1,91 @@
+/*todo style the input animation
+*/
+
+.hpe-input {
+  position: relative;
+  margin-bottom: 1.5rem;
+
+  input,
+  textarea {
+    font-family: inherit;
+    background: none;
+    border: 0;
+    border-bottom: $border-width solid $dark-grey-1;
+    border-radius: 0;
+    color: $dark-grey-1;
+    display: block;
+    font-size: 1rem;
+    font-weight: 400;
+    outline: none;
+    padding: 1rem 0 0.5em;
+    transition: transition;
+    width: 100%;
+
+    &:focus {
+      border-bottom: $border-width solid $light-1;
+      outline: none;
+      transition: all $transition--medium ease-in-out;
+    }
+  }
+
+  &__label {
+    top: 0.75em;
+    position: absolute;
+    color: $dark-grey-1;
+    transition: font-size $transition--fast linear, top $transition--fast linear;
+    cursor: text;
+  }
+
+  &--active {
+    .hpe-input__label {
+      top: -0.5em;
+      font-size: 0.75rem;
+      color: $dark-grey-4;
+    }
+  }
+
+  &--error {
+    margin-bottom: 0;
+
+    .hpe-input__error-message {
+      display: block;
+    }
+
+    input,
+    textarea {
+      border-color: $critical;
+
+      &:focus {
+        border-color: $critical;
+      }
+    }
+  }
+
+  &__error-message {
+    color: $critical;
+    margin: 0.75em 0 2rem;
+    display: none;
+  }
+}
+
+::-webkit-input-placeholder {
+  color: $dark-grey-1;
+}
+
+::-moz-placeholder {
+  color: $dark-grey-1;
+}
+
+:-ms-input-placeholder {
+  color: $dark-grey-1;
+}
+
+:-moz-placeholder {
+  color: $dark-grey-1;
+}
+
+// Safari Speciifc Search Input Clear
+input[type=search] {
+  border-radius: 0;
+  -webkit-appearance: none;
+}

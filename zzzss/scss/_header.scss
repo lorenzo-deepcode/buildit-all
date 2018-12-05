@@ -1,0 +1,21 @@
+/* Header and logo */
+.header {
+  border-bottom: 1px solid $brand-header-border-colour;
+  display: flex;
+  align-items: flex-end;
+  font-size: 1.8rem;
+  cursor: pointer;
+  margin-bottom: 30px;
+}
+@media (min-width: 64em) {
+  .header {
+    font-size: 3rem;
+  }
+}
+
+.logo {
+  font-weight: 300;
+  text-transform: uppercase;
+  margin-right: 30px;
+  cursor: pointer;
+}

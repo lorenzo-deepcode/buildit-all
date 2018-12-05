@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.wiprodigital.buildit.totem" version="1.3.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Totem</name>
+    <description>
+        Microbits Totem
+    </description>
+    <author email="shahzain.badruddin@wipro.com" href="http://buildit.wiprodigital.com">
+        Apache Cordova Team
+    </author>
+    <content src="https://d3qahyr8qxu5am.cloudfront.net/index.html" />
+    <access origin="*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <icon density="hdpi" src="icon/res/mipmap-hdpi/ic_launcher.png" />
+        <icon density="mdpi" src="icon/res/mipmap-mdpi/ic_launcher.png" />
+        <icon density="xhdpi" src="icon/res/mipmap-xhdpi/ic_launcher.png" />
+        <icon density="xxhdpi" src="icon/res/mipmap-xxhdpi/ic_launcher.png" />
+        <icon density="xxxhdpi" src="icon/res/mipmap-xxxhdpi/ic_launcher.png" />
+        <splash density="land-hdpi" src="icon/res/drawable-land-hdpi/screen.png" />
+        <splash density="land-ldpi" src="icon/res/drawable-land-ldpi/screen.png" />
+        <splash density="land-mdpi" src="icon/res/drawable-land-mdpi/screen.png" />
+        <splash density="land-xhdpi" src="icon/res/drawable-land-xhdpi/screen.png" />
+        <splash density="land-xxhdpi" src="icon/res/drawable-land-xxhdpi/screen.png" />
+        <splash density="land-xxxhdpi" src="icon/res/drawable-land-xxxhdpi/screen.png" />
+        <splash density="port-hdpi" src="icon/res/drawable-hdpi/screen.png" />
+        <splash density="port-ldpi" src="icon/res/drawable-ldpi/screen.png" />
+        <splash density="port-mdpi" src="icon/res/drawable-mdpi/screen.png" />
+        <splash density="port-xhdpi" src="icon/res/drawable-xhdpi/screen.png" />
+        <splash density="port-xxhdpi" src="icon/res/drawable-xxhdpi/screen.png" />
+        <splash density="port-xxxhdpi" src="icon/res/drawable-xxxhdpi/screen.png" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+    <preference name="SplashScreen" value="screen" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="SplashMaintainAspectRatio" value="false" />
+    <preference name="SplashShowOnlyFirstTime" value="false" />
+    <preference name="SplashScreenDelay" value="6000" />
+    <preference name="Orientation" value="portrait" />
+    <preference name="Fullscreen" value="false" />
+    <platform name="windows">
+    </platform>
+    <platform name="wp8">
+    </platform>
+    <allow-navigation hap-rule="yes" href="https://d3qahyr8qxu5am.cloudfront.net/*" />
+    <engine name="android" spec="~6.2.3" />
+    <engine name="ios" spec="~4.4.0" />
+    <plugin name="LaunchMyApp" />
+    <plugin name="cordova-plugin-ble" spec="^2.0.1" />
+    <plugin name="cordova-plugin-console" spec="^1.0.7" />
+    <plugin name="cordova-plugin-customurlscheme" spec="^4.3.0">
+        <variable name="URL_SCHEME" value="totem" />
+        <variable name="ANDROID_SCHEME" value=" " />
+        <variable name="ANDROID_HOST" value=" " />
+        <variable name="ANDROID_PATHPREFIX" value="/" />
+    </plugin>
+    <plugin name="cordova-plugin-device" spec="^1.1.6" />
+    <plugin name="cordova-plugin-fetch" spec="git+https://github.com/aporat/cordova-plugin-fetch.git" />
+    <plugin name="cordova-plugin-hostedwebapp" spec="^0.3.1" />
+    <plugin name="cordova-plugin-inappbrowser" spec="^1.7.1" />
+    <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+</widget>

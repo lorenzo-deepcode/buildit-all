@@ -1,0 +1,197 @@
+@import './mixins/flex';
+@import './mixins/media';
+@import 'variables';
+
+.booking-form {
+  position: relative;
+  background-color: white;
+  
+  @include desktop {
+    padding-top: 20px;
+  }
+
+  @include page;
+  flex-flow: column nowrap;
+  align-items: center;
+
+  .cancel {
+    position: absolute;
+    top: 12px;
+    right: 7px;
+
+    text-decoration: none;
+    display: inline-block;
+
+    img{
+      display: block;
+      margin-left: auto;
+      margin-right: 20px;
+      max-width: 100%;
+      height: 30px;
+      width: 30px;
+    }
+
+    @include desktop {
+      top: 35px;
+      right: 35px;
+
+      img{
+        margin-right: 0;
+        height: 40px;
+        width: 40px;
+      }
+    }
+  }
+
+}
+
+.locationSelectDropdown{
+  appearance: none;
+
+  border-radius: 0;
+  border-style: none none dashed none;
+  border-width: 1px;
+  border-color: $green;
+
+  color: $blue;
+  cursor: pointer;
+
+  padding-bottom: 2px; 
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 20px;
+
+  label {
+    display: block;
+    margin: 10px 0;
+
+    font-size: 14px;
+
+    color: #c5c5c5;
+  }
+}
+
+:global(.DayPickerInput) > input {
+  box-sizing: border-box;
+  color: $black;
+  width: 100%;
+}
+
+:global(.rc-time-picker-panel-select) :global(li) {
+  color: #666;
+}
+
+.field-two-column {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  margin: 10px 0;
+
+  @include desktop {
+    justify-content: flex-start;
+  }
+
+  .field-input input {
+    border-radius: 4px;
+    font-size: unset;
+    font-size: 14px;
+    line-height: unset;
+    height: auto;
+  }
+}
+
+.field-input {
+  display: flex;
+  flex-direction: column;
+
+  input {
+    flex: 1 0 auto;
+    border: 1px solid #e6e8ed;
+    border-radius: 4px;
+
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  padding: 20px 10px 10px 10px;
+
+  .title {
+    color: black;
+    font-weight: bold;
+
+    @include desktop {
+      font-size: 25px;
+    }
+  }
+
+  .titleDropdown{
+    margin-left: 1px;
+  }
+}
+
+.disclaimer {
+  text-align: center;
+  padding-left: 15px;
+  margin-bottom: 30px;
+}
+
+.error-span {
+  color: red;
+  display: inline-block;
+  padding-left: 5px;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.roomsToggle{
+  color: #666;
+  text-decoration: none;
+}
+
+.roomSelectToggleInput{
+  margin: 0 20px;
+  display: flex;
+  align-items: center;
+
+  padding-bottom: 3px;
+  border-bottom: solid 1px $darkblue;
+
+  span{
+    flex: 1;
+    font-size: 14px;
+    padding-left: 10px;
+  }
+
+  img{
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+  }
+}
+
+.submitButton {
+  background-color: $blue;
+  border-radius: 2px;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 18px;
+  margin-top: 20px;
+  padding: 20px 0;
+
+
+  &:disabled {
+    cursor: disabled;
+  }
+}

@@ -1,0 +1,46 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.title-main,
+.title,
+.title-small
+.subtitle-main,
+.subtitle,
+.subtitle-small {
+  @include font('heading');
+}
+
+h1,
+.title-main {
+  @include typi('alpha');
+}
+
+h2,
+.subtitle-main {
+  @include typi('beta');
+}
+
+h3,
+.title {
+  @include typi('gamma');
+}
+
+h4,
+.subtitle {
+  @include typi('delta');
+}
+
+h5,
+.title-small {
+  @include typi('eta');
+  font-weight: bold;
+}
+
+h6,
+.subtitle-small {
+  @include typi('text-big');
+  font-style: italic;
+}

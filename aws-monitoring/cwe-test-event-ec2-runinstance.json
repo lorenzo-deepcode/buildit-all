@@ -1,0 +1,320 @@
+{
+  "version": "0",
+  "id": "6f604646-bb5c-4fff-b19b-66ae60b173d8",
+  "detail-type": "AWS API Call via CloudTrail",
+  "source": "aws.ec2",
+  "account": "006393696278",
+  "time": "2017-04-14T17:19:46Z",
+  "region": "us-east-1",
+  "resources": [],
+  "detail": {
+    "eventVersion": "1.05",
+    "userIdentity": {
+      "type": "IAMUser",
+      "principalId": "AIDAIXDXYLEGEKDL5O7QS",
+      "arn": "arn:aws:iam::006393696278:user/some.test.user",
+      "accountId": "006393696278",
+      "accessKeyId": "AKIAIEXOKDW7LKJJQ4RA",
+      "userName": "some.test.user"
+    },
+    "eventTime": "2017-04-14T17:19:46Z",
+    "eventSource": "ec2.amazonaws.com",
+    "eventName": "RunInstances",
+    "awsRegion": "us-east-1",
+    "sourceIPAddress": "104.218.143.66",
+    "userAgent": "terraform/0.7.7 aws-sdk-go/1.4.14 (go1.7.1; darwin; amd64)",
+    "requestParameters": {
+      "instancesSet": {
+        "items": [
+          {
+            "imageId": "ami-22ce4934",
+            "minCount": 1,
+            "maxCount": 1,
+            "keyName": "bookit"
+          }
+        ]
+      },
+      "groupSet": {
+        "items": [
+          {
+            "groupId": "sg-37e0bd48"
+          }
+        ]
+      },
+      "userData": "<sensitiveDataRemoved>",
+      "instanceType": "t2.micro",
+      "blockDeviceMapping": {},
+      "monitoring": {
+        "enabled": false
+      },
+      "disableApiTermination": false,
+      "iamInstanceProfile": {},
+      "ebsOptimized": false
+    },
+    "responseElements": {
+      "requestId": "9149d5c6-f49c-4cda-bf9c-01da39a2aec6",
+      "reservationId": "r-05d3ac7c447987e3a",
+      "ownerId": "006393696278",
+      "groupSet": {},
+      "instancesSet": {
+        "items": [
+          {
+            "instanceId": "i-405948543lk09444535",
+            "imageId": "ami-22ce4934",
+            "instanceState": {
+              "code": 0,
+              "name": "pending"
+            },
+            "privateDnsName": "ip-172-31-74-12.ec2.internal",
+            "keyName": "bookit",
+            "amiLaunchIndex": 0,
+            "productCodes": {},
+            "instanceType": "t2.2xlarge",
+            "launchTime": 1492190386000,
+            "placement": {
+              "availabilityZone": "us-east-1a",
+              "tenancy": "default"
+            },
+            "monitoring": {
+              "state": "disabled"
+            },
+            "subnetId": "subnet-c02748a5",
+            "vpcId": "vpc-0ab1d16f",
+            "privateIpAddress": "172.31.74.140",
+            "stateReason": {
+              "code": "pending",
+              "message": "pending"
+            },
+            "architecture": "x86_64",
+            "rootDeviceType": "ebs",
+            "rootDeviceName": "/dev/xvda",
+            "blockDeviceMapping": {},
+            "virtualizationType": "hvm",
+            "hypervisor": "xen",
+            "groupSet": {
+              "items": [
+                {
+                  "groupId": "sg-37e0bd48",
+                  "groupName": "bookit-default"
+                }
+              ]
+            },
+            "sourceDestCheck": true,
+            "networkInterfaceSet": {
+              "items": [
+                {
+                  "networkInterfaceId": "eni-f21970e6",
+                  "subnetId": "subnet-c02748a5",
+                  "vpcId": "vpc-0ab1d16f",
+                  "ownerId": "006393696278",
+                  "status": "in-use",
+                  "macAddress": "02:cd:89:f7:5d:28",
+                  "privateIpAddress": "172.31.74.140",
+                  "privateDnsName": "ip-172-31-74-140.ec2.internal",
+                  "sourceDestCheck": true,
+                  "groupSet": {
+                    "items": [
+                      {
+                        "groupId": "sg-37e0bd48",
+                        "groupName": "bookit-default"
+                      }
+                    ]
+                  },
+                  "attachment": {
+                    "attachmentId": "eni-attach-bd01e625",
+                    "deviceIndex": 0,
+                    "status": "attaching",
+                    "attachTime": 1492190386000,
+                    "deleteOnTermination": true
+                  },
+                  "privateIpAddressesSet": {
+                    "item": [
+                      {
+                        "privateIpAddress": "172.31.74.140",
+                        "privateDnsName": "ip-172-31-74-140.ec2.internal",
+                        "primary": true
+                      }
+                    ]
+                  },
+                  "tagSet": {}
+                }
+              ]
+            },
+            "ebsOptimized": false
+          },
+          {
+            "instanceId": "i-54409fglk430445478",
+            "imageId": "ami-22ce4934",
+            "instanceState": {
+              "code": 0,
+              "name": "pending"
+            },
+            "privateDnsName": "ip-172-31-74-55.ec2.internal",
+            "keyName": "bookit",
+            "amiLaunchIndex": 0,
+            "productCodes": {},
+            "instanceType": "t2.xlarge",
+            "launchTime": 1492190386000,
+            "placement": {
+              "availabilityZone": "us-east-1a",
+              "tenancy": "default"
+            },
+            "monitoring": {
+              "state": "disabled"
+            },
+            "subnetId": "subnet-c02748a5",
+            "vpcId": "vpc-0ab1d16f",
+            "privateIpAddress": "172.31.74.140",
+            "stateReason": {
+              "code": "pending",
+              "message": "pending"
+            },
+            "architecture": "x86_64",
+            "rootDeviceType": "ebs",
+            "rootDeviceName": "/dev/xvda",
+            "blockDeviceMapping": {},
+            "virtualizationType": "hvm",
+            "hypervisor": "xen",
+            "groupSet": {
+              "items": [
+                {
+                  "groupId": "sg-37e0bd48",
+                  "groupName": "bookit-default"
+                }
+              ]
+            },
+            "sourceDestCheck": true,
+            "networkInterfaceSet": {
+              "items": [
+                {
+                  "networkInterfaceId": "eni-f21970e6",
+                  "subnetId": "subnet-c02748a5",
+                  "vpcId": "vpc-0ab1d16f",
+                  "ownerId": "006393696278",
+                  "status": "in-use",
+                  "macAddress": "02:cd:89:f7:5d:28",
+                  "privateIpAddress": "172.31.74.140",
+                  "privateDnsName": "ip-172-31-74-140.ec2.internal",
+                  "sourceDestCheck": true,
+                  "groupSet": {
+                    "items": [
+                      {
+                        "groupId": "sg-37e0bd48",
+                        "groupName": "bookit-default"
+                      }
+                    ]
+                  },
+                  "attachment": {
+                    "attachmentId": "eni-attach-bd01e625",
+                    "deviceIndex": 0,
+                    "status": "attaching",
+                    "attachTime": 1492190386000,
+                    "deleteOnTermination": true
+                  },
+                  "privateIpAddressesSet": {
+                    "item": [
+                      {
+                        "privateIpAddress": "172.31.74.140",
+                        "privateDnsName": "ip-172-31-74-140.ec2.internal",
+                        "primary": true
+                      }
+                    ]
+                  },
+                  "tagSet": {}
+                }
+              ]
+            },
+            "ebsOptimized": false
+          },
+          {
+            "instanceId": "i-0d58a524733147818",
+            "imageId": "ami-22ce4934",
+            "instanceState": {
+              "code": 0,
+              "name": "pending"
+            },
+            "privateDnsName": "ip-172-31-74-140.ec2.internal",
+            "keyName": "bookit",
+            "amiLaunchIndex": 0,
+            "productCodes": {},
+            "instanceType": "m3.16xlarge",
+            "launchTime": 1492190386000,
+            "placement": {
+              "availabilityZone": "us-east-1a",
+              "tenancy": "default"
+            },
+            "monitoring": {
+              "state": "disabled"
+            },
+            "subnetId": "subnet-c02748a5",
+            "vpcId": "vpc-0ab1d16f",
+            "privateIpAddress": "172.31.74.140",
+            "stateReason": {
+              "code": "pending",
+              "message": "pending"
+            },
+            "architecture": "x86_64",
+            "rootDeviceType": "ebs",
+            "rootDeviceName": "/dev/xvda",
+            "blockDeviceMapping": {},
+            "virtualizationType": "hvm",
+            "hypervisor": "xen",
+            "groupSet": {
+              "items": [
+                {
+                  "groupId": "sg-37e0bd48",
+                  "groupName": "bookit-default"
+                }
+              ]
+            },
+            "sourceDestCheck": true,
+            "networkInterfaceSet": {
+              "items": [
+                {
+                  "networkInterfaceId": "eni-f21970e6",
+                  "subnetId": "subnet-c02748a5",
+                  "vpcId": "vpc-0ab1d16f",
+                  "ownerId": "006393696278",
+                  "status": "in-use",
+                  "macAddress": "02:cd:89:f7:5d:28",
+                  "privateIpAddress": "172.31.74.140",
+                  "privateDnsName": "ip-172-31-74-140.ec2.internal",
+                  "sourceDestCheck": true,
+                  "groupSet": {
+                    "items": [
+                      {
+                        "groupId": "sg-37e0bd48",
+                        "groupName": "bookit-default"
+                      }
+                    ]
+                  },
+                  "attachment": {
+                    "attachmentId": "eni-attach-bd01e625",
+                    "deviceIndex": 0,
+                    "status": "attaching",
+                    "attachTime": 1492190386000,
+                    "deleteOnTermination": true
+                  },
+                  "privateIpAddressesSet": {
+                    "item": [
+                      {
+                        "privateIpAddress": "172.31.74.140",
+                        "privateDnsName": "ip-172-31-74-140.ec2.internal",
+                        "primary": true
+                      }
+                    ]
+                  },
+                  "tagSet": {}
+                }
+              ]
+            },
+            "ebsOptimized": false
+          }
+        ]
+      }
+    },
+    "requestID": "9149d5c6-f49c-4cda-bf9c-01da39a2aec6",
+    "eventID": "8ce38faf-3b6d-4d50-bc8b-093bcd1eaebe",
+    "eventType": "AwsApiCall"
+  }
+}

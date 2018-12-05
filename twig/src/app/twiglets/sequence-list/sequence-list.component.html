@@ -1,0 +1,22 @@
+<span class="pull-left">Sequences</span>
+<button class="pull-right ml-auto no-margin button btn-sm" *ngIf="userState.get(USERSTATE.USER)" (click)="newSequence()">
+  <i class="fa fa-plus sequence"></i>
+</button>
+<div class="scrolling-list">
+  <ul class="list-group">
+    <li class="list-group-item sequence-list-item clearfix" *ngFor="let seq of sequences | sortImmutable : SEQUENCE.NAME" [ngClass]="{'active': sequenceId === seq.get(SEQUENCE.ID)}">
+      <span class="clickable sequence-name pull-left" (click)="toggleSequence(seq)" [ngbTooltip]="seq.get(SEQUENCE.NAME)" placement="right" container="body">{{ seq.get(SEQUENCE.NAME) }}</span>
+      <span class="pull-right ml-auto">
+        <span (click)="openAbout(seq)">
+          <i class="fa fa-info-circle sequence-action clickable" ngbTooltip="about" container="body"></i>
+        </span>
+        <span *ngIf="userState.get(USERSTATE.USER)" (click)="editSequence(seq)">
+          <i class="fa fa-floppy-o sequence-action clickable" ngbTooltip="overwrite" container="body"></i>
+        </span>
+        <span *ngIf="userState.get(USERSTATE.USER)" (click)="deleteSequence(seq)">
+          <i class="fa fa-trash sequence-action warning clickable" ngbTooltip="delete" container="body"></i>
+        </span>
+      </span>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,20 @@
+{
+  "eolas": {
+    "version": "<%= eolas_version %>"
+  },
+  "datastore": {
+   "dbUrl": "<%= databaseurl %>",
+   "context": "<%= dbcontext %>",
+   "rootDB": "buildit"
+  },
+  "server": {
+   "url": "<%= serverurl %>",
+    "port": "<%= serverport %>"
+  },
+  "projectSource": {
+   "system": "Harvest",
+   "url": "https://builditglobal.harvestapp.com/",
+   "encodedUser": "cGF1bC5rYXJzdGVuQHdpcHJvLmNvbTpXaDFwSXRHMDBk"
+  },
+  "log-level": "<%= loglevel %>"
+}

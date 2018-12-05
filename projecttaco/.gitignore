@@ -1,0 +1,4 @@
+node_modules
+dist/esdoc
+.nyc_output
+npm-debug.log

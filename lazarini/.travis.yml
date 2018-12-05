@@ -1,0 +1,27 @@
+sudo: false
+language: node_js
+cache:
+  directories:
+  - node_modules
+branches:
+  only:
+  - master
+  except:
+  - "/^v\\d+\\.\\d+\\.\\d+$/"
+notifications:
+  email: false
+node_js:
+  - '7'
+before_script:
+  - npm prune
+script:
+  - npm run cover
+  - npm run check-coverage
+  - npm run build
+after_success:
+  - npm run report-coverage
+  - npm run report-coverage-codacy
+deploy:
+  - provider: heroku
+    api_key:
+      secure: Itk0ci5F1GyWE9rk+3J/WK7QvTMegVM34D1hmNmZje5Ko5nm200nsFsiILxauUiLHC/nwV1GjEUaMyv40FQEAyCts+mhpqGFqc16kdzvuJPsHziKq/BLSUR6C/vt4q7RyNNEGH/zJmmcKa64ulnj74L4ggvhlzVHgrgLIZbqO7BhPZ3v1nw57OZqrM4HrJD/ttCD6z8y+VJEAlO/y5SKCU4LhCam5S5tYgNWbgJipMHpdn81YHEbJL0Fcoy1wW6AX6Gae/VRySLuaZ578dRq5bPamTaWWMz9ltyA77Bx1l01Mu2LB3GpA29vp/AI12eYKmPCHL8EFeO8/CfSldG7UJDgNi1B6DMAQwg1Mp1LmcW9wA21bS0YkWxwhLy6PZb8goTgv8YWdxTyZ4e7LzDNNV0v+zxrMq9LcJck+ZyY200UUijSNgZt5xRkx5M6N0q6Feu9t2ah3hC105x3DRtqn4JJWgUx484b6AMtkcdByVx9JXpInksC2zab1VpQedvaNtaFxMfqdp+Pez56wUS3Q7JEfXt8LZo8Jj6OhPfuf5tS64CakQIPdInuzzyBBAS2hy8COouKd3wMVvwzx5VXafqU4KHEg/NbNwEQVsWsmzONpbqZgwaxYMJZwFrpApZMaTfwaDNovdH47YITipaY80PQojVv0HG6pAaz0SL0g04=

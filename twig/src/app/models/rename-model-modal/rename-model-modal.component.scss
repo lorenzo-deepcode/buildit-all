@@ -1,0 +1,23 @@
+:host {
+  input,
+  textarea {
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+
+  label {
+    font-size: 14px;
+    margin-top: 3px;
+    vertical-align: top;
+    width: 40px;
+  }
+
+  .mini-form {
+    line-height: 1.2;
+  }
+
+  .alert-sm {
+    padding: 2px;
+    text-align: center;
+  }
+}

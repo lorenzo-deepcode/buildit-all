@@ -1,0 +1,26 @@
+@import '../../../styles_colors';
+
+:host {
+  display: inline-block;
+
+  .twigname {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+  }
+}
+
+.dropdown-item {
+  color: $buildit-blue;
+
+  &:hover {
+    background-color: ($buildit-blue, .3);
+
+  }
+
+  a {
+    color: $buildit-blue;
+  }
+}
+

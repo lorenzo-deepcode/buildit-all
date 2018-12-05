@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.18.1/vis.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.18.1/vis.min.css">
+    <style>
+      html, body {
+        height: 100%;
+      }
+
+      #mynetwork {
+        float: left;
+        width: 75%;
+        height: 100%;
+        border: 1px solid lightgray;
+        margin-right: 2%
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id="mynetwork"></div>
+    <div id="controls">
+      <div>
+        <label>Count</label>
+        <input id="message-count" type="range" min="1" max="88" step="2" value="10"/>
+        <output id="slider-value">10</output>
+      </div>
+    </div>
+
+    <script src="./index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+{
+    "harvestUsername": "harvest.admin@mothership.com",
+    "harvestPassword": "some password",
+    "targetHours": 40,
+    "timeBetweenSlackMessages": 1100,
+    "zeroMessage": "You don't have any hours booked on harvest for last week, please update your hours at %s.",
+    "underMessage": "It looks like you only have %d hours recorded in harvest last week, please update your hours at %s.",
+    "overMessage": "It looks like you have too many hours (%d) recorded in harvest last week, please update your hours at %s.",
+    "emailSlackNames": {
+        "example.harvest@email.com": "slackUsername",
+    },
+    "organization": "your-domain",
+    "slackToken": "a-secret-slack-token"
+}

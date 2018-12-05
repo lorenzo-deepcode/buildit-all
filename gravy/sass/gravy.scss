@@ -1,0 +1,25 @@
+/*
+ * This is the main file for the whole project.
+ * It should be used only if you don't plan to use *eyeglass*.
+ * It follows ITCSS-like structure, so be sure to know what you're doing
+ * No style definitions should be made here, only `@import`
+ */
+
+/*
+ * Third Party Tools
+ */
+@import 'node_modules/typi/scss/typi';
+
+/*
+ * Mixins and functions
+ */
+@import 'functions/init';
+@import 'functions/breakpoint';
+@import 'mixins/font';
+@import 'mixins/text-defaults';
+
+/*
+ * Settings: Global variables, config switches
+ */
+@import 'settings/defaults';
+@import 'settings/gravy';

@@ -1,0 +1,82 @@
+// stylelint-disable
+@import '../node_modules/sass-true/sass/true';
+@import '../sass/gravy';
+
+@include gravy-init;
+
+@include describe('Initialisation with no custom config') {
+
+  @include it('Checks global variables have been created') {
+    @include assert-true(global-variable-exists('base-font-size'), 'base-font-size');
+    @include assert-true(global-variable-exists('base-line-height'), 'base-line-height');
+  }
+
+  @include it('Checks the base keys are present') {
+    @include assert-true(map-has-key($gravy, 'base-font-size'));
+    @include assert-true(map-has-key($gravy, 'base-line-height'));
+  }
+
+  @include it('Checks typefaces global map has been created') {
+    @include assert-true(global-variable-exists('typefaces'));
+    @include assert-true(map-has-key($typefaces, 'primary'));
+  }
+
+  @include it('Checks breakpoints global map has been created') {
+    @include assert-true(global-variable-exists('breakpoints'));
+    @include assert-true(map-has-key($breakpoints, 'small'));
+    @include assert-true(map-has-key($breakpoints, 'large'));
+  }
+
+  @include it('Checks typi global map has been created') {
+    // FIXME this is always the case, better move into a separate test
+    @include assert-true(global-variable-exists('typi'));
+    @include assert-true(map-has-key($typi, 'base'));
+  }
+
+  @include it('Checks gravy-font outputs the right information') {
+    @include assert {
+      @include output {
+        @include gravy-font('primary');
+      }
+      @include expect {
+        font-family: "Arial", sans-serif;
+        font-weight: "regular";
+      }
+    }
+  }
+
+  @include it('Checks gravy-breakpoints returns the right data') {
+    @include assert-equal(gravy-breakpoint('small'), 600px);
+    @include assert-equal(gravy-breakpoint('large'), 1200px);
+  }
+
+  @include it('Checks typi is configured and works properly') {
+    @include assert {
+      @include output {
+        h1 {
+          @include typi('base');
+        }
+      }
+      @include expect {
+        h1 {
+          font-size: 100%;
+          line-height: 1.4;
+        }
+
+        @media all and (min-width: gravy-breakpoint('small')) {
+          h1 {
+            font-size: 100%;
+          }
+        }
+
+        @media all and (min-width: gravy-breakpoint('large')) {
+          h1 {
+            font-size: 118.75%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include report;

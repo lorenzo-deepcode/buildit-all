@@ -1,0 +1,33 @@
+sudo: required
+language: java
+services:
+  - docker
+env:
+  global:
+  - GIT_USERNAME=Travis CI
+  - GIT_EMAIL=builds@travis-ci.com
+  - TAG=$(./pipeline.sh getProperty version gradle.properties)
+  - RELEASE_FILE=build/libs/encryptor-api-$TAG.jar
+  - RELEASE_POM=build/pom.xml
+  - LAST_COMMIT_MESSAGE=$(git log -1 --pretty=%B | tr -d '\n')
+  - CD_COMMIT_MESSAGE='[travis] Bump version number'
+  - GITHUB_USER=dermotmburke
+  - DOCKER_USERNAME=buildittravis
+  - secure: Xmv/G4BZWPFi6iGybVLsN8Sq+azfEJxTm577McMdzg+dGyw5n971TOwLSellJO7lZ3Nv/ZB7njmB7peE1mhZrpwvYnTBKq8hmjV1C1Pylyf9dyEJs0vtKN3QJo+NJpakSlDcoFwbqXbtEH1t+QMP7gDUqMSQug4OnfplWsZfh63LoVj89fSDJ2cqT42A2h36TRVMjlM8QnS2h9+Bj8tfl7+GXBH8Ycbzoai0boyU7ut7RTYGMtLaFAoQ0fulsuDiisdS0jnwLdPV73iXIBWRZ4bWNMB4evRRS51O7cGn8zNZkYG/w9hFYqmUlo0ALj5M+1f8u5JdJ0JzZ7WykHqlpzX+bQ7ybpc91oFBbEwQB5XF2KoFy9h4veIr+OrXKjILyE/UkvZjCNVkLAD3yi1EBKJVzolFyJbdQ6fT2RY9rIuayS+hlLR9BcOys6bWsIEMf0VbQ1etjW+J5CoRB/GljAv2C7it6vmjiBE3bfqgPVYR2oCoZmzmmkhXwTVVrjAEganPBY+Gryq4neJ/ZH8ECMnw6WZLF8OhbmIrJ1+ttOd9VfbLcn2g+HmaybiLi1gYwMz9i7vVcvyewx1IUGu3/8GWk8Aeex3IyMCjznmPoK6w6wrjuzdWbi3yugr5nuHDUWRAJuEOf477K0/89oNNagWTxReVlvndCnsz6uwqzxs=
+  - secure: PwBa1uRWVY9VaVHFoEOceIf7Ph9y9M6w/T5149g5SZutVqPOyvw06v1fWPHs9xuCA+5OEYKZOACiInwDHTPS4B1eeaCgdHPEPCEaBIXTymxiME29dXInxCnu7p38IJdP+Eap+cgS4c74+Be5p5s1druDwehBLWmlRJe9Ax4NiK2+ai88+xJ+Th0jvB9Yd2wyuXeb9ezFkBOvE/OBhmW6oRLFstSfFIDCTyNu79wlJS/zpSDfjfOPAc4dC4cgq36GgY8u4uY1YNnTVSCv/ZTK4q077QxfUQWTVPzlHbRLPJYGIbkvflZ4h8T6/UI/d712NvLwCT0rfwLGniBs4wHgZKmz5P9PRieF+cuaxKWuvQOizvPBSDkMGHTbTeESFWs2/TW2oI10BtnlFdo3DTqvF4B/bF6NHE4vDunVzhtj6/bdW5b2pWozd5rCC+cFGNulwfV8k57EIRTOFHYT4TRv9he+eiE9yFLKG+WsAuf+XrwXII8nmQy2uP1npVjdCpyiH8c/j6veQcuDRi/WhYs9YQKTqDNivlaRHqvmeB7UUPaM9NxICUH/hhQHL8S+QkujCNi7LFfczlvevtsDGAnxP7cr0MTzmwxFjU0rWbGkjUkq/AUb/KRWjp8+QdC16bzhZ+ppBRO8LZwsFsEVZQCWF8JmuFOobdcC4AZAp+K2ARM=
+  - secure: Ah1/SZExrzgiZU3FI80nQK4mkHy09gu3Fe+rRm/KFosm70uRqc4UC1xxGhXDixYx5PRggwLTmyPrlTKPtbXZF5D9BfzsOrC11KWA8nBjXFRLvz97BVigQXMEHUkM+z20212xanTorwnVdW8VSsyLrpMbRiC7LftRe50dOQq3eqP9gdfIbvI9zmA4rGD9qlHqbFQKLA60xGrOtGGccsTXS2NVN3wMErLeSthb2//n8aJtl+uGHV4JOcpHdAi/KumXZhXQFR3g3Veq9e0NkRouVjZ8wOeBKFCHj+WMCucmQ8zQQ6JYJkVmbBFDFmmpNluiwjKpmXCaMdE47ET9HblMPsR3rkg01mV39Fl7056NxSOLDJQiq1iOtYFKLY4YEUUX0Um7YNKZ71ZDRsPnpMPx8Fw56t/ImRPBJaRLCkyYOst6hZceysmudKN+MeTKsKjnFF9ZjB2oyZDAjynwpjTwdktYcUT6QSnFdv+6OmUPZ+w+RtFKTxzi5ulw5fq95l3RapPm9H0H7ECCTO8kHz9KTwnlLVe4XF5k53Q6+OTwAfIPg9g7pqM2yi1OOeWLG0wN3spgh/3FnR0gsgmrC4Ka7HLnNQX4x+txjXrsT5mZ8nep6HVtfLwsUlqdP5VKrpoOWBjweKmxdNIOU4FBRq1EYgIb1+Kp+Xrx8x+SVoz3am4=
+script:
+- ./pipeline.sh build
+before_deploy:
+- ./pipeline.sh tag
+- ./pipeline.sh dockerLogin
+deploy:
+  - provider: script
+    script: gradle bintrayUpload -PbintrayUser=buildit -PbintrayKey=$BINTRAY_TOKEN -PdryRun=false buildDocker
+    skip_cleanup: true
+    on:
+      branch: master
+      tags: false
+      condition: '"${LAST_COMMIT_MESSAGE}" != "${CD_COMMIT_MESSAGE}"'
+after_deploy:
+- ./pipeline.sh bump

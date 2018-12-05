@@ -1,0 +1,18 @@
+<div class="modal-header">
+  <h4 class="modal-title">Delete {{ resourceName }}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form (ngSubmit)="deleteConfirmed()">
+  <div class="modal-body">
+    <p>Warning: This action will permanently delete <span class="twiglet-name">{{ resourceName }}</span>.
+    To confirm the deletion of all documents, you must enter the name.</p>
+      <input #autofocus type="text" class="form-control" [(ngModel)]="inputName" name="inputName">
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="button btn-sm btn-secondary" (click)="activeModal.close('Close click')">Close</button>
+    <button type="submit" class="button btn-sm" [disabled]="inputName !== resourceName">Delete</button>
+  </div>
+</form>
+

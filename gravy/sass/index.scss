@@ -1,0 +1,24 @@
+/*
+ * This is the main file for the whole project.
+ * It follows ITCSS-like structure, so be sure to know what you're doing
+ * No style definitions should be made here, only `@import`
+ */
+
+/*
+ * Third Party Tools
+ */
+@import 'typi';
+
+/*
+ * Mixins and functions
+ */
+@import 'functions/init';
+@import 'functions/breakpoint';
+@import 'mixins/font';
+@import 'mixins/text-defaults';
+
+/*
+ * Settings: Global variables, config switches
+ */
+@import 'settings/defaults';
+@import 'settings/gravy';

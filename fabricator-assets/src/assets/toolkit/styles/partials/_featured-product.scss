@@ -1,0 +1,134 @@
+$card-width: 68%;
+
+.hpe-featured-product {
+  position: relative;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  background-color: $light-grey-1;
+  padding: 2rem $bootstrap-gutter-double;
+
+  @include respond-to(ex-large) {
+    padding: 3rem 0;
+    background: linear-gradient(to right, #{$light-grey-1} #{$card-width}, #{$white} #{100% - $card-width});
+  }
+
+  &__content {
+    padding: 0 0 $bootstrap-gutter-double;
+
+    @include respond-to(ex-large) {
+      padding: 0 $bootstrap-gutter $bootstrap-gutter-double;
+    }
+  }
+
+  &__row {
+    flex-direction: column-reverse;
+
+    @include respond-to(ex-large) {
+      flex-direction: row;
+    }
+  }
+
+  &__heading {
+    flex: 0 0 100%;
+  }
+
+  &__details {
+    font-size: 1.125rem;
+  }
+
+  &__product {
+    min-height: 12rem;
+    position: relative;
+  }
+
+  &__feature {
+    display: flex;
+    align-items: flex-start;
+    margin: 1.5em 0;
+
+    .hpe-icon {
+      position: relative;
+      margin-right: 0.5em;
+      bottom: -0.125em;
+      color: $brand;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    max-width: 40rem;
+
+    @include respond-to(ex-large) {
+      position: absolute;
+      width: 250%;
+      left: -125%;
+    }
+  }
+
+  &__name {
+    font-size: 1.5rem;
+  }
+
+  &__price {
+    font-size: 1.875rem;
+    color: $dark-grey-1;
+  }
+
+  &__badge {
+    position: absolute;
+    top: 12rem;
+    right: 6rem;
+    background-color: $light-2;
+    color: $white;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    height: 6rem;
+    width: 6rem;
+    padding: 0.5rem;
+
+    @include respond-to(medium) {
+      right: 40%;
+    }
+
+    @include respond-to(large) {
+      font-size: 1.25rem;
+      height: 8rem;
+      width: 8rem;
+      padding: 1rem;
+      margin-right: -2rem;
+      margin-top: 0;
+      right: 50%;
+    }
+
+    @include respond-to(ex-large) {
+      right: 30%;
+      margin-top: 2rem;
+    }
+  }
+
+  &__meta {
+    list-style: none;
+    padding: 0;
+    font-weight: 600;
+    flex: 0 0 100%;
+
+    &-item {
+      display: inline;
+
+      &:not(:last-child)::after {
+        content: "\2022";
+        padding: 0 0.25em;
+      }
+    }
+  }
+
+  &__button {
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: $bootstrap-gutter-double;
+  }
+}

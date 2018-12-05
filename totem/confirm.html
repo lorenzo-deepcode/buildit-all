@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, user-scalable=no
+		initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"/>
+
+	<title>Microbit Sensors</title>
+
+	<style>
+		@import 'ui/css/evothings-app.css';
+	</style>
+
+	<link href="ui/css/emoji.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link href="ui/css/material.min.css" rel="stylesheet" />
+
+	<script>
+    // Redirect console.log to Evothings Workbench.
+    if (window.hyper && window.hyper.log) {
+      console.log = hyper.log
+    }
+	</script>
+</head>
+
+<body ontouchstart="">
+
+<div class="totem-content">
+
+	<img id="logo" src="ui/images/box.png">
+
+	<h1>Totem</h1>
+	<h3>Thank you for authorizing! In a moment, we'll take you back to the app!</h3>
+</div>
+
+<script>
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+      results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+
+  var code = getParameterByName('code');
+
+  if (code) {
+    setTimeout(function() {
+      window.location.href = 'totem://?code=' + code;
+		}, 1000);
+  }
+
+</script>
+
+</body>
+
+</html>

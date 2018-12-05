@@ -1,0 +1,9 @@
+////
+/// @group Components
+////
+
+h4 {
+  /// Font size for an `<h4>` tag
+  $h4-font-size: 1rem !default;
+  font-size: $h4-font-size;
+}

@@ -1,0 +1,44 @@
+//pickers styles
+@import 'global/colors';
+@import 'global/typography';
+
+.roomSelectToggleInput {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding-bottom: 3px;
+    border-bottom: solid 1px $darkblue;
+    margin: 20px;
+    cursor: pointer;
+
+    .toggle {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+
+    span {
+        flex: 1;
+        font-size: 14px;
+        color: $black;
+        margin-left: 10px;
+        font-family: $base-font-family;
+        font-size: 14px;
+    }
+
+    img {
+        width: 10px;
+        height: 10px;
+        margin-right: 10px;
+    }
+
+    label {}
+}
+
+.fieldlabel {
+    font-size: 14px;
+    color: #c5c5c5;
+    font-family: $base-font-family;
+}

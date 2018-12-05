@@ -1,0 +1,39 @@
+{
+  "name": "slink",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "test": "jest",
+    "eslint": "./node_modules/.bin/eslint 'slink-main/*.js' 'slink-main/dao/*.js' 'slink-main/sap/*.js' 'slink-main/tests/unit/*.js' 'slink-main/tests/int/*.js' 'slink-main/tests/unit/sap/*.js' 'slink-main/tests/unit/dao/*.js'"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-react": "^7.8.2",
+    "jest": "^22.4.4",
+    "jest-get-type": "^22.4.3",
+    "pre-commit": "^1.2.2",
+    "aws-sdk": "2.259.1",
+    "aws-param-store": "2.0.0"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "jest": {
+    "testMatch": [
+      "**/tests/**/*_test.js?(x)"
+    ],
+    "testEnvironment": "node",
+    "verbose": true,
+    "collectCoverage": true,
+    "collectCoverageFrom": ["slink-main/**/*.{js,jsx}"]
+  },
+  "precommit": [
+    "eslint",
+    "test"
+  ],
+  "dependencies": {}
+}

@@ -1,0 +1,91 @@
+.hpe-card-list {
+  padding: 6rem 0;
+  background: $light-grey-1;
+
+  &__content {
+    margin-top: $bootstrap-gutter;
+    margin-bottom: $bootstrap-gutter;
+    padding: $bootstrap-gutter;
+  }
+
+  &__cards {
+    @include stack-row(small);
+  }
+}
+
+.hpe-card {
+  display: flex;
+  flex-direction: column;
+  padding: 0 $bootstrap-gutter;
+  background: $white;
+  margin-top: $bootstrap-gutter;
+  margin-bottom: $bootstrap-gutter;
+  text-align: center;
+  height: 100%;
+  margin: 0 0 $bootstrap-gutter;
+
+  &__image {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    height: 8rem;
+    width: 100%;
+    margin: 0 auto 1rem;
+    flex: 0 0 8rem;
+  }
+
+  &__link {
+    text-decoration: none;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: $light-grey-1;
+    padding: 2.5rem $bootstrap-gutter-double $bootstrap-gutter-double;
+    height: 100%;
+  }
+
+  &__heading {
+    font-size: 1.5rem;
+    margin-bottom: 0.5em;
+  }
+
+  &__description {
+    font-size: 1.125rem;
+    margin: 0 0 1rem;
+    flex: 1 1 50%;
+  }
+
+  &__meta {
+    font-size: 1.625rem;
+    color: $dark-grey-3;
+  }
+
+  &__button {
+    width: 100%;
+    text-transform: uppercase;
+  }
+}
+
+.hpe-bookmark {
+  position: absolute;
+  top: -0.5rem;
+  right: 1rem;
+  font-size: 2rem;
+  color: $brand;
+  z-index: 1;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    left: -100%;
+
+    &:checked + .hpe-icon {
+      color: $brand;
+      fill: currentColor !important; /* stylelint-disable-line declaration-no-important */
+      stroke-width: 1 !important; /* stylelint-disable-line declaration-no-important */
+    }
+  }
+}

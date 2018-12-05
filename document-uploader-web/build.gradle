@@ -1,0 +1,78 @@
+import org.gradle.api.tasks.Copy
+
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.3.RELEASE")
+    }
+    dependencies {
+        classpath 'se.transmode.gradle:gradle-docker:1.2'
+    }
+    dependencies {
+        classpath 'com.novoda:bintray-release:0.8.0'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'docker'
+
+
+build.dependsOn dependsOn: ['copyApp', 'copyDockerFiles']
+
+bootJar {
+    baseName = 'document-uploader-web'
+    version =  '1.0.0'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile "com.amazonaws:aws-java-sdk-s3:1.11.354"
+    compile 'org.apache.commons:commons-io:1.3.2'
+
+    testCompile("junit:junit")
+}
+
+task copyApp(type: Copy, dependsOn: bootJar) {
+    from bootJar
+    into "${project.buildDir}"
+    rename { String fileName ->
+        'app.jar'
+    }
+}
+
+task copyDockerFiles(type: Copy, dependsOn: bootJar) {
+    from 'src/main/docker'
+    into "${project.buildDir}"
+}
+
+task buildDocker(type: Docker, dependsOn: bootJar) {
+    push = true
+    applicationName = "builditdigital/${jar.baseName}"
+    dockerfile = file('src/main/docker/Dockerfile')
+    doFirst {
+        copy {
+            from bootJar
+            into stageDir
+            rename { String fileName ->
+                'app.jar'
+            }
+        }
+    }
+}
+

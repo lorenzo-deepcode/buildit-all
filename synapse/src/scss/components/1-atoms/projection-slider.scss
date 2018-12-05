@@ -1,0 +1,38 @@
+.projection-slider {
+  display: flex;
+  font-size: 1rem;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+
+  .slider-label {
+    color: $gray;
+    margin-right: 0.6rem;
+    text-transform: uppercase;
+  }
+
+  .value {
+    font-size: 1.4rem;
+    margin-right: 0.2rem;
+  }
+
+  .unit {
+    text-transform: lowercase;
+  }
+
+  input[type='range'] {
+    -webkit-appearance: none !important;
+    background: none;
+    border: 1px solid $gray;
+    height: 1px;
+    margin-bottom: 1rem;
+    transition: border 0.2s ease;
+
+    &:hover {
+      border: 1px solid $highlight;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

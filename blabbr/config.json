@@ -1,0 +1,7 @@
+{
+  "apiKey": "<YOUR_API_KEY>",
+  "authDomain": "<YOUR_FIREBASE_DOMAIN>",
+  "databaseURL": "<YOUR_DATABASE_URL>",
+  "storageBucket": "<YOUR_STORAGE_BUCKET>",
+  "PORT": 3000
+}

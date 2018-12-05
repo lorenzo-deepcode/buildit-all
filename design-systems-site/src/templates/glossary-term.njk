@@ -1,0 +1,24 @@
+{% extends "page.njk" %}
+
+{% block main %}
+  <h2>Definition</h2>
+  {{ contents | safe }}
+
+  {% if synonyms %}
+    <h2>Synonyms</h2>
+    <ul>
+    {% for term in synonyms %}
+      <li><a href="{{ link.to( term ) }}">{{ term.title }}</a></li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% if furtherReading %}
+    <h2>Further reading</h2>
+    <ul>
+    {% for article in furtherReading %}
+      <li><a href="{{ article.url }}">{{ article.title }}</a> by {{ article.author }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,43 @@
+.projection-integer-input {
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+
+  .slider-label {
+    color: $gray;
+    margin-right: 0.6rem;
+    text-transform: uppercase;
+  }
+
+  .value {
+    font-size: 1.4rem;
+    margin-right: 0.2rem;
+  }
+
+  .unit {
+    text-transform: lowercase;
+  }
+
+  .input {
+    display: flex;
+    align-items: center;;
+    justify-content: space-between;
+    width: 131px;
+    input {
+      -webkit-appearance: none !important;
+      font-size: 1.4rem;
+      width: 5rem;
+      background: none;
+      border: 1px solid $light-gray;
+
+      &:hover {
+        border: 1px solid $highlight;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}

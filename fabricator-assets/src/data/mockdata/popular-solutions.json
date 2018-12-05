@@ -1,0 +1,111 @@
+[
+  {
+    "title": "Virtualization Solutions",
+    "description":
+      "Increase operational efficiency. Run more of your applications on a single server.",
+    "products": [
+      {
+        "name": "Microserver",
+        "price": "$600.00",
+        "image":
+          "https://h50003.www5.hpe.com/digmedialib/prodimg/lowres/i00022694.png"
+      },
+      {
+        "name": "ML30 Server",
+        "price": "$800.00",
+        "image":
+          "https://h50003.www5.hpe.com/digmedialib/prodimg/lowres/i00028987.png"
+      },
+      {
+        "name": "ML110 Server",
+        "price": "$1,000.00",
+        "image":
+          "https://h50003.www5.hpe.com/digmedialib/prodimg/lowres/i00022694.png"
+      }
+    ],
+    "primary-cta": "Watch video",
+    "secondary-cta": "Browse",
+    "class": "hpe-bg--dark-2"
+  },
+  {
+    "title": "Storage & Backup Solutions",
+    "description":
+      "Backup your data and secure it automatically. Safeguard information and improve productivity.",
+    "products": [
+      {
+        "name": "Microserver",
+        "price": "$600.00",
+        "image":
+          "https://h50003.www5.hpe.com/digmedialib/prodimg/lowres/i00022694.png"
+      },
+      {
+        "name": "ML30 Server",
+        "price": "$800.00",
+        "image":
+          "https://h50003.www5.hpe.com/digmedialib/prodimg/lowres/i00028987.png"
+      },
+      {
+        "name": "ML110 Server",
+        "price": "$1,000.00",
+        "image":
+          "https://h50003.www5.hpe.com/digmedialib/prodimg/lowres/i00022694.png"
+      }
+    ],
+    "primary-cta": "Browse",
+    "class": "hpe-bg--dark-1"
+  },
+  {
+    "title": "Threat Management Solutions",
+    "description":
+      "Convert your server into a network edge protection device. Early resolution of network attacks, malware, viruses and phishing scams.",
+    "products": [
+      {
+        "name": "Microserver",
+        "price": "$600.00",
+        "image":
+          "https://h50003.www5.hpe.com/digmedialib/prodimg/lowres/i00022694.png"
+      },
+      {
+        "name": "ML30 Server",
+        "price": "$800.00",
+        "image":
+          "https://h50003.www5.hpe.com/digmedialib/prodimg/lowres/i00028987.png"
+      },
+      {
+        "name": "ML110 Server",
+        "price": "$1,000.00",
+        "image":
+          "https://h50003.www5.hpe.com/digmedialib/prodimg/lowres/i00022694.png"
+      }
+    ],
+    "primary-cta": "Browse",
+    "class": "hpe-bg--dark-3"
+  },
+  {
+    "title": "Multi-function Solutions",
+    "description":
+      "SComfortably run several applications or services on a single server. Consolidate the functions run on several servers and appliances on a single server.",
+    "products": [
+      {
+        "name": "Microserver",
+        "price": "$600.00",
+        "image":
+          "https://h50003.www5.hpe.com/digmedialib/prodimg/lowres/i00022694.png"
+      },
+      {
+        "name": "ML30 Server",
+        "price": "$800.00",
+        "image":
+          "https://h50003.www5.hpe.com/digmedialib/prodimg/lowres/i00028987.png"
+      },
+      {
+        "name": "ML110 Server",
+        "price": "$1,000.00",
+        "image":
+          "https://h50003.www5.hpe.com/digmedialib/prodimg/lowres/i00022694.png"
+      }
+    ],
+    "primary-cta": "Browse",
+    "class": "hpe-bg--dark-4"
+  }
+]

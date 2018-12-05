@@ -1,0 +1,30 @@
+<article class="hpe-carousel row">
+  {{#each home-carousel}}
+  <section 
+    class="hpe-carousel__image {{this.class}}" style="background-image: url('{{this.imageURL}}')">
+    <div class="hpe-carousel__content hpe-centered-section">
+      <div class="hpe-carousel__card">
+        <h1 class="hpe-headline hpe-headline--medium hpe-headline--caps hpe-headline--black hpe-brand-rule hpe-carousel__title hpe-page-headline">
+          {{this.title}}
+        </h1>
+        <p class="hpe-carousel__description">{{this.description}}</p>
+      </div>
+      <footer class="hpe-carousel__actions">
+        <div class="hpe-carousel__action-button">
+          {{> buttons.anchor-primary--reverse icon="link-next" text=this.cta-link-primary }}
+        </div>
+        <div class="hpe-carousel__action-button">
+          {{> buttons.anchor-primary--reverse icon="link-next" text=this.cta-link-secondary }}
+        </div>
+      </footer>
+    </div>
+  </section>
+  <a class="hpe-carousel__indicator"></a>
+  {{/each}}
+  <button class="hpe-button hpe-button--plain hpe-carousel__button hpe-carousel__button--previous">
+    {{> icons.icon icon="previous" className="hpe-icon--inline"}}
+  </button>
+  <button class="hpe-button hpe-button--plain hpe-carousel__button hpe-carousel__button--next">
+    {{> icons.icon icon="next" className="hpe-icon--inline"}}
+  </button>
+</article>

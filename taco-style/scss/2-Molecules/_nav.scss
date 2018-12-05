@@ -1,0 +1,19 @@
+.nav {
+  height: 27px;
+  width: 353px;
+  padding: 11px;
+  background: black;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  overflow-x: scroll;
+  .nav-item {
+    margin-right: 45px;
+    color: $warm-grey;
+    font-family: FranchiseFree;
+    font-size: 30px;
+    font-weight: bold;
+    display: inline-block;
+    text-transform: uppercase;
+  }
+}

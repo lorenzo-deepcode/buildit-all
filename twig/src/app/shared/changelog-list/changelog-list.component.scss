@@ -1,0 +1,35 @@
+:host {
+  .modal-body {
+    overflow-x: auto;
+    padding: 0;
+  }
+
+  table {
+    height: 300px;
+  }
+
+  tbody {
+    font-size: 14px;
+    height: 250px;
+    overflow-y: scroll;
+    position: absolute;
+    width: 100%;
+  }
+
+  .nowrap {
+    white-space: nowrap;
+  }
+
+  .strikeout {
+    text-decoration: line-through;
+  }
+
+  .col {
+    padding-left: 0;
+  }
+
+  .user-col {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

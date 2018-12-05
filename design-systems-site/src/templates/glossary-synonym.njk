@@ -1,0 +1,5 @@
+{% extends "page.njk" %}
+
+{% block main %}
+  <strong>{{ title }}</strong> is a synonym for: <a href="{{ link.to( synonym ) }}">{{ synonym.title }}</a>
+{% endblock %}

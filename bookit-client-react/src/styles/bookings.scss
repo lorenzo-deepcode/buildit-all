@@ -1,0 +1,54 @@
+@import './mixins/flex';
+@import './mixins/media';
+@import 'variables';
+
+.bookings {
+    background-color: white;
+    color: $black;
+
+    @include page;
+    flex-flow: column nowrap;
+}
+
+.heading {
+  padding: 10px 0;
+  margin: 20px 0;
+
+  .title {
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: -0.6px;
+    flex: 1 0 auto;
+    text-align: center;
+    color: black;
+  }
+
+  .cancel {
+    position: absolute;
+    top: 12px;
+    right: 7px;
+
+    text-decoration: none;
+    display: inline-block;
+
+    img{
+      display: block;
+      margin-left: auto;
+      margin-right: 20px;
+      max-width: 100%;
+      height: 30px;
+      width: 30px;
+    }
+
+    @include desktop {
+      top: 35px;
+      right: 35px;
+
+      img{
+        margin-right: 0;
+        height: 40px;
+        width: 40px;
+      }
+    }
+  }
+}

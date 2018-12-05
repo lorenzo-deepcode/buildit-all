@@ -1,0 +1,42 @@
+{
+  "name": "aem-with-react",
+  "version": "0.7.3",
+  "description": "Aem components with React.",
+  "author": "Buildit",
+  "contributors": [
+    {
+      "name": "Panos Voudouris",
+      "email": "panagiotis.voudouris@wipro.com",
+      "url": "https://github.com/panosvoudouris"
+    }
+  ],
+  "licence": "ISC",
+  "scripts": {
+    "prepublish": "tsd install && tsc",
+    "test": "mocha --compilers ts:espower-typescript/guess test/*.ts",
+    "build": "tsd install && tsc",
+    "clean": "rm -fr *.js *.js.map component typings"
+  },
+  "keywords": [
+    "aem",
+    "cq5",
+    "react",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/buildit/aem-with-react.git"
+  },
+  "devDependencies": {
+    "espower-typescript": "^3.0.0",
+    "mocha": "^2.3.4",
+    "power-assert": "^1.2.0",
+    "tsd": "^0.6.5",
+    "typescript": "^1.8.10"
+  },
+  "dependencies": {
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "react-frame-component": "^0.6.1"
+  }
+}

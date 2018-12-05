@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+
+  web:
+    container_name: bookit_web
+    image: builditdigital/bookit-web:latest
+    ports:
+     - "80:80"
+    links:
+      - "server:bookitapi"
+    environment:
+      - BOOKIT_API_BASE_URL=/api
+    command: /bin/sh -c "envsubst < /opt/app/config.js.template > /opt/app/config.js && nginx -g 'daemon off;'"
+
+  server:
+    container_name: bookit_server
+    image: builditdigital/bookit-server:latest
+    expose:
+      - "8888"

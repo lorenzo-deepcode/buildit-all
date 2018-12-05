@@ -1,0 +1,2 @@
+<app-model-info *ngIf="!userState.get(USERSTATE.IS_EDITING)" [models]="models" [userState]="userState"></app-model-info>
+<app-model-form *ngIf="userState.get(USERSTATE.IS_EDITING)" [models]="models" [userState]="userState"></app-model-form>

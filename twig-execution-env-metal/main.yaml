@@ -1,0 +1,280 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  This template creates a basic VPC for an ECS-based execution environment.
+
+
+Parameters:
+  ProjectName:
+    Description: Project name
+    Type: String
+
+  EcsClusterInstanceType:
+    Type: String
+    Default: "t2.small"
+    Description: >
+      Instance type used for ECS cluster.
+
+  EcsClusterMinSize:
+    Type: String
+    Default: "1"
+    Description: >
+      Minimum number of instances in ECS cluster.
+
+  EcsClusterMaxSize:
+    Type: String
+    Default: "2"
+    Description: >
+      Maximum number of instances in ECS cluster.
+
+  EcsClusterDesiredSize:
+    Type: String
+    Default: "1"
+    Description: >
+      Initial number of instances in ECS cluster.
+
+  TemplateBucket:
+    Type: String
+    Default: "your bucket name here"
+    Description: >
+      Bucket in S3 where this and the supporting templates for your project were deployed (using ./bin/deployTemplates).
+
+  VpcCidr:
+    Type: String
+    Default: "10.215.0.0/16"
+    Description: >
+      CIDR for overall VPC.  Subnets below must be contained within this CIDR.
+
+  PubSubnet1Cidr:
+    Type: String
+    Default: "10.215.10.0/24"
+    Description: >
+      CIDR for public subnet 1.
+
+  PubSubnet2Cidr:
+    Type: String
+    Default: "10.215.20.0/24"
+    Description: >
+      CIDR for public subnet 2.
+
+  PubSubnet3Cidr:
+    Type: String
+    Default: "10.215.30.0/24"
+    Description: >
+      CIDR for public subnet 3.
+
+  PrivSubnet1Cidr:
+    Type: String
+    Default: "10.215.70.0/24"
+    Description: >
+      CIDR for private subnet 1.
+
+  PrivSubnet2Cidr:
+    Type: String
+    Default: "10.215.80.0/24"
+    Description: >
+      CIDR for private subnet 2.
+
+  PrivSubnet3Cidr:
+    Type: String
+    Default: "10.215.90.0/24"
+    Description: >
+      CIDR for private subnet 3.
+
+  Route53HostedZone:
+    Type: String
+    Default:  Z1P8DS3H3CPS28
+    Description: >
+      Zone to contain records for DNS mappings.
+
+  Route53DomainName:
+    Type: String
+    MinLength: 1
+    Default:  buildit.tools
+    Description: >
+      The domain name for the ELBs.
+
+  DbAmiId:
+    Type: String
+    MinLength: 1
+    Default:  ami-bc1e34aa
+    Description: >
+      The AMI to use for the database instance (default is us-east-1).
+
+  DbSubnet:
+    Type: String
+    MinLength: 1
+    Default:  ami-bc1e34aa
+    Description: >
+      The subnet where the database should run.
+
+  DbInstanceType:
+    Type: String
+    MinLength: 1
+    Default:  t2.medium
+    Description: >
+      The type of EC2 instance on which the database should run.
+
+
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterLabels:
+      VpcCidr:
+        default: "VPC CIDR"
+      PubSubnet1Cidr:
+        default: "Public Subnet 1 CIDR"
+      PubSubnet2Cidr:
+        default: "Public Subnet 2 CIDR"
+      PubSubnet3Cidr:
+        default: "Public Subnet 3 CIDR"
+      PrivSubnet1Cidr:
+        default: "Private Subnet 1 CIDR"
+      PrivSubnet2Cidr:
+        default: "Private Subnet 2 CIDR"
+      PrivSubnet3Cidr:
+        default: "Private Subnet 3 CIDR"
+      EcsClusterInstanceType:
+        default: "Cluster Instance Type"
+      EcsClusterMinSize:
+        default: "Minimum size of Cluster"
+      EcsClusterMaxSize:
+        default: "Maximum size of Cluster"
+      EcsClusterDesiredSize:
+        default: "Initial/desired size of Cluster"
+    ParameterGroups:
+      - Label:
+          default: VPC Configuration
+        Parameters:
+          - VpcCidr
+          - PubSubnet1Cidr
+          - PubSubnet2Cidr
+          - PubSubnet3Cidr
+          - PrivSubnet1Cidr
+          - PrivSubnet2Cidr
+          - PrivSubnet3Cidr
+      - Label:
+          default: ECS Configuration
+        Parameters:
+          - EcsClusterInstanceType
+          - EcsClusterMinSize
+          - EcsClusterMaxSize
+          - EcsClusterDesiredSize
+      - Label:
+          default: Database Configuration
+        Parameters:
+          - DbAmiId
+          - DbSubnet
+
+
+Resources:
+  ElbMarkerSecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      GroupDescription: !Sub ${AWS::StackName}-elbs
+      VpcId: !GetAtt Vpc.Outputs.VpcId
+
+  Cluster:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: !Sub https://s3.amazonaws.com/${TemplateBucket}/templates/ecs-cluster.yaml
+      Parameters:
+        ElbMarkerSecurityGroup: !Ref ElbMarkerSecurityGroup
+        Subnets: !GetAtt Vpc.Outputs.PrivateSubnets
+        VpcId: !GetAtt Vpc.Outputs.VpcId
+        InstanceType: !Ref EcsClusterInstanceType
+        MinClusterSize: !Ref EcsClusterMinSize
+        MaxClusterSize: !Ref EcsClusterMaxSize
+        DesiredClusterSize: !Ref EcsClusterDesiredSize
+
+  CouchDb:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: !Sub https://s3.amazonaws.com/${TemplateBucket}/templates/couchdb-ami.yaml
+      Parameters:
+        AmiId: !Ref DbAmiId
+        Name: !Sub ${AWS::StackName}-couchdb
+        InstanceType: !Ref DbInstanceType
+        SubnetId: !GetAtt Vpc.Outputs.PrivateSubnet1
+        AppDbAccessSgId: !GetAtt Cluster.Outputs.ClusterSecurityGroup
+        VpcId: !GetAtt Vpc.Outputs.VpcId
+
+
+  ElbTwig:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: !Sub https://s3.amazonaws.com/${TemplateBucket}/templates/load-balancer.yaml
+      Parameters:
+        Name: !Sub ${AWS::StackName}-web
+        ElbMarkerSecurityGroup: !Ref ElbMarkerSecurityGroup
+        VpcId: !GetAtt Vpc.Outputs.VpcId
+        Subnets: !GetAtt Vpc.Outputs.PublicSubnets
+        Scheme: internet-facing
+        ElbListenerPort: 80
+        TargetGroupServicePort: 80
+
+  ElbTwigDns:
+      Type: AWS::Route53::RecordSet
+      Properties:
+        HostedZoneName: !Sub ${Route53DomainName}.
+        Comment: DNS name for my instance.
+        Name: !Join ['', [!Ref ProjectName, ., !Ref Route53DomainName, .]]
+        Type: CNAME
+        TTL: '300'
+        ResourceRecords:
+        - !GetAtt ElbTwig.Outputs.DNSName
+
+  ElbTwigApi:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: !Sub https://s3.amazonaws.com/${TemplateBucket}/templates/load-balancer.yaml
+      Parameters:
+        Name: !Sub ${AWS::StackName}-api
+        ElbMarkerSecurityGroup: !Ref ElbMarkerSecurityGroup
+        VpcId: !GetAtt Vpc.Outputs.VpcId
+        Subnets: !GetAtt Vpc.Outputs.PublicSubnets
+        Scheme: internet-facing
+        ElbListenerPort: 80
+        TargetGroupServicePort: 3000
+        TargetGroupHealthCheckPath: /ping
+
+  ElbTwigApiDns:
+      Type: AWS::Route53::RecordSet
+      Properties:
+        HostedZoneName: !Sub ${Route53DomainName}.
+        Comment: DNS name for my instance.
+        Name: !Join ['', [!Ref ProjectName, '-api', ., !Ref Route53DomainName, .]]
+        Type: CNAME
+        TTL: '300'
+        ResourceRecords:
+        - !GetAtt ElbTwigApi.Outputs.DNSName
+
+  Vpc:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: !Sub https://s3.amazonaws.com/${TemplateBucket}/templates/vpc.yaml
+      Parameters:
+        Name: !Ref AWS::StackName
+        VpcCIDR: !Ref VpcCidr
+        PubSubnet1CIDR: !Ref PubSubnet1Cidr
+        PubSubnet2CIDR: !Ref PubSubnet2Cidr
+        PubSubnet3CIDR: !Ref PubSubnet3Cidr
+        PrivSubnet1CIDR: !Ref PrivSubnet1Cidr
+        PrivSubnet2CIDR: !Ref PrivSubnet2Cidr
+        PrivSubnet3CIDR: !Ref PrivSubnet3Cidr
+
+
+Outputs:
+  TwigCluster:
+    Description: Twig Cluster name.
+    Value: !GetAtt Cluster.Outputs.ClusterName
+  TwigWebUrl:
+    Description: Twig's URL.
+    Value: !Sub http://${ElbTwigDns}
+  TwigWebTargetGroupArn:
+    Description: ARN of Twig ELB's Target Group (use in build stack).
+    Value: !GetAtt ElbTwig.Outputs.TargetGroup
+  TwigApiUrl:
+    Description: Twig-API's URL.
+    Value: !Sub http://${ElbTwigApiDns}
+  TwigApiTargetGroupArn:
+    Description: ARN of Twig API ELB's Target Group (use in build stack).
+    Value: !GetAtt ElbTwigApi.Outputs.TargetGroup

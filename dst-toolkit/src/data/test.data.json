@@ -1,0 +1,51 @@
+{
+  "title": "Test",
+  "logo": {
+    "href": "#five", "src": "icon-5-01.svg", "alt": "Test", "anchor": "Test"
+  },
+  "nav": {
+    "href": "#five"
+  },
+  "header": {
+    "headingOne": "Test your prototypes.",
+    "paragraph": "Testing with your chosen persona validates the prototype, idea and the relevance of the problem statement.<br />Refinement or pivoting on the prototype determines which step to take in the design thinking model."
+  },
+  "tiles": [
+    {
+      "style": "style1",
+      "img": {
+        "src": "images-test/placeholder.jpg",
+        "alt": "Test"
+      },
+      "actions": {
+        "href": "#",
+        "title": "Download on Google Drive",
+        "target": "_blank"
+      }
+    },
+    {
+      "style": "style2",
+      "img": {
+        "src": "images-test/placeholder.jpg",
+        "alt": "Test"
+      },
+      "actions": {
+        "href": "#",
+        "title": "Download on Google Drive",
+        "target": "_blank"
+      }
+    },
+    {
+      "style": "style3",
+      "img": {
+        "src": "images-test/placeholder.jpg",
+        "alt": "Test"
+      },
+      "actions": {
+        "href": "#",
+        "title": "Download on Google Drive",
+        "target": "_blank"
+      }
+    }
+  ]
+}

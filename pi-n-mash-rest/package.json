@@ -1,0 +1,22 @@
+{
+  "name": "pi-n-mash-rest",
+  "version": "0.0.1",
+  "description": "",
+  "main": "rest.js",
+  "scripts": {
+    "start": "node rest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buildit/pi-n-mash-rest.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/buildit/pi-n-mash-rest/issues"
+  },
+  "homepage": "https://github.com/buildit/pi-n-mash-rest#readme",
+  "dependencies": {
+    "express": "^4.14.1"
+  }
+}

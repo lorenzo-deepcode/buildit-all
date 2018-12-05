@@ -1,0 +1,13 @@
+@import '../../../styles_colors';
+
+:host {
+  font-size: 14px;
+
+  .twiglet-name {
+    background-color: $buildit-ltgray;
+    border: 1px solid $buildit-ltgray;
+    color: $buildit-red;
+    padding: 2px 4px;
+    white-space: nowrap;
+  }
+}

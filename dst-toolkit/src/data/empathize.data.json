@@ -1,0 +1,138 @@
+{
+  "title": "Empathize",
+  "logo": {
+    "href": "#one", "src": "icon-1-01.svg", "alt": "Empathize", "anchor": "Empathize"
+  },
+  "nav": {
+    "href": "#one"
+  },
+  "header": {
+    "headingOne": "We started with 3 initial problem statements.",
+    "img": {
+      "src": "images-empathize/placeholder.jpg",
+      "alt": "Assumption Map - Empathize"
+    },
+    "paragraph": "We used an assumption map in order to initiate the conversations. Assumptiom mapping helps deepen the understanding of the users needs and the risks associated with addressing those needs. Ultimately, this helps teams understand where to focus their efforts in order to increase learning and deliver greater value. We then discussed different point of views that could be in play when looking to empathize, i.e. who, what would we want to achieve, under what circumstances. We highlighted on the empathize print outs which group are in play as they empathize the challenges (providers/operators). The output of this session serves as a base to (re)define the problem statement in the define phase."
+  },
+  "tiles": [
+    {
+      "style": "style1",
+      "img": {
+        "src": "images-empathize/placeholder.jpg",
+        "alt": "Empathize"
+      },
+      "actions": {
+        "href": "#",
+        "anchor": "<h2>Empathy Map</h2>",
+        "title": "Empathy POV"
+      }
+    },
+    {
+      "style": "style2",
+      "img": {
+        "src": "images-empathize/placeholder.jpg",
+        "alt": "Empathize Tool"
+      },
+      "actions": {
+        "href": "#",
+        "title": "Empathy POV"
+      }
+    },
+    {
+      "style": "style3",
+      "img": {
+        "src": "images-empathize/placeholder.jpg",
+        "alt": "Empathize Map"
+      },
+      "actions": {
+        "href": "#",
+        "title": "Empathy Map"
+      }
+    },
+    {
+      "style": "style4",
+      "img": {
+        "src": "images-empathize/placeholder.jpg",
+        "alt": "Empathize"
+      },
+      "actions": {
+        "href": "#",
+        "title": "Download on Dropbox",
+        "target": "_blank"
+      }
+    },
+    {
+      "style": "style5",
+      "img": {
+        "src": "images-empathize/placeholder.jpg",
+        "alt": "Empathize"
+      },
+      "actions": {
+        "href": "#",
+        "title": "Download on Dropbox",
+        "target": "_blank"
+      }
+    },
+    {
+      "style": "style6",
+      "img": {
+        "src": "images-empathize/placeholder.jpg",
+        "alt": "Empathize"
+      },
+      "actions": {
+        "href": "#",
+        "title": "Download on Dropbox",
+        "target": "_blank",
+        "anchor": "<h2>Empathy interview</h2>"
+      }
+    },
+    {
+      "style": "style1",
+      "img": {
+        "src": "images-empathize/placeholder.jpg",
+        "alt": "Empathize"
+      },
+      "actions": {
+        "href": "#",
+        "title": "Download on Dropbox",
+        "target": "_blank"
+      }
+    },
+    {
+      "style": "style2",
+      "img": {
+        "src": "images-empathize/placeholder.jpg",
+        "alt": "Empathize"
+      },
+      "actions": {
+        "href": "#",
+        "title": "Download on Dropbox",
+        "target": "_blank",
+        "anchor": "<h2>empathy persona point of view</h2>"
+      }
+    },
+    {
+      "style": "style3",
+      "img": {
+        "src": "images-empathize/placeholder.jpg",
+        "alt": "Empathize"
+      },
+      "actions": {
+        "href": "#",
+        "title": "Download on Dropbox",
+        "target": "_blank"
+      }
+    }
+  ],
+  "moreText": {
+    "title": "Insights of the Empathize phase",
+    "paragraph": [
+      "<strong>Group 1</strong><br />Availability and correctness of data. Feeling that the operators have got the data. There is also a need to push the data which is not accessible. There is an 'operator paradigm', changing his mindset, change his focus from BAU, i.e. having a separate crew to have a look at the decommissioning. Operators controls the supply chain, they decide what package they put to the market and deterimine the urgency around it.",
+      "<strong>Group 2</strong><br />Reliability of the data and formatting of the data. Being a lower tier end user of the data, T1, T2 and T3 are not on the same page about data sharing. Confidence issue about knowing if the data is reliable. ROI of engaging, worth engaging, not formatted in a proper manner, difficult to engage with other suppliers. More inovation from the lower supply chain, they are eager to do more.",
+      "<strong>Group 3</strong><br />Sharing data is crucial. The timing of the data is also relevant. Benefit for planning, preparation. The barriers are mainly legal ones. Big trust issue from the supply chain and conflicts with government. Operators are not aligned.",
+      "<strong>Group 4</strong><br />Early engagement should happen from an operator production focus. decommissioning mindset to bring the contractor earlier to do the work. Barriers between what is on going in the field - field and on shore. Different governance models perhaps? Need to generate a joint vision. In a nutshell, early engagement on visibility with what is going on for 3 years with a single point of integration for the exchange of knowledge between people. T1 not interested in collaborating with T3 because they can do it themselves. Trust big service providers - build that trust.",
+      "<strong>Group 5</strong><br /> Data out there is irrelevant and the quality of the data is not always guaranteed. Design  structure of data that people have to capture in the field? 3 years looking forward is tight. Data sharing is not a big issue for BP, but transfering assets with data and knowledge is tricky. A recent example of data and knowledge not transferred between stakeholders and new client, because they did not want us to use the data. Commercial aspect? Too many bodies involved. Bodies frustrated because there is no traction. How would the collaboration platform work?",
+      "<strong>Group 6</strong><br />Encourage both parties to share data. Data security, how is it managed? How fully open is open? How much collection of data is it reasonable to expect from the supplier? It costs them 1M to bid... Collaborate on defining the scope and chosing good parties to get the best ideas in order to get the best values. Create environnements to put the best ideas together. There is a risk to give ideas to the competitors (from suppliers) ie. the way the operators contract with different governances, regulations. It should be run by one team, there are too many parties nowadays."
+    ]
+  }
+}

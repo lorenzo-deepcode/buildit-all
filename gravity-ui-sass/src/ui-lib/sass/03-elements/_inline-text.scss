@@ -1,0 +1,32 @@
+a {
+  @include gravy-font(primary, bold);
+
+  &[href] {
+    &:link {
+      color: $grav-co-interactive-secondary;
+    }
+
+    &:visited {
+      color: $grav-co-interactive-secondary-visited;
+    }
+
+    &:hover {
+      color: $grav-co-interactive-secondary-hover;
+    }
+
+    &:active {
+      color: $grav-co-accent-primary-light;
+    }
+  }
+}
+
+b,
+strong {
+  @include gravy-font(primary, bold);
+}
+
+code,
+kbd,
+samp {
+  font-family: monospace;
+}

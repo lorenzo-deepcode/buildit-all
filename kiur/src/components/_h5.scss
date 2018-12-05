@@ -1,0 +1,9 @@
+////
+/// @group Components
+////
+
+h5 {
+  /// Font size for an `<h5>` tag
+  $h5-font-size: 1rem !default;
+  font-size: $h5-font-size;
+}

@@ -1,0 +1,48 @@
+.order-list-item {
+    width: 375px;
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    align-items: center;
+    border-bottom: solid 1px #ebebeb;
+.count{
+    width: 8px;
+    height: 17px;
+    margin-left: 30px;
+    font-family: BrandonText;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.21;
+    letter-spacing: normal;
+    color: $warm-grey;
+}
+.desc {
+    width: 140px;
+    height: 34px;
+    margin-right: 103px;
+    margin-left: 40px;
+    font-family: BrandonText;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.21;
+    letter-spacing: normal;
+    color: $warm-grey;
+}
+.price {
+  width: 31px;
+  height: 17px;
+  font-family: Oswald;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.31;
+  letter-spacing: normal;
+  text-align: right;
+  color: $warm-grey;
+}
+}

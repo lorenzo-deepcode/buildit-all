@@ -1,0 +1,133 @@
+{
+  "title": "Ideate",
+  "logo": {
+    "href": "#three", "src": "icon-3-01.svg", "alt": "Ideate", "anchor": "Ideate"
+  },
+  "nav": {
+    "href": "#three"
+  },
+  "header": {
+    "headingOne": "Go wild. Be bold. Make choices.",
+    "paragraph": "The ideation started with the 3 problem statements from the define phase.",
+    "introList": [
+      "<strong><i>As a supplier</i></strong> I want to/need to <strong>access quality asset information in a timely manner</strong> to be able to <strong>innovate cost effective business models</strong>.",
+      "<strong><i>As a supplier</i></strong> I want to/need to <strong>have more information earlier</strong> to be able to <strong>proactively influence decomm process</strong>.",
+      "<strong><i>As an operator</i></strong> I need to <strong>develop org and business construct</strong> to be able to <strong>capture late life value proposition -Ops and decomm- BBL and cost risk</strong>."
+    ]
+  },
+  "squareTilesA": {
+    "title": "<p style=\"margin-top:2em\">From these intial opportunities, around a hundred topics were considered to help achieve them.</p><p style=\"margin-top:2em\">A vote filtered these 5 proposals through two types of challenges:<br><span style=\"display:inline-block;background-color:black;width:15px;height:15px;margin-right:0.2em;border-radius: 50%;\"></span>Complexity (Unknown - Can we do this) and <span style=\"display:inline-block;background-color:black;width:15px;height:15px;margin-right:0.2em;border-radius: 50%;\"></span>Importance (Urgent - Should we do this).</p>",
+    "items": [
+      {
+        "style": "style1",
+        "img": {
+          "src": "images-ideate/placeholder.jpg",
+          "alt": "Ideate"
+        },
+        "actions": {
+          "href": "#",
+          "title": "Download on Dropbox",
+          "target": "_blank",
+          "anchor": "<p>As a supplier...</p>"
+        }
+      },
+      {
+        "style": "style4",
+        "img": {
+          "src": "images-ideate/placeholder.jpg",
+          "alt": "Ideate"
+        },
+        "actions": {
+          "href": "#",
+          "title": "Download on Dropbox",
+          "target": "_blank",
+          "anchor": "<p>As a stakeholder...</p>"
+        }
+      },
+      {
+        "style": "style5",
+        "img": {
+          "src": "images-ideate/placeholder.jpg",
+          "alt": "Ideate"
+        },
+        "actions": {
+          "href": "#",
+          "title": "Download on Dropbox",
+          "target": "_blank",
+          "anchor": "<p>As an operator...</p>"
+        }
+      }
+    ]
+  },
+  "squareTilesB": {
+    "title": "<p style=\"margin-top:2em\">4 opportunities were selected for further development.</p>",
+    "items": [
+      {
+        "style": "style1",
+        "img": {
+          "src": "images-ideate/placeholder.jpg",
+          "alt": "Ideate"
+        },
+        "actions": {
+          "href": "#",
+          "title": "Download on Dropbox",
+          "target": "_blank",
+          "anchor": "<h4>Fairy OGA Father</h4><p>Data sharing through a common platform</p>"
+        }
+      },
+      {
+        "style": "style4",
+        "img": {
+          "src": "images-ideate/placeholder.jpg",
+          "alt": "Ideate"
+        },
+        "actions": {
+          "href": "#",
+          "title": "Download on Dropbox",
+          "target": "_blank",
+          "anchor": "<h4>D Bay</h4><p>Online market and bidings for decommissioning</p>"
+        }
+      },
+      {
+        "style": "style5",
+        "img": {
+          "src": "images-ideate/placeholder.jpg",
+          "alt": "Ideate"
+        },
+        "actions": {
+          "href": "#",
+          "title": "Download on Dropbox",
+          "target": "_blank",
+          "anchor": "<h4>Operators<br>new clothes</h4><p>Open Source sharing assets and best practices</p>"
+        }
+      },
+      {
+        "style": "style6",
+        "img": {
+          "src": "images-ideate/placeholder.jpg",
+          "alt": "Ideate"
+        },
+        "actions": {
+          "href": "#",
+          "title": "Download on Dropbox",
+          "target": "_blank",
+          "anchor": "<h4>Tinder for Decom</h4><p>Connect interested parties</p>"
+        }
+      }
+    ]
+  },
+  "tiles": [
+    {
+      "style": "style1",
+      "img": {
+        "src": "images-ideate/placeholder.jpg",
+        "alt": "Ideate"
+      },
+      "actions": {
+        "href": "#",
+        "title": "Download on Dropbox",
+        "target": "_blank"
+      }
+    }
+  ]
+}

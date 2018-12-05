@@ -1,0 +1,27 @@
+<div class="container-fluid">
+
+    {{> header }} 
+    {{> page-header--image 
+        pageTitle="Servers and Server Systems" 
+        src="/assets/toolkit/images/category-header.png"
+    }} 
+
+    {{> breadcrumbs pages=links-category}}
+
+    {{> category-carousel carouselData=category-servers }}
+    
+    {{> popular-solutions-grid }} 
+    
+    {{> cta-section-category }} 
+    
+    {{> featured-product }} 
+
+    {{> carousel-owl title="Servers Recommended for You" carouselData=suggested-products }}
+
+    {{> breadcrumbs pages=links-category }} 
+    
+    {{> support }} 
+    
+    {{> footer}}
+
+</div>

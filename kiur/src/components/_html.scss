@@ -1,0 +1,24 @@
+////
+/// @group Components
+////
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in
+ *    IE on Windows Phone and in iOS.
+ */
+
+html {
+  /// Page level text color
+  $base-font-color: #000 !default;
+  /// General line height
+  $base-line-height: 1.15 !default;
+  /// Page level font size
+  $base-font-size: 16px !default;
+  font-size: $base-font-size;
+  line-height: $base-line-height; /* 1 */
+  -ms-text-size-adjust: 100%; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+
+  color: $base-font-color;
+}

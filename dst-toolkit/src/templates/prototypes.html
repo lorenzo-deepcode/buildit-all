@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="close" href="{{closeHref}}" title="Close"></a>
+{{#examples}}
+  <a href="{{{href}}}">
+    <div class="content">
+      <p class="content__cta">{{cta}}</p>
+      <p class="content__teaser">{{{teaser}}}</p>
+    </div>
+  </a>
+{{/examples}}
+
+<video id="my-video" class="video" loop>
+  <source src="{{{bgvideo.mp4file}}}" type="video/mp4">
+  <source src="{{{bgvideo.oggfile}}}" type="video/ogg">
+  <source src="{{{bgvideo.webmfile}}}" type="video/webm">
+</video><!-- /video -->
+
+<script>
+(function() {
+  /**
+   * Video element
+   * @type {HTMLElement}
+   */
+  var video = document.getElementById("my-video");
+
+  /**
+   * Check if video can play, and play it
+   */
+  video.addEventListener( "canplay", function() {
+    video.play();
+  });
+})();
+</script>
+
+</body>
+</html>

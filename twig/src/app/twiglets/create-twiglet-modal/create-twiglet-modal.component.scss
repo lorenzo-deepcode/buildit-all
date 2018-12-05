@@ -1,0 +1,11 @@
+@import '../../../styles_colors';
+
+:host {
+  .button {
+    :disabled {
+      cursor: not-allowed;
+      opacity: .65;
+    }
+  }
+}
+

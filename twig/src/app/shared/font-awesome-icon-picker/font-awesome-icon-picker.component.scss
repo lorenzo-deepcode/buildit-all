@@ -1,0 +1,32 @@
+@import '../../../styles_colors';
+
+:host {
+  .fa-icon-dropdown {
+    background-clip: padding-box;
+    background-color: $buildit-white;
+    border: 1px solid $buildit-medltgray;
+    border-radius: 0\.25rem;
+    color: $buildit-dkgray;
+    display: none;
+    float: left;
+    font-size: 1rem;
+    list-style: none;
+    margin: .125rem 0 0;
+    min-width: 10rem;
+    overflow-y: auto;
+    padding: .5rem 0;
+    position: fixed;
+    text-align: left;
+    width: 200px;
+    z-index: 1000;
+
+    input {
+      margin-left: 20px;
+      width: 160px;
+    }
+  }
+
+  .show > .fa-icon-dropdown {
+    display: block;
+  }
+}

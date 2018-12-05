@@ -1,0 +1,32 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+
+  i {
+    &.fa-question-circle {
+      position: absolute;
+      right: .5em;
+      top: .5em;
+    }
+  }
+
+  input {
+    flex: 0 0 30px;
+  }
+
+  .overflow-scroll {
+    flex: 1;
+    overflow: scroll;
+  }
+
+  .mini-row {
+    display: flex;
+  }
+
+  .form-control {
+    font-family: Arial, FontAwesome;
+  }
+}
+

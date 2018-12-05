@@ -1,0 +1,36 @@
+.logo {
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 21px;
+  width: 51px;
+  height: 45px;
+}
+
+.welcome {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 65px;
+  width: 313px;
+  height: 144px;
+  object-fit: contain;
+}
+.map {
+  width: 375px;
+  height: 205px;
+  object-fit: contain;
+}
+.recenter-button {
+  position: absolute;
+  top: 215px;
+  left: 314px;
+  width: 43px;
+ height: 43px;
+ object-fit: contain;
+  z-index: 10;
+}
+.menu-image {
+  width: 172px;
+  height: 172px;
+  object-fit: contain;
+}

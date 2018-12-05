@@ -1,0 +1,117 @@
+
+.blabbr-comment {
+  /* Box model */
+  position: relative;
+  min-height: 6rem; /* Same as gravatar height + 2x padding! */
+  padding: 1rem;
+  font-family:
+    -apple-system,
+    ".SFNSText-Regular",
+    "San Francisco",
+    Roboto,
+    "Segoe UI",
+    "Helvetica Neue",
+     "Lucida Grande",
+     sans-serif;
+  font-size: 0.8em;
+  box-sizing: border-box;
+  width: 100%;
+  vertical-align: middle;
+  outline: none;
+  border: 1px solid rgb(247, 244, 244);
+  border-radius: 2px;
+  color: rgb(85, 85, 85);
+}
+
+.blabbr-comment.withAvatar {
+  padding-left: 6rem;
+}
+
+.blabbr-comment header {
+  /* Typography */
+  font-size: 1em;
+}
+
+.blabbr-comment header h2 {
+  /* Box model */
+  display: inline-block;
+  margin: 0;
+
+  /* Typography */
+  font-size: 1em;
+}
+
+.blabbr-comment header .blabbr-time {
+  margin-left: 1em;
+}
+
+.blabbr-comment header .blabbr-version {
+  margin-left: 1em;
+}
+
+.blabbr-comment header .controls {
+  margin-left: 1em;
+}
+
+.blabbr-comment .controls button {
+  margin: 0 0 0 6px;
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 0.9em;
+  border-width: 1px;
+  background: #fff;
+  color: #222;
+  border-color: #eee;
+}
+
+.blabbr-comment .controls button:hover,
+.blabbr-comment .controls button:focus {
+  background: #1abc9c;
+  color: #fff;
+}
+
+.blabbr-comment .controls button.remove:hover,
+.blabbr-comment .controls button.remove:focus {
+  background: darkred;
+  color: #fff;
+}
+
+.blabbr-comment header a {
+  /* Box model */
+  display: inline-block;
+}
+
+.blabbr-comment header img {
+  /* Box model */
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 4rem;
+  height: 4rem;
+
+  /* Visual */
+  border-radius: 50%;
+}
+
+.blabbr-comment header + p {
+  /* Box model */
+  margin-top: 0.5rem;
+}
+
+.blabbr-comment p:last-child {
+  /* Box model */
+  margin-bottom: 0;
+}
+
+
+/* TODO: Migrate this to Comments */
+.blabbr-comment {
+  /* Box model */
+  margin-bottom: 1rem;
+}
+
+.blabbr-comment p {
+  font-size: 1.4em;
+  line-height: 1.5em;
+  font-family: Georgia;
+}

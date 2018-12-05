@@ -1,0 +1,124 @@
+/**
+  Taco Bank theme
+*/
+
+// Import our master LESS file (which, in turn imports everything else)
+// All themes must do this.
+@import 'shared/style';
+
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,400i,700,700i|Open+Sans:400,400i,700,700i');
+@import (reference) 'assets/frontify/css/colors';
+
+
+// ###### COLOURS #######
+
+// Default foreground colour (e.g. for text)
+@dsdemo-color-fg: @color-beef-dark;
+
+// Default background color (e.g. for page background)
+@dsdemo-color-bg: @color-mozarella;
+
+// Default inverted foreground colour
+//@dsdemo-color-fg-inverted: @dsdemo-color-bg;
+
+// Default inverted background colour
+@dsdemo-color-bg-inverted: @color-tomato;
+
+// Default text link colours
+@dsdemo-color-link: @color-tomato;
+//@dsdemo-color-link-hover: lighten(@dsdemo-color-link, 10%);
+//@dsdemo-color-link-focus: @dsdemo-color-link-hover;
+//@dsdemo-color-link-active: darken(@dsdemo-color-link, 30%);
+@dsdemo-color-link-visited: @color-beef;
+
+// Default inverted text link colours
+@dsdemo-color-link-inverted: @color-cheddar;
+//@dsdemo-color-link-inverted-hover: lighten(@dsdemo-color-link-inverted, 10%);
+//@dsdemo-color-link-inverted-focus: @dsdemo-color-link-inverted-hover;
+@dsdemo-color-link-inverted-active: darken(@dsdemo-color-link-inverted, 10%);
+@dsdemo-color-link-inverted-visited: @color-corn;
+
+// Default colours for default interactive elements (e.g. default buttons)
+//@dsdemo-color-default-fg: @dsdemo-color-link;
+@dsdemo-color-default-bg: @color-corn;
+@dsdemo-color-default-border: @color-beef-dark;
+
+//@dsdemo-color-default-hover-fg: @dsdemo-color-link-hover;
+@dsdemo-color-default-hover-bg: @dsdemo-color-bg;
+@dsdemo-color-default-hover-border: @dsdemo-color-default-border;
+
+//@dsdemo-color-default-focus-fg: @dsdemo-color-default-hover-fg;
+//@dsdemo-color-default-focus-bg: @dsdemo-color-default-hover-bg;
+//@dsdemo-color-default-focus-border: @dsdemo-color-default-hover-border;
+
+@dsdemo-color-default-active-fg: @dsdemo-color-default-bg;
+@dsdemo-color-default-active-bg: @dsdemo-color-default-fg;
+@dsdemo-color-default-active-border: @dsdemo-color-default-border;
+
+@dsdemo-color-default-disabled-fg: desaturate(lighten(@dsdemo-color-default-fg, 5%), 80%);
+@dsdemo-color-default-disabled-bg: desaturate(darken(@dsdemo-color-default-bg, 5%), 80%);
+@dsdemo-color-default-disabled-border: desaturate(@dsdemo-color-default-border, 80%);
+
+
+// ###### SPACE #######
+// Inspired by https://medium.com/eightshapes-llc/space-in-design-systems-188bcbae0d62
+
+// Define basic spacing - can also use these for horizontal gaps between inline elements
+//@dsdemo-space-xs: @dsdemo-space-sm / 2;
+//@dsdemo-space-sm: @dsdemo-space-md / 2;
+@dsdemo-space-md: 22px;
+//@dsdemo-space-lg: 2 * @dsdemo-space-md;
+//@dsdemo-space-xl: 2 * @dsdemo-space-lg;
+
+// Derive some insets - use for padding (or equivalent)
+//@dsdemo-space-inset-xs: @dsdemo-space-xs;
+//@dsdemo-space-inset-sm: @dsdemo-space-sm;
+//@dsdemo-space-inset-md: @dsdemo-space-md;
+//@dsdemo-space-inset-lg: @dsdemo-space-lg;
+//@dsdemo-space-inset-xl: @dsdemo-space-xl;
+
+//@dsdemo-space-inset-squish-sm: @dsdemo-space-xs @dsdemo-space-sm;
+//@dsdemo-space-inset-squish-md: @dsdemo-space-sm @dsdemo-space-md;
+//@dsdemo-space-inset-squish-lg: @dsdemo-space-md @dsdemo-space-lg;
+
+// Derive some stacking spaces - use for margins (or equivalent)
+//@dsdemo-space-stack-xs: 0 0 @dsdemo-space-xs 0;
+//@dsdemo-space-stack-sm: 0 0 @dsdemo-space-sm 0;
+//@dsdemo-space-stack-md: 0 0 @dsdemo-space-md 0;
+//@dsdemo-space-stack-lg: 0 0 @dsdemo-space-lg 0;
+//@dsdemo-space-stack-xl: 0 0 @dsdemo-space-xl 0;
+
+
+// ###### GRID #######
+
+//@dsdemo-grid-cols: 12;
+//@dsdemo-grid-gutter-width: @dsdemo-space-lg;
+
+
+// ###### BREAKPOINTS #######
+
+//@dsdemo-breakpoint: 40rem;
+
+
+// ###### TYPOGRAPHY #######
+
+@dsdemo-body-font-family: 'Open Sans', sans-serif;
+//@dsdemo-body-font-weight: initial;
+@dsdemo-body-font-size: 18px;
+//@dsdemo-body-line-height: normal;
+
+@dsdemo-h1-font-family: 'Nunito', sans-serif;
+//@dsdemo-h1-font-weight: bold;
+@dsdemo-h1-font-size: 2.5em;
+//@dsdemo-h1-line-height: normal;
+
+@dsdemo-h2-font-family: @dsdemo-h1-font-family;
+//@dsdemo-h2-font-weight: bold;
+@dsdemo-h2-font-size: 1.7em;
+//@dsdemo-h2-line-height: normal;
+
+
+// ###### INPUTS #######
+
+@dsdemo-input-border-width: 3px;
+@dsdemo-input-border-radius: 9px;

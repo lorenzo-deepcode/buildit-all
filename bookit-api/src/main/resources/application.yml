@@ -1,0 +1,41 @@
+---
+
+management:
+  context-path: /management
+security:
+  user:
+    name: admin
+    password: ${bookit.admin.password:password}
+springfox:
+  documentation.swagger.v2.path: /api-docs
+server:
+  use-forward-headers: true
+spring:
+  jackson:
+    serialization.write-dates-as-timestamps: false
+    default-property-inclusion: non_absent
+  datasource:
+    name: bookit
+    username: ${bookit.database.user:}
+    password: ${bookit.database.password:}
+    url: ${bookit.database.url:jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MySQL}
+    driver-class-name: ${bookit.database.driver:}
+  jpa:
+    database-platform: ${bookit.database.dialect:}
+    show-sql: true
+    hibernate:
+      ddl-auto: ${bookit.database.ddl-auto:create}
+  logging:
+    level:
+#      org.hibernate.SQL: DEBUG
+#      org.springframework.security: DEBUG
+#      org.springframework.web.client.RestTemplate: DEBUG
+
+---
+
+spring:
+  profiles: dev
+  datasource:
+    data:
+      - classpath:/data.sql
+      - classpath:/data-dev.sql

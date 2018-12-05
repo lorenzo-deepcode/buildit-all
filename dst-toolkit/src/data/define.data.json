@@ -1,0 +1,153 @@
+{
+  "title": "Define",
+  "logo": {
+    "href": "#two", "src": "icon-2-01.svg", "alt": "Define", "anchor": "Define"
+  },
+  "nav": {
+    "href": "#two"
+  },
+  "header": {
+    "headingOne": "As a <span contenteditable>.....</span> I want to <span contenteditable>.....</span> in order to <span contenteditable>.....</span>",
+    "paragraph": "During the workshop 12 Problem definitions were created from the original opportunites. Three were voted as the best opportunities to tackle."
+  },
+  "tiles": [
+    {
+      "style": "style1",
+      "img": {
+        "src": "images-define/placeholder.jpg",
+        "alt": "Define"
+      },
+      "actions": {
+        "href": "#",
+        "title": "Download on Dropbox",
+        "target": "_blank",
+        "anchor": "<h2>(re)define</h2>"
+      }
+    },
+    {
+      "style": "style2",
+      "img": {
+        "src": "images-define/placeholder.jpg",
+        "alt": "Define Tool"
+      },
+      "actions": {
+        "href": "#",
+        "title": "Download on Dropbox",
+        "target": "_blank"
+      }
+    },
+    {
+      "style": "style3",
+      "img": {
+        "src": "images-define/placeholder.jpg",
+        "alt": "Define Map"
+      },
+      "actions": {
+        "href": "#",
+        "title": "Download on Dropbox",
+        "target": "_blank"
+      }
+    },
+    {
+      "style": "style4",
+      "img": {
+        "src": "images-define/placeholder.jpg",
+        "alt": "Define"
+      },
+      "actions": {
+        "href": "#",
+        "title": "Download on Dropbox",
+        "target": "_blank"
+      }
+    },
+    {
+      "style": "style5",
+      "img": {
+        "src": "images-define/placeholder.jpg",
+        "alt": "Define"
+      },
+      "actions": {
+        "href": "#",
+        "title": "Download on Dropbox",
+        "target": "_blank"
+      }
+    },
+    {
+      "style": "style6",
+      "img": {
+        "src": "images-define/placeholder.jpg",
+        "alt": "Define"
+      },
+      "actions": {
+        "href": "#",
+        "title": "Download on Dropbox",
+        "target": "_blank"
+      }
+    },
+    {
+      "style": "style2",
+      "img": {
+        "src": "images-define/placeholder.jpg",
+        "alt": "Define"
+      },
+      "actions": {
+        "href": "#",
+        "title": "Download on Dropbox",
+        "target": "_blank"
+      }
+    },
+    {
+      "style": "style3",
+      "img": {
+        "src": "images-define/placeholder.jpg",
+        "alt": "Define"
+      },
+      "actions": {
+        "href": "#",
+        "title": "Download on Dropbox",
+        "target": "_blank"
+      }
+    },
+    {
+      "style": "style1",
+      "img": {
+        "src": "images-define/placeholder.jpg",
+        "alt": "Define"
+      },
+      "actions": {
+        "href": "#",
+        "title": "Download on Dropbox",
+        "target": "_blank"
+      }
+    },
+    {
+      "style": "style4",
+      "img": {
+        "src": "images-define/placeholder.jpg",
+        "alt": "Define"
+      },
+      "actions": {
+        "href": "#",
+        "title": "Download on Dropbox",
+        "target": "_blank",
+        "anchor": "<h2>From 12 to 3 Opportunites</h2>"
+      }
+    }
+  ],
+  "moreText": {
+    "title": "Insights of the Define phase",
+    "paragraph": [ "<i>As an operator</i> I want/need to build a mechanism to enable structure, governance and platform to be able to collaborate effectively throughout the late life phase",
+"<strong><i>As an operator</i> I need to develop org and business construct to be able to capture late life value proposition -Ops and decomm- BBL and cost risk.</strong><br /><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span>",
+"<i>As an operator</i> I want/need to build trust among alll parties to be able to actively collaborate without business interest and share information for innovative and cost effective",
+"<i>As an operator</i> I want to/need to share useful asset information to be able to encourage innovation, cost effective, business models, from the supply chain",
+"<i>As an operator</i> constructor I want to accurate performance, condition & cost data to be able to set performance and drive conditions improvement.<br /><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span>",
+"<i>As a supplier</i> I want to/need to believe you will respect my ideas and ip to be able to fully participate and not lose all my best ideas",
+"<strong><i>As a supplier</i> I want to/need to access quality asset information in a timely manner to be able to innovate cost effective business models.</strong><br /><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span>",
+"<strong><i>As a supplier</i> I want to/need to have more information earlier to be able to proactively influence decomm process</strong>.<br /><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span>",
+"<i>As a supplier</i> I want to/need to interate with simple point of contact (who is empowered) to be able be proactive and cost effective and efficient.<br /><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span><span style='display:inline-block;background-color:green;width:10px;height:10px;margin-right:0.2em;border-radius: 50%;'></span>",
+"<i>As a T3</i> I want to/ need to value confidence to be able to share info without ip leverage",
+"<i>As an T3</i> I want to collaborate with other supply chain to be able to develop integrated solutions",
+"<i>As an T3</i> I want/need to understand decomm issues to be able to develop apply my IP outside IT constraints"
+    ]
+  }
+}

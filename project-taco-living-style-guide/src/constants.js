@@ -1,0 +1,1 @@
+export const RETRIEVE_MENU = 'RETRIEVE_MENU';

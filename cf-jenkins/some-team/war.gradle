@@ -1,0 +1,24 @@
+def target = "${project.buildDir}"
+def temp = "${target}/temp"
+
+configurations {
+    jenkins
+}
+
+repositories {
+    ivy {
+        artifactPattern "http://updates.jenkins-ci.org/download/war/[revision]/jenkins.[ext]"
+    }
+}
+
+task copyWar(type: Copy) {
+  loadConfig()
+  into "${temp}/war"
+  from configurations.jenkins
+}
+
+def loadConfig() {
+  def configFile = file("config.groovy")
+  project.ext.set("config", new ConfigSlurper().parse(configFile.toURL()))
+  project.dependencies.add('jenkins', project.config.jenkins)
+}

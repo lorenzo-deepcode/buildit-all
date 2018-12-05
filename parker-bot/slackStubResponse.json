@@ -1,0 +1,49 @@
+{
+	"ok": true,
+	"members": [
+		{
+            "id": "valid1SlackId",
+            "name": "valid1SlackName",
+			"deleted": false,
+			"profile": {
+				"email": "validName1@test.com"
+			},
+			"is_bot": false
+        },
+        {
+            "id": "isBot",
+            "name": "Wall-e",
+			"deleted": false,
+			"profile": {
+				"email": "robot@test.com"
+			},
+			"is_bot": true
+        },
+        {
+            "id": "isDeleted",
+            "name": "bye felicia",
+			"deleted": true,
+			"profile": {
+				"email": "validName2@test.com"
+			},
+			"is_bot": false
+        },
+        {
+            "id": "valid2SlackId",
+            "name": "valid2SlackName",
+			"deleted": false,
+			"profile": {
+				"email": "validName2@test.com"
+			},
+			"is_bot": false
+        },
+        {
+            "id": "noEmail",
+            "name": "no email",
+			"deleted": false,
+			"profile": {
+			},
+			"is_bot": false
+        }
+    ]
+}

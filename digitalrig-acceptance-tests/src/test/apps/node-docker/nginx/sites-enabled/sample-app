@@ -1,0 +1,12 @@
+server {
+
+    listen 80;
+    server_name sample-app;
+    charset utf-8;
+
+    access_log /proc/self/fd/1;
+    error_log /proc/self/fd/2;
+
+    root /usr/src/app;
+    index index.html;
+}

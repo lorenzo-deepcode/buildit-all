@@ -1,0 +1,54 @@
+.hpe-radio-button {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-top: 0.3125em 1.5em;
+
+  &__label {
+    display: inline-block;
+    vertical-align: middle;
+    color: $dark-grey-4;
+    white-space: normal;
+    margin-right: 1.5em;
+    word-break: break-word;
+  }
+
+  &__control {
+    position: relative;
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    margin-right: 0.75em;
+    vertical-align: middle;
+    background-color: inherit;
+    color: #017b5f;
+    border: $double-border solid #666;
+    border-radius: 1.5rem;
+  }
+
+  &__input {
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 0.75rem 1.5rem;
+    border: $border-width solid rgba(0, 0, 0, 0.15);
+    border-radius: 0;
+    outline: none;
+    background-color: transparent;
+    color: inherit;
+    font: inherit;
+    margin: 0;
+    opacity: 0;
+    position: absolute;
+
+    &:checked + .hpe-radio-button__control::after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0.3125em;
+      left: 0.3125em;
+      width: 0.625em;
+      height: 0.625em;
+      background-color: #01a982;
+      border-radius: 100%;
+    }
+  }
+}

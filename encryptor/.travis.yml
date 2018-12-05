@@ -1,0 +1,27 @@
+language: java
+env:
+  global:
+  - GIT_USERNAME=Travis CI
+  - GIT_EMAIL=builds@travis-ci.com
+  - TAG=$(./pipeline.sh getProperty version gradle.properties)
+  - RELEASE_FILE=build/libs/encryptor-$TAG.jar
+  - RELEASE_POM=build/pom.xml
+  - LAST_COMMIT_MESSAGE=$(git log -1 --pretty=%B | tr -d '\n')
+  - CD_COMMIT_MESSAGE='[travis] Bump version number'
+  - GITHUB_USER=dermotmburke
+  - secure: HSvOEEzsnlQxNh6dhYUpP4hSsOL78snqelIepehDB5w7JHt5PgJd9Z5x8SaPneGNE9GF7NR4kmnQ5wWUPeK0UAp9oHzIVz9RW5IHCgwF3MVqKQAz57z20KOUKYyLx08Kdqli8NZLTNV/F6E461UJp9hKU/nAWYiN7QmzwutkLWrda/X1UOEjqa0/xNp4K6pc//fi/TG//2qW1PW3LeiGt5Y2uV0Re90q/S0wykwKS/tF4LG4XIlGREJeCF4itn+vTlQv+kbVDAFKIdexUZQg0jPFrWgx39ypc7WNVUH3hT/EKlanwt0K2KhCv3VAWDLewFm9BxhrFPczC1x83kltF9YudxWq/SkMB20gWHipYTqMzT6OBKMCl9ZtvMHQW12v7h/+gws2U5Q3deTK2I4JOalV0nW26sxBrTVKK8EIuNYdoVldjk0dwtpJFIAr5NnB9ExaBNh2UlnM9DZwxpR084ZfjylgbYmxWa3mRhRoAXn1qeY2s2FEnlTEG4LadHYO55f7fGspvH7AmwkoK2QzoN0MIqQQMdgmjAzWf3XkUssjNxDkfOwdlFB7yhLK/HkWQofyVtkS2ixVRgz7gM/VSXKAui0Z1Lpocylq4MB8fdTALrkv83843e0Y1/eMgR8Ybj/ZnfLyxcGvDtEsNujRHike0JhxIr6Bovc7lx6zqBM=
+  - secure: JrsE+NzmqJ9nUmVa1CLybe33n7KxTOcOc3DdC/Y8rwsV2UGRsA4UG6wLiS2MbF47DT6rt0YT3oQn3/75M9BFtniw63G13E46S8PlwCRoD6N9Edwl1oxXqnq91bKWtZ3+XVHCgY/S3vTcrq3L82qOqufadbf/GIx9uNLAp1tV+Q4kdXVk3NNizmVn/ldRKC8RxKQbO9nRsNlQ9jyt2L1tabZJZk4sg5yLjcVuEykDDkW2Gg/JflnkqqZhuouCP5bUauFcDb7hAn1kZrRXARhSJsyYINCgkA4d/fj4sAyd2gK3Tv/A0TIT1DQX37Ew78KGqfbtr7bbuwsEDJmfkBUepu1TOuKsj6n05jzQqXyCUeDtPgGxBIYdjvAokzzNGGhVtlBMc2dCv0cizWYtDdSwubhnuYcLKbv1AUJ73JJdZcXxegj30H+E7SdBiM1tYLw5JGB4/ohaWBekmrjnukRjZlvIf7r84SMKXA4woce8T13zriq7IsEiWKxoBBV+xabfkxkBLkIgBd866NSv4q9WyDqSmTE6+n+FcTs7UgM14rm8UA5iho2VKuoYpZBfF+41Z6zVBOKeRQIl57GPLB9KVfJSp4yEyFU08PHD1b+qzIYwa1JVuLkgvNfw/ccRHFYQcxm+T2x91XhZn6Vcm0DG8AUPw+rWw4BY91xng9czdqo=
+script:
+- ./pipeline.sh build
+before_deploy:
+- ./pipeline.sh tag
+deploy:
+  - provider: script
+    script: gradle bintrayUpload -PbintrayUser=buildit -PbintrayKey=$BINTRAY_TOKEN -PdryRun=false
+    skip_cleanup: true
+    on:
+      branch: master
+      tags: false
+      condition: '"${LAST_COMMIT_MESSAGE}" != "${CD_COMMIT_MESSAGE}"'
+after_deploy:
+- ./pipeline.sh bump

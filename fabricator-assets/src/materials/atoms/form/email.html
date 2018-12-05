@@ -1,0 +1,7 @@
+{{!-- Parameters: id, text --}}
+
+{{#if text }}
+	{{> form.input id=id text=text type="email" }}
+{{ else }}
+	{{> form.input id="email-input" text="Email input" type="email" }}
+{{/if}}

@@ -1,0 +1,81 @@
+.hpe-product-list {
+  padding: 3rem 0;
+
+  &__content {
+    padding: $bootstrap-gutter;
+  }
+
+  &__row {
+    margin-bottom: 4rem;
+  }
+
+  &__image {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-right: $bootstrap-gutter-double;
+
+    img {
+      width: 100%;
+    }
+
+    .hpe-bookmark {
+      top: 0;
+    }
+  }
+
+  &__description {
+    font-size: 1.25rem;
+  }
+
+  &__tag {
+    font-size: 1.125rem;
+
+    &:not(:last-of-type) {
+      margin-right: 1em;
+    }
+
+    .hpe-icon {
+      opacity: 0.3;
+    }
+  }
+
+  &__name {
+    font-size: 1.5rem;
+  }
+
+  &__about {
+    background-color: $light-grey-1;
+    padding: $bootstrap-gutter-double;
+  }
+
+  &__meta {
+    padding-top: 2em;
+  }
+
+  &__price {
+    font-size: 1.25rem;
+    margin: 0 0 0.25rem;
+  }
+
+  &__button {
+    text-transform: uppercase;
+    text-align: right;
+  }
+
+  &__options {
+    margin: 0;
+  }
+
+  &__discount {
+    position: absolute;
+    padding: 0.5em 0.75em;
+    background-color: $dark-1;
+    color: $white;
+    top: 0;
+    left: 0;
+    border-right: $double-border currentColor solid;
+    border-bottom: $double-border currentColor solid;
+    font-weight: 600;
+  }
+}

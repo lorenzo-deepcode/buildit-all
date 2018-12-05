@@ -1,0 +1,51 @@
+.hpe-button--social {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  width: 100%;
+  min-width: 0;
+  font-weight: 500;
+  font-size: 0.875rem;
+  text-align: center;
+  border: 0;
+
+  &--linkedin {
+    background-color: $linkedin-brand;
+  }
+
+  &--google {
+    background-color: $google-brand;
+  }
+
+  &:hover {
+    box-shadow: none;
+  }
+}
+
+.hpe-button__social-icon {
+  flex: 0 0 2.5rem;
+  height: 2.5rem;
+  font-size: 1.25rem;
+  border-right: $border-width solid $white;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .hpe-icon {
+    bottom: auto;
+    margin: 0;
+  }
+
+  .hpe-button--social--google & {
+    background-color: white;
+    margin: 0.125rem;
+    border-radius: 0.125rem;
+    height: 2.25rem;
+  }
+}
+
+.hpe-button__social-label {
+  line-height: 1;
+  padding: 0.325rem 1rem;
+}

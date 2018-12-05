@@ -1,0 +1,30 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - curl -sL https://deb.nodesource.com/setup_8.x | bash -
+      - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+      - echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list
+      - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+      - echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+      - apt-get update -y
+      - apt-get install -y nodejs google-chrome-stable xvfb yarn
+
+  build:
+    commands:
+      - yarn
+      - xvfb-run -s "-screen 0 1440x900x24" yarn cucumber
+
+  post_build:
+    commands:
+      - chmod +x ./reporter.js
+      - yarn cucumber:report
+      - aws s3 cp --recursive --acl public-read ./reports ${REPORTS_BUCKET}/
+
+# currently doesn't work as yarn can't find eslint on 2nd run
+# cache:
+#   paths:
+#     - 'node_modules/**/*'
+#     - '/usr/local/share/.cache/yarn/**/*'
+#     - '/var/cache/apt/**/*'

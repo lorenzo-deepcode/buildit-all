@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Online indicator renders correctly when system is offline 1`] = `
+<div
+  className="blabbr-status-indicator offline"
+  data-for="blabbr-indicator-tooltip"
+  data-tip={true}
+>
+  <div
+    className="__react_component_tooltip place-top type-dark "
+    data-id="tooltip"
+  >
+    
+  </div>
+</div>
+`;
+
+exports[`Online indicator renders correctly when system is online 1`] = `
+<div
+  className="blabbr-status-indicator online"
+  data-for="blabbr-indicator-tooltip"
+  data-tip={true}
+>
+  <div
+    className="__react_component_tooltip place-top type-dark "
+    data-id="tooltip"
+  >
+    
+  </div>
+</div>
+`;

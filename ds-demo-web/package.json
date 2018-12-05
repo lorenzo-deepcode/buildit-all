@@ -1,0 +1,46 @@
+{
+  "name": "ds-demo-web",
+  "version": "0.0.1",
+  "description": "Design System Demo Website.",
+  "main": "index.js",
+  "scripts": {
+    "clean": "gulp clean",
+    "build": "npm run clean && gulp build",
+    "serve": "gulp serve",
+    "start": "gulp",
+    "brandai": "node ./scripts/brandai"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buildit/ds-demo-web.git"
+  },
+  "author": "Buildit",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/buildit/ds-demo-web/issues"
+  },
+  "homepage": "https://github.com/buildit/ds-demo-web#readme",
+  "dependencies": {
+    "@buildit/ds-demo-lib": "../ds-demo-lib"
+  },
+  "devDependencies": {
+    "chalk": "^1.1.3",
+    "download": "^5.0.3",
+    "extract-zip": "^1.6.0",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-cli": "^1.2.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-declare": "^0.3.0",
+    "gulp-handlebars": "^4.0.0",
+    "gulp-less": "^3.3.0",
+    "gulp-open": "^2.0.0",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-uglify": "^2.1.2",
+    "gulp-watch": "^4.3.11",
+    "gulp-wrap": "^0.13.0",
+    "less": "^2.7.2",
+    "merge-stream": "^1.0.1"
+  }
+}

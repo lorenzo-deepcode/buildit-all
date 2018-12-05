@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+- '6'
+
+before_script:
+  - npm run build
+
+deploy:
+  provider: npm
+  email: billyzacsmith@gmail.com
+  api_key:
+    secure: ZZ1k+0nc0dw1c+S/5S79eu2MHp9NtNRuHGIyQSdMRdBqmnWckEVRFobUXxL7ZIwwvDu3Ge1nrAt81jNp5WY3hV/RCi56VyQP1iILv1Ms0JEHpqU0JugFjIU9Qj/RtZ+Rc5+BtSLFE7QDN0CNtnzIUW0NgAtaIBqw/fAjhczHKhIFJn22pLBOrUfQ96mLfSj+BA05mkKsb2cNW0gbgOsSb0FprPXV5FKbSkYfdDF9b9lcQv+YwlEKv8JQl8FjshwIWl8xOEs/JSh58E3JyYGF1ugMI3d05/TquHe7yPS2RRXtCkGSydD2f2E6EAAr6z5IOj35YGpxEWFaHHIYwfLvDQ7l53xRHygiOjS5L6+aKaAul1BVBSHGX8gngTJQJAET+phU+MX62kioduikz1hDWZxYMkSZe63t/wPPzo/pPRTzT/Mu/KMK6z6o6PQx8K64H9iBZcjfvfNlexA395UX44YucoGlz3ooCRlwFyaD7+yL+p5XvUHnf/Ofz1YmjzHMcKMQD9iSLVtyl98PYlUlCA0bSZGmnQlf/fqSDhLUjlUqfKXHwdXcC7uAA2OhiT5zc5U+MeR0nvb7dkXiAecPvyi5wCA0pVU+pXXFpMyRsGvhqzAPUiGNVFkqDGSFZKEEcWS58bAIDajhm+vuXT5b+pO6GnQhsOYhV9FpJzzePOY=
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: buildit/taco-components

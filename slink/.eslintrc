@@ -1,0 +1,55 @@
+{
+  "extends": [
+    "airbnb-base"
+  ],
+  "env": {
+    "jest": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "script"
+  },
+  "rules": {
+    "max-len": [
+      "error",
+      {
+        "code": 120,
+        "comments": 120,
+        "ignoreStrings": true,
+        "ignoreTrailingComments": true,
+        "ignoreTemplateLiterals": true
+      }
+    ],
+    "object-shorthand": ["error", "always", { "ignoreConstructors": true }],
+    "brace-style": [
+      "error",
+      "1tbs"
+    ],
+    "no-param-reassign": 0,
+    "no-underscore-dangle": 0,
+    "no-console": 0,
+    "no-restricted-syntax": 0,
+    "comma-dangle": 0,
+    "import/no-unresolved": "off",
+    "no-use-before-define": [
+      2,
+      {
+        "functions": false,
+        "classes": true,
+        "variables": true
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.unit.js",
+          "**/*_test.js",
+          "**/*.e2e.js",
+          "**/test/**"
+        ]
+      }
+    ]
+  }
+}

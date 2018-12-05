@@ -1,0 +1,19 @@
+# Build specification for building project under Amazon CodeBuild
+
+version: 0.1
+#environment_variables:
+#  plaintext:
+phases:
+  install:
+    commands:
+      - apt-get update
+      - apt-get -y install curl
+      - curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+      - sudo apt-get install -y nodejs
+  pre_build:
+    commands:
+      - npm install
+  build:
+    commands:
+      # seem to be having some sync issues with couchdb.
+      - HTTP_WAIT_TIME=300 npm run test:e2e:ci

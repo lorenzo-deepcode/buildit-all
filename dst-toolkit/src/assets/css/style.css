@@ -1,0 +1,162 @@
+
+@import url(font-awesome.min.css);
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic|Bitter:400,700|Oswald");
+/*!
+Styles for full screen background video demo
+*/
+/* =============================================================================
+  RESETS
+============================================================================= */
+html,
+body,
+div,
+h1,
+p,
+a,
+video {
+  margin: 0;
+  padding: 0;
+}
+
+/* =============================================================================
+  HTML, BODY
+============================================================================= */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-size: 16px;
+  font-family: "Oswald", sans-serif;
+  line-height: 1.5;
+}
+
+/* =============================================================================
+  CONTENT
+============================================================================= */
+.content {
+  position: relative;
+  top: 75%;
+  z-index: 2;
+  margin: 0 auto;
+  max-width: 21vw;
+  text-align: left;
+  float: left;
+  padding: 1vw;
+  background-color: rgba(255,255,255,0.6);
+  display: inline-block;
+  margin-left:1vw;
+  margin-right:1vw;
+}
+.content:hover {
+  color: #fff;
+  background-color: rgba(0,0,0,0.9);
+}
+
+
+.content__heading {
+  margin-bottom: 24px;
+  color: #272727;
+  font-size: 44px;
+}
+
+.content__teaser {
+  margin-bottom: 24px;
+  color: #595959;
+  font-size: 22px;
+}
+
+.content__cta {
+  display: inline-block;
+  margin: 0 auto;
+  padding: 12px;
+  color: #fff;
+  font-size: 22px;
+  text-decoration: none;
+  background-color: black;
+  margin-bottom: 1em;
+  border: 4px solid black;
+}
+/*.content__cta:hover {
+  color: #000;
+  background-color: rgba(0,0,0,0.1);
+  border: 4px solid rgba(0,0,0,0.8);
+}*/
+
+/* =============================================================================
+  VIDEO
+============================================================================= */
+.video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+
+a.close {
+  position:absolute;
+  right: 32px;
+  top: 18px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+  text-decoration: none;
+  border: 0;
+  z-index: 999;
+}
+a.close:hover {
+  opacity: 1;
+}
+
+a.close:before, .close:after {
+  position: absolute;
+  left: 15px;
+  content: ' ';
+  height: 33px;
+  width: 3px;
+  background-color: #000;
+}
+a.close:before {
+  transform: rotate(45deg);
+}
+a.close:after {
+  transform: rotate(-45deg);
+}
+a.close:hover:before {
+        width: 4px;
+}
+a.close:hover:after {
+        width: 4px;
+}
+
+
+@media screen and (max-width: 360px) {
+
+  .content {
+    display:block;
+    float:left;
+    width:98%;
+    max-width:none;
+    top: 25%;
+    margin-bottom:0.5em;
+  }
+
+  p.content__cta {
+    font-size:1em;
+  }
+  p.content__teaser {
+    font-size:0.8em;
+  }
+  p.content__teaser:hover {
+    color: #fff;
+  }
+}

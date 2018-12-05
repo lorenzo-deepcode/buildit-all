@@ -1,0 +1,39 @@
+failFast: true
+
+build:
+  failThreshold: 1
+
+exclude-rules:
+  - 'ForbiddenComment'
+
+test-pattern: # Configure exclusions for test sources
+  active: true
+  patterns: # Test file regexes
+    - '.*/test/.*'
+    - '.*/test-e2e/.*'
+  exclude-rules:
+    - 'NamingRules'
+    - 'MagicNumber'
+    - 'LateinitUsage'
+    - 'StringLiteralDuplication'
+    - 'TooManyFunctions'
+    - 'LargeClass'
+    - 'UseDataClass'
+    - 'MatchingDeclarationName'
+
+style:
+  MaxLineLength:
+    active: false
+  ThrowsCount:
+    active: false
+  ForbiddenComment:
+    active: false
+  MagicNumber:
+    ignoreAnnotation: true
+
+complexity:
+  LongParameterList:
+    threshold: 8
+
+comments:
+  active: false

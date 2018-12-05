@@ -1,0 +1,23 @@
+{
+  "lang": "en",
+  "name": "Microbits Totem",
+  "short_name": "Totem",
+  "scope": "/",
+  "start_url": "http://microbits-totem.s3-website-eu-west-1.amazonaws.com/index.html",
+  "orientation": "portrait",
+  "display": "browser",
+  "theme_color": "aliceblue",
+  "mjs_api_access": [
+    {
+      "match": "*"
+    }
+  ],
+  "mjs_cordova": {
+    "plugin_mode": "client"
+  },
+  "mjs_import_scripts": [
+    {
+      "src": "ui/scripts/app.js"
+    }
+  ]
+}

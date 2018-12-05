@@ -1,0 +1,13 @@
+////
+/// @group Components
+////
+
+/**
+ * Add the correct font size in all browsers.
+ */
+
+small {
+  /// Font size for a `<small>` tag
+  $small-font-size: 80% !default;
+  font-size: $small-font-size;
+}

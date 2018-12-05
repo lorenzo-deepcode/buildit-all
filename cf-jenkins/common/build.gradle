@@ -1,0 +1,59 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+def target = "${project.buildDir}"
+
+build.dependsOn dependsOn: ['testScripts', 'zip', 'install']
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId 'com.lloydsbanking.ci'
+            artifactId 'common'
+            version '0.0.1'
+            artifact "${project.buildDir}/common.zip"
+        }
+    }
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.4.7'
+
+    testCompile 'org.jenkins-ci.main:jenkins-test-harness:2.9'
+    testCompile "org.jenkins-ci.main:jenkins-war:2.9"
+    testCompile "org.jenkins-ci.main:jenkins-war:2.9:war-for-test@jar"
+
+    testCompile "org.zeroturnaround:zt-zip:1.9"
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven {
+        url 'http://repo.jenkins-ci.org/releases/'
+    }
+    mavenLocal()
+}
+
+task testScripts(type: Exec) {
+    workingDir '.'
+    commandLine 'python', '-m', 'unittest', 'discover', 'tests'
+}
+
+task zip(type: Zip) {
+    baseName = "common"
+    from(".") {
+        exclude '**/build'
+        exclude 'src/**'
+        exclude 'target/**'
+        exclude 'tests/**'
+        exclude 'build.gradle'
+        exclude '.gradle'
+    }
+    destinationDir file(target)
+}
+
+artifacts {
+    archives file: zip.archivePath, name: 'common', type: 'zip', builtBy: zip
+}

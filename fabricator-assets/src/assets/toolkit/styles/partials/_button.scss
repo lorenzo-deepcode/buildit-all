@@ -1,0 +1,80 @@
+.hpe-button {
+  display: inline-block;
+  background-color: $brand;
+  border: $double-border solid $brand;
+  border-radius: 0;
+  color: $white;
+  font-size: 1.1875rem;
+  line-height: 1.5;
+  letter-spacing: 0.04167em;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  outline: none;
+  min-width: 7.5rem;
+  transition: 0.1s ease-in-out;
+  padding: $button-padding;
+  text-decoration: none;
+
+  &:visited,
+  &:active {
+    color: $white;
+  }
+
+  &--secondary {
+    background-color: transparent;
+    color: $dark-grey-1;
+
+    &:visited,
+    &:active {
+      color: $dark-grey-1;
+    }
+  }
+
+  .hpe-icon {
+    position: relative;
+    font-size: 1.2em;
+    bottom: -0.25em;
+    margin-right: 0.75rem;
+    transition: all $transition--normal ease-in-out;
+  }
+
+  &--icon {
+    display: inline-flex;
+    text-align: left;
+    align-items: flex-start;
+
+    .hpe-icon {
+      bottom: -0.125em;
+    }
+  }
+
+  &:hover {
+    box-shadow: 0 0 0 $double-border $brand;
+
+    .hpe-icon {
+      transform: translateX(0.1875rem);
+    }
+  }
+
+  &--plain {
+    width: auto;
+    height: auto;
+    min-width: 0;
+    max-width: none;
+    text-align: inherit;
+    font-weight: inherit;
+    color: $dark-grey-1;
+    padding: 0;
+    border: 0;
+    background: none;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+
+  &--brand {
+    color: $brand;
+  }
+}

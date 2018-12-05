@@ -1,0 +1,366 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Illuminate",
+        "description": "REST based service to support the import and transformation of demand, defect, and effort data from source systems into a summarized form that can be served by Eolas and consumed by Synapse\n"
+    },
+    "host": "localhost",
+    "basePath": "/v1",
+    "schemes": [
+        "http"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "Ping"
+        },
+        {
+            "name": "Documentation"
+        },
+        {
+            "name": "Event"
+        }
+    ],
+    "paths": {
+        "/ping": {
+            "get": {
+                "tags": [
+                    "Ping"
+                ],
+                "description": "Verifies the service is responsive.  Returns the contents of the deployed service's configuration file.\n",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "title": "App Configuration Data",
+                            "type": "object",
+                            "example": {
+                                "myProperty": "value"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ping/deep": {
+            "get": {
+                "tags": [
+                    "Ping"
+                ],
+                "description": "Attempts to connect to external service providers and determine their state.  Will return a collection of objects that represent the path to that external system and some basic information about that system (typically version).  If the system is unreachable, the information will indicate the error encountered while testing the connection.\n",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/ExternalSystem"
+                        }
+                    }
+                }
+            }
+        },
+        "/doc": {
+            "get": {
+                "tags": [
+                    "Documentation"
+                ],
+                "description": "Serves up the Swagger stype API documentation.\n",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "title": "Swagger Documentation",
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "/project/{name}/event": {
+            "get": {
+                "tags": [
+                    "Event"
+                ],
+                "description": "Provides a list of data load and update events releated to a project.\n",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "The name of the Project to act upon."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/Event"
+                        }
+                    },
+                    "404": {
+                        "description": "Project was not found",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Event"
+                ],
+                "description": "Create a data load or update event for a specific\n",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "The name of the Project to act upon."
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "Either Load, Update, or Reprocess",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "override",
+                        "in": "query",
+                        "description": "must be true",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successful creation of a project",
+                        "schema": {
+                            "title": "url",
+                            "type": "string",
+                            "example": "http://eolas.com/v1/project/MyProject/event/MyEvent"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid or missing query parameter - type.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    },
+                    "404": {
+                        "description": "Project referenced does not exist",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    },
+                    "409": {
+                        "description": "An existing Pending Event already exists for this project.  Multiple Pending Events are not permitted.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                }
+            }
+        },
+        "/project/{name}/event/{id}": {
+            "get": {
+                "tags": [
+                    "Event"
+                ],
+                "description": "Retrieves a specific data load event\n",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "The name of the Project to act upon."
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "type": "string",
+                        "required": true,
+                        "description": "The ID of the event to retrieve."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/Event"
+                        }
+                    },
+                    "404": {
+                        "description": "Project was not found",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorModel"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "ErrorModel": {
+            "type": "object",
+            "required": [
+                "statusCode",
+                "message"
+            ],
+            "properties": {
+                "statusCode": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "ExternalSystem": {
+            "type": "object",
+            "required": [
+                "externalSystemName",
+                "externalSystemInformation"
+            ],
+            "properties": {
+                "externalSystemName": {
+                    "type": "string",
+                    "example": {
+                        "data store url": "DataStore"
+                    }
+                },
+                "externalSystemInformation": {
+                    "type": "object",
+                    "items": {
+                        "$ref": "#/definitions/ExternalInformation"
+                    }
+                }
+            }
+        },
+        "ExternalInformation": {
+            "type": "object",
+            "required": [
+                "externalSystemPath",
+                "externalSystemInformation"
+            ],
+            "properties": {
+                "externalSystemPath": {
+                    "type": "string",
+                    "example": {
+                        "data store url": "mongodb://localhost:27017"
+                    }
+                },
+                "externalSystemInformation": {
+                    "type": "string",
+                    "example": {
+                        "data store version": "V1.0"
+                    }
+                }
+            }
+        },
+        "Event": {
+            "type": "object",
+            "required": [
+                "id",
+                "type",
+                "startTime",
+                "endTime",
+                "note",
+                "demand",
+                "defect",
+                "effort"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "example": "b946f4ab-81c0-4683-9730-3227aa3f371d"
+                },
+                "type": {
+                    "type": "string",
+                    "example": "Load or Update"
+                },
+                "startTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2016-01-01T00:00:00.000Z"
+                },
+                "endTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2016-01-01T00:00:00.000Z"
+                },
+                "note": {
+                    "type": "string",
+                    "example": "This is a sample note"
+                },
+                "demand": {
+                    "type": "object",
+                    "items": {
+                        "$ref": "#/definitions/SystemEvent"
+                    }
+                },
+                "defect": {
+                    "type": "object",
+                    "items": {
+                        "$ref": "#/definitions/SystemEvent"
+                    }
+                },
+                "effort": {
+                    "type": "object",
+                    "items": {
+                        "$ref": "#/definitions/SystemEvent"
+                    }
+                }
+            }
+        },
+        "SystemEvent": {
+            "type": "object",
+            "required": [
+                "completion",
+                "status",
+                "message"
+            ],
+            "properties": {
+                "completion": {
+                    "type": "string",
+                    "format": "date-time",
+                    "example": "2016-01-01T00:00:00.000Z"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "Pending or Success or Failed"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "Success or a system error message"
+                }
+            }
+        }
+    }
+}

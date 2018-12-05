@@ -1,0 +1,11 @@
+*.pyc
+.DS_Store
+*.egg-info
+.idea
+.history
+
+# Downloaded data
+channels
+direct_messages
+private_channels
+metadata.json

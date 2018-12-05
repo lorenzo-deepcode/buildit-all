@@ -1,0 +1,35 @@
+{
+  "name": "generator-aem-with-react",
+  "version": "0.3.1",
+  "description": "Yeoman generator creating React components for use in AEM",
+  "files": [
+    "app"
+  ],
+  "author": "Buildit",
+  "contributors": [
+    {
+      "name": "Panos Voudouris",
+      "email": "panagiotis.voudouris@wipro.com",
+      "url": "https://github.com/panosvoudouris"
+    }
+  ],
+  "licence": "ISC",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/buildit/generator-aem-with-react.git"
+  },
+  "keywords": [
+    "yeoman-generator",
+    "aem",
+    "cq5",
+    "react"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^0.23.3"
+  },
+  "bugs": {
+    "url": "https://github.com/buildit/generator-aem-with-react/issues"
+  },
+  "homepage": "https://github.com/buildit/generator-aem-with-react#readme"
+}

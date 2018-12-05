@@ -1,0 +1,17 @@
+<app-twiglet-mode-left-bar
+    class="left-bar"
+    *ngIf="userState.get(USERSTATE.MODE) === 'twiglet'"
+    [userState]="userState"
+    [viewData]="viewData"
+    [twiglet]="twiglet"
+    [eventsList]="events"
+    [sequences]="sequences"
+    [sequenceId]="sequenceId"
+    [views]="views">
+</app-twiglet-mode-left-bar>
+<app-model-mode-left-bar
+    class="left-bar"
+    *ngIf="userState.get(USERSTATE.MODE) === 'model'"
+    [model]="model"
+    [userState]="userState">
+</app-model-mode-left-bar>

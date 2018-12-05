@@ -1,0 +1,8 @@
+version: '2'
+services:
+  encryptor-api:
+    image: combined-registry.sbx.zone/com.buildit/encryptor-api:latest
+    stdin_open: true
+    tty: true
+    labels:
+      io.rancher.container.pull_image: always

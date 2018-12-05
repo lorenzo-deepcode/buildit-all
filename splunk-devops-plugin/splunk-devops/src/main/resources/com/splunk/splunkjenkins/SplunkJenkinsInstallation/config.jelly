@@ -1,0 +1,71 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout"
+         xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+    <f:section title="${%ConfigTitle}">
+        <f:entry title="${%Enable}" field="enabled">
+            <f:checkbox/>
+        </f:entry>
+        <f:entry title="${%Indexer hostname}" field="host">
+            <f:textbox clazz="required"/>
+        </f:entry>
+        <f:entry title="${%HTTP Input Port}" field="port"
+                 help="/descriptorByName/com.splunk.splunkjenkins.SplunkJenkinsInstallation/help/httpInputConfig">
+            <f:number clazz="positive-number" max="65535" default="8088"/>
+        </f:entry>
+        <f:entry title="${%HTTP Input Token}" field="token">
+            <f:textbox clazz="required"/>
+        </f:entry>
+        <f:entry title="${%SSL Enabled}" field="useSSL"
+                 help="/descriptorByName/com.splunk.splunkjenkins.SplunkJenkinsInstallation/help/httpInputConfig">
+            <f:checkbox default="true"/>
+        </f:entry>
+        <f:entry title="${%Jenkins Master Hostname}" field="metadataHost">
+            <f:textbox clazz="required"/>
+        </f:entry>
+        <f:validateButton title="${%Test Connection}" progress="${%Testing...}" method="testHttpInput"
+                          with="host,port,token,useSSL,metaDataConfig"/>
+        <f:advanced>
+            <f:entry title="${%Raw Events Supported}" field="rawEventEnabled">
+                <f:checkbox default="true"/>
+            </f:entry>
+            <f:entry title="${%Custom Metadata}">
+                <f:repeatable field="metadataItemSet">
+                    <st:include page="config.jelly" class="${descriptor.clazz}"/>
+                </f:repeatable>
+            </f:entry>
+            <f:entry title="${%Event Source}" field="metadataSource">
+                <f:textbox default="jenkins"/>
+            </f:entry>
+            <f:entry title="${%Splunk App for Jenkins Link}" field="splunkAppUrl">
+                <f:textbox/>
+            </f:entry>
+
+            <f:entry title="${%Max Events Batch Size}" field="maxEventsBatchSize">
+                <f:number clazz="positive-number"/>
+            </f:entry>
+            <f:entry title="${%Retries on Error}" field="retriesOnError">
+                <f:textbox/>
+            </f:entry>
+            <f:entry title="${%Ignored Job Names Pattern}" field="ignoredJobs">
+                <f:textbox />
+            </f:entry>
+            <f:radioBlock name="commandsOrFileInSplunkins" value="file"
+                          title="${%Customize Event Processing Script}"
+                          checked="${instance.getScriptPath() !=null}" inline="true">
+                <f:entry field="scriptPath"
+                         help="/descriptorByName/com.splunk.splunkjenkins.SplunkJenkinsInstallation/help/groovyBinding">
+                    <f:textbox/>
+                </f:entry>
+            </f:radioBlock>
+            <f:radioBlock name="commandsOrFileInSplunkins" value="content"
+                          title="${%Customize Event Processing Command}"
+                          checked="${instance.getScriptPath() == null }" inline="true">
+                <f:entry help="/descriptorByName/com.splunk.splunkjenkins.SplunkJenkinsInstallation/help/groovyBinding">
+                    <f:textarea class="fixed-width" name="scriptContent" value="${instance.getScriptOrDefault()}"
+                    />
+                </f:entry>
+            </f:radioBlock>
+        </f:advanced>
+
+    </f:section>
+</j:jelly>

@@ -1,0 +1,43 @@
+.cart-header {
+  width: 375px;
+  height: 66px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f2f2;
+}
+.triangle {
+  width: 0;
+	height: 0;
+  margin-right: 10px;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-top: 10px solid $teal;
+}
+.review-order {
+  width: 93px;
+  height: 24px;
+  margin-right: 163px;
+  font-family: Oswald;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-transform: uppercase;
+  color: $teal;
+}
+.order-items {
+  width: 55px;
+height: 24px;
+font-family: Oswald;
+font-size: 16px;
+font-weight: normal;
+font-style: normal;
+font-stretch: normal;
+line-height: normal;
+letter-spacing: normal;
+text-align: right;
+color: #7d7d7d;
+}

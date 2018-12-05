@@ -1,0 +1,94 @@
+/********************/
+/* Dependencies     */
+/********************/
+@import 'gravity-ui-sass';
+
+
+/********************/
+/* Settings         */
+/********************/
+@import 'colours';
+@import 'banner';
+
+
+/********************/
+/* Tools            */
+/********************/
+
+
+/********************/
+/* Generics         */
+/********************/
+
+
+/********************/
+/* Base             */
+/********************/
+html,
+body {
+  overflow-x: hidden
+}
+
+
+/********************/
+/* Objects          */
+/********************/
+
+
+/********************/
+/* Components       */
+/********************/
+
+// flourishes
+@import 'flourish';
+@import 'flourish-groups';
+@import 'flourish-pullquotes';
+
+// reveal plugin animtaions
+.js-reveal-element {
+  visibility: hidden;
+}
+
+
+// Temporary override - TODO: Move to gravity
+.grav-o-container {
+  z-index: 1;
+}
+
+/********************/
+/* Trumps           */
+/********************/
+
+
+// Temporary override - Industries section had too much bottom margin
+.grav-c-two-columns-text {
+  margin: 2rem auto 0em auto;
+}
+
+// Temporary overrides - About page partner logos
+.grav-c-list-inline-row {
+  // Negative margin on container to cancel out left margin of left-most logo(s)
+  margin-left: -1 * $grav-sp-l;
+  justify-content: center;
+}
+
+.grav-c-list-inline-row > li {
+  margin-left: $grav-sp-l;
+  flex: auto 0 0;
+}
+
+.grav-c-list-inline-row a {
+  border-width: 1px;
+  border-color: $color-grey-iron;
+  border-style: solid;
+  background-color: $grav-co-neutral-dirty-snow-white;
+  padding: $grav-sp-s;
+}
+
+.grav-c-list-inline-row svg {
+  height: 1.75rem;
+  border-bottom: 0px;
+  margin: $grav-sp-m;
+  vertical-align: middle;
+}
+

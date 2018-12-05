@@ -1,0 +1,29 @@
+{
+  "title": "Prototypes",
+  "closeHref": "index.html#four",
+  "examples": [
+    {
+      "href": "prototype-one.html",
+      "cta": "Healthy pleasure",
+      "teaser": "Prototype a simple consumption tracking app to accompany the new heat-not-burn device.<br />The first tests suggested iteration with more of an emphasis on pleasure than health."
+    },
+    {
+      "href": "two.html",
+      "cta": "Never run out of Me!",
+      "teaser": "A card insert in each pack with a built in RFID chip that links to an online subscription page when a consumer taps their mobile on it or send an SMS to know more."
+    },
+    {
+      "href": "three.html",
+      "cta": "Deal of the Day",
+      "teaser": "Building an improved sales rep / kiosk promo management / mobile app toolkit with a connected device (Deal box) that encourages and rewards kiosks owners for “switching” clients."
+    },
+    {
+      "href": "four.html",
+      "cta": "Vendrsticks",
+      "teaser": "Build a prototype ibeacon enabled mobile app that demonstrated how a location enabled vending machine could create a more delightful and personalised vending experience."
+    }
+  ],
+  "bgvideo": {
+    "mp4file": "./assets/media/placeholder.mp4"
+  }
+}

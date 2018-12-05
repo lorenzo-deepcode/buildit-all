@@ -1,0 +1,5 @@
+{
+  "theme": "hierarchy",
+  "jsonFile": "./reports/e2e/e2e-test-results.json",
+  "output": "./reports/e2e/index.html"
+}

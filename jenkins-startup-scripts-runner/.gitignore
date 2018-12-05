@@ -1,0 +1,17 @@
+target
+.gradle/
+build/
+buildz/
+out/
+org.junit.rules*/
+
+# direnv
+.envrc
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Mac
+.DS_Store

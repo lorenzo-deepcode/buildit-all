@@ -1,0 +1,19 @@
+////
+/// @group Components
+////
+
+/**
+ * Change the border, margin, and padding in all browsers (opinionated).
+ */
+
+fieldset {
+  // Compound value for a `<fieldset>` border
+  $fieldset-border: 1px solid #c0c0c0 !default;
+  // Compound value for a `<fieldset>` margin
+  $fieldset-margin: 0 2px !default;
+  // Compound value for a `<fieldset>`'s padding
+  $fieldset-padding: .35em .625em .75em !default;
+  border: $fieldset-border;
+  margin: $fieldset-margin;
+  padding: $fieldset-padding;
+}

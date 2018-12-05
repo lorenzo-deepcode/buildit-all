@@ -1,0 +1,62 @@
+@import '../styles_colors';
+
+:host {
+
+  /deep/ .button-outline {
+    background-color: $buildit-white;
+    border: 1px solid $buildit-blue;
+  }
+
+  /deep/ .bs-lsg-navigation-button-add-on {
+    display: inline-block;
+    margin: 0;
+    text-align: center;
+    white-space: nowrap;
+
+    &.active {
+      background-color: $buildit-coal;
+    }
+  }
+
+  .circle {
+    cursor: pointer;
+    fill: $buildit-white;
+    stroke: $buildit-medltgray;
+    stroke-width: 1px;
+  }
+
+  .clickable {
+    cursor: pointer;
+  }
+
+  .twiglet-action {
+    color: $buildit-blue;
+    cursor: pointer;
+    margin: 0 3px;
+  }
+
+  .twiglet-list-item {
+    display: flex;
+  }
+
+  .view-action {
+    color: $buildit-blue;
+    cursor: pointer;
+  }
+
+  .warning {
+    color: $buildit-warning;
+  }
+
+  ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: 0 0 1px ($buildit-black, .5);
+    background-color: ($buildit-black, .5);
+    border-radius: 4px;
+  }
+}
+

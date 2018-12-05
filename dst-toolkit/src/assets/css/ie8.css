@@ -1,0 +1,66 @@
+/*
+	Landscape by Pixelarity
+	pixelarity.com | hello@pixelarity.com
+	License: pixelarity.com/license
+*/
+
+/* Button */
+
+	input[type="submit"],
+	input[type="reset"],
+	input[type="button"],
+	button,
+	.button {
+		border-color: inherit !important;
+	}
+
+		input[type="submit"].next,
+		input[type="reset"].next,
+		input[type="button"].next,
+		button.next,
+		.button.next {
+			padding-right: 2.5em;
+		}
+
+			input[type="submit"].next:after,
+			input[type="reset"].next:after,
+			input[type="button"].next:after,
+			button.next:after,
+			.button.next:after {
+				display: none;
+			}
+
+/* Form */
+
+	form .field {
+		float: none;
+		padding-left: 0 !important;
+	}
+
+	input[type="text"],
+	input[type="password"],
+	input[type="email"],
+	select,
+	textarea {
+		border-color: inherit !important;
+	}
+
+/* Main */
+
+	#main .slide:before {
+		display: none;
+	}
+
+	#main nav > * {
+		line-height: 2.25em;
+		width: auto;
+		padding: 0 2em;
+	}
+
+	#main nav > .next:before {
+		content: 'Next';
+	}
+
+	#main nav > .previous:before {
+		content: 'Prev';
+	}

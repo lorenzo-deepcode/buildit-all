@@ -1,0 +1,57 @@
+.blabbr-panel-container button {
+  display: inline-block;
+  padding: 10px 22px 10px 22px;
+  margin: 12px 0;
+  margin-bottom: 10px;
+  border: 1px solid #16a085;
+  border-width: 1px 1px 3px;
+  color: #FFF;
+  background: #1abc9c;
+  font-size: 12px;
+  text-align: center;
+  font-style: normal;
+  cursor: pointer;
+}
+
+.blabbr-panel-container .error {
+  color: #ff0000;
+}
+
+.blabbr-panel-container button:hover,
+.blabbr-panel-container button:focus {
+  background: #16a085;
+}
+
+.blabbr-panel-container {
+  padding: 5px 10px 10px 10px;
+  width: 100%;
+  font-family:
+    -apple-system,
+    ".SFNSText-Regular",
+    "San Francisco",
+    Roboto,
+    "Segoe UI",
+    "Helvetica Neue",
+     "Lucida Grande",
+     sans-serif;
+   color: #444;
+}
+
+.blabbr-panel-container ul.tiles {
+  display: inline-block;
+  float: right;
+  margin-top: -5px;
+  margin-right: -10px;
+  font-size: 0.8em;
+  font-weight: lighter;
+}
+
+.blabbr-panel-container ul.tiles li {
+  display: inline-block;
+  padding: 2px 3px 2px 3px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: #777;
+  background: rgb(244, 244, 244);
+  margin-left: 1px;
+}

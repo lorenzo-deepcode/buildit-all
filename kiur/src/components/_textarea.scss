@@ -1,0 +1,20 @@
+////
+/// @group Components
+////
+
+/**
+ * 1. Change the font styles in all browsers (opinionated, but easily overrideable).
+ * 2. Remove the margin in Firefox and Safari.
+ * 3. Remove the default vertical scrollbar in IE.
+ */
+
+textarea {
+  $form-font-family: sans-serif !default; /* 1 */
+  $form-font-size: 100% !default; /* 1 */
+  $form-line-height: 1.15 !default; /* 1 */
+  font-family: $form-font-family;
+  font-size: $form-font-size; /* 1 */
+  line-height: $form-line-height; /* 1 */
+  margin: 0; /* 2 */
+  overflow: auto; /* 3 */
+}

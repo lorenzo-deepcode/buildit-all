@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+- '6'
+deploy:
+  provider: npm
+  email: walter.monks@wipro.com
+  api_key:
+    secure: UBFmghbFjZ1701DP5vxVKOEf09BVZqA6puBlKDQZj68HgwAnn6Dpc8zvujGuQn8DwWXV23sQ/GPMRxHiHsUmTWKtmYvYaEna3IJ5qJrR3nU9W3fs30w74PvGXLS9433h5jpRqkL2DY5QwzsZz/Hi0UvKG7LIHyvC/AFEtReedymAGCY2rs9ccmq/jO2sgZgi+peyqWmwrQ2roRWRlzMQmlUiGn/JH6uhhQmzTRcmnbS8Swkvf6DAV/5iV4+vBQW66ql6IcgSm+va6Ou+Z47v+7ASMQ4HW71zg2twXVe+zwOtPbdcbdLNntyA5iMcoNBzQ09ENkb+jnZBXZC7y7Ro73ECEKVxJ4SprE/gnzI+4PNqDOPSs7yvEK/UgxDTsGXPh2iF9vVAgf1VZWEXAGPjcJFrkIt7Dysdulp6VO4kejo9RtzTKC3Yxv4L4CripkDmlKuSW85HvAFP/QW7eIhU+PWm1UeKc7H7XpQVP1mGvzWGNz5HmAlW1YGyTPujJtXC5ZM+1tuDyUa9IFDvJeohBekmGWKCaxGmPJ9m3W+LbFiB3QYR3Jz9OuOpx1MN7UuQlBKKmskSx4wHa6sqGHF3jjiJBI0z1E7X7yTXR1X7KliOCMvxrZf9PDIMJSalzuUCJNNFlZA1xsjMxrcsn7XKOVoQ50PAEi5i7TOuywjiRbc=
+  on:
+    repo: buildit/taco-style

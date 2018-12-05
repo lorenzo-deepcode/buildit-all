@@ -1,0 +1,19 @@
+@import "colors";
+@import "menu-item";
+@import "quantity-picker";
+@import "image-styles";
+@import "text";
+@import "view-title";
+@import "button-small";
+@import "pickup-location-header";
+
+
+.button-container {
+  margin-top: 140px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 240px;
+}
+.add-button-container {
+  padding: 114px 0 0 92px;
+}

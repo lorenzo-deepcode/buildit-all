@@ -1,0 +1,96 @@
+.button-select-location {
+  margin-top: 13px;
+  padding: 5px 10px 5px 10px;
+  width: 200px;
+  height: 47px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $pink;
+  color: $white;
+  text-transform: uppercase;
+  a {
+    vertical-align:middle;
+    color: $white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: FranchiseFree;
+    font-size: 30px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 0.7;
+    letter-spacing: normal;
+    text-align: center;
+  }
+}
+.button-reorder {
+  width: 156px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $pink;
+  color: $white;
+  text-transform: uppercase;
+  a {
+  text-decoration: none;
+  vertical-align:middle;
+  width: 98px;
+  height: 23px;
+  font-family: FranchiseFree;
+  font-size: 24px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 0.96;
+  letter-spacing: normal;
+  text-align: center;
+  color: $white;
+  }
+}
+.button-add-order {
+  width: 156px;
+  height: 40px;
+  margin: 27px 0 0 108px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $pink;
+  color: $white;
+  text-transform: uppercase;
+  a {
+  text-decoration: none;
+  vertical-align:middle;
+  width: 98px;
+  height: 23px;
+  font-family: FranchiseFree;
+  font-size: 24px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 0.96;
+  letter-spacing: normal;
+  text-align: center;
+  color: $white;
+  }
+}
+.nav {
+  height: 27px;
+  width: 355px;
+  padding: 11px;
+  background: black;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  overflow-x: scroll;
+  .nav-item {
+    margin-right: 45px;
+    color: $warm-grey;
+    font-family: FranchiseFree;
+    font-size: 30px;
+    font-weight: bold;
+    display: inline-block;
+    text-transform: uppercase;
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "name": "@buildit/illuminate-systems",
+  "version": "0.1.7",
+  "description": "Defect, demand and effort systems for illuminate and eolas",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint ./",
+    "preversion": "npm run validate",
+    "postversion": "git push && git push --tags",
+    "security": "nsp check --output summary",
+    "test": "nyc mocha --opts ./mocha.opts",
+    "validate": "npm run lint && npm run test && npm run security",
+    "version": "git add -A"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/buildit/illuminate-systems.git"
+  },
+  "keywords": [
+    "illuminate",
+    "eolas"
+  ],
+  "author": "Paul Karsten, Ben Hernandez",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/buildit/illuminate-systems/issues"
+  },
+  "homepage": "https://github.com/buildit/illuminate-systems#readme",
+  "dependencies": {
+    "co": "^4.6.0",
+    "config": "^1.26.2",
+    "http-status-codes": "^1.2.0",
+    "log4js": "^2.3.3",
+    "moment": "^2.18.1",
+    "ramda": "^0.24.1",
+    "restler": "^3.4.0",
+    "valid-url": "^1.0.9"
+  },
+  "devDependencies": {
+    "eslint": "^4.5.0",
+    "mocha": "^3.5.0",
+    "nsp": "^2.7.0",
+    "nyc": "^11.1.0",
+    "should": "^11.2.1",
+    "sinon": "^3.2.1"
+  },
+  "nyc": {
+    "exclude": [
+      "**/*.spec.js"
+    ]
+  }
+}

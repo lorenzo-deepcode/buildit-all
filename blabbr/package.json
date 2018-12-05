@@ -1,0 +1,32 @@
+{
+  "name": "blabbr",
+  "version": "0.0.1",
+  "description": "A simple CRUD API for comments. Will be used by web apps to store comments related to components.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/index.js",
+    "prestart": "babel --plugins transform-regenerator src --out-dir dist",
+    "start": "node dist/index.js"
+  },
+  "keywords": [
+    "comments",
+    "Firebase",
+    "API",
+    "component"
+  ],
+  "author": "Jonathan Ellis-Craig",
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-plugin-transform-regenerator": "^6.21.0",
+    "babel-polyfill": "^6.20.0",
+    "babel-preset-es2015": "^6.18.0",
+    "firebase": "^3.6.5",
+    "micro": "^6.1.0",
+    "url": "^0.11.0",
+    "url-pattern": "^1.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}

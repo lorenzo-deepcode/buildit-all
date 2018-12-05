@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<meta name="robots" content="noindex, nofollow">
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+  </head>
+  <body>
+
+    <!-- Header -->
+			<header id="header">
+			<nav id="nav">
+				<ul>
+          {{#nav}}
+            <li><a href="{{href}}" class="{{class}}" title="{{title}}">&nbsp;<span class="extra">{{anchor}}</span></a></li>
+          {{/nav}}
+				</ul>
+			</nav>
+		</header>
+
+    <!-- Main -->
+      <div id="main">
+
+        <!-- Reel -->
+          <div class="reel">
+
+            <!-- Intro -->
+            {{#slides}}
+              <article id="{{styles.id}}" class="slide {{styles.class}}">
+                <img src="images/{{{img.src}}}" alt="" data-position="{{img.position}}" />
+                <div class="inner">
+                  <header>
+                    {{#copy.headingOne}}
+                      <h1>{{{copy.headingOne}}}</h1>
+                    {{/copy.headingOne}}
+                    {{#copy.headingTwo}}
+                      <h2>{{{copy.headingTwo}}}</h2>
+                    {{/copy.headingTwo}}
+
+                    <p>{{{copy.paragraph}}}</p>
+                  </header>
+                  <ul class="actions">
+                    {{#actions}}
+                      <li>
+                        <a href="{{{href}}}" class="{{class}}" {{#target}}target="{{{target}}}"{{/target}}>{{{anchor}}}</a>
+                      </li>
+                    {{/actions}}
+                  </ul>
+                </div>
+              </article>
+            {{/slides}}
+
+            </div>
+        </div>
+
+      <!-- Scripts -->
+  			<script src="assets/js/jquery.min.js"></script>
+  			<script src="assets/js/skel.min.js"></script>
+  			<script src="assets/js/util.js"></script>
+  			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+  			<script src="assets/js/main.js"></script>
+    <script>
+        // document.ready
+        (function() {
+
+            function removeEmptyActions(nodes) {
+                var parentEl,
+                        childElClass,
+                        childNodes;
+
+                parentEl = nodes.parentEl
+                childElClass = nodes.childElClass
+                // get all children from parent to be removed in the document
+                childNodes = document.querySelectorAll(parentEl)
+
+                childNodes.forEach(function(child) {
+                    child.childNodes.forEach(function(n) {
+                        // child is a ul.actions and empty
+                        if(n.className == childElClass && n.innerText == "") {
+                            n.parentNode.removeChild(n)
+                        }
+                    })
+                });
+            }
+
+            // remove all DOM elements '.actions' when empty
+            removeEmptyActions({parentEl: '.inner', childElClass: 'actions'})
+
+        })()
+    </script>
+
+  	</body>
+  	<!--
+  		Landscape by Pixelarity
+  		pixelarity.com | hello@pixelarity.com
+  		License: pixelarity.com/license
+  	-->
+  </html>

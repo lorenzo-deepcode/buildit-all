@@ -1,0 +1,13 @@
+{
+    "harvestUsername": "test@admin.com",
+    "harvestPassword": "somepassword",
+    "targetHours": 50,
+    "zeroMessage": "Test Zero Message",
+    "underMessage": "Test Under Message",
+    "overMessage": "Test Over Message",
+    "emailSlackNames": {
+        "test@test.com": "test.name"
+    },
+    "organization": "testorg",
+    "slackToken": "a-slack-token"
+}

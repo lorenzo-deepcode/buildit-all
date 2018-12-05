@@ -1,0 +1,6 @@
+DOMAIN = example.tld
+KEY_NAME = username-us-east-1-keypair
+OWNER = jdoe
+PROFILE = default
+PROJECT = mycoolproject
+REGION = us-east-1

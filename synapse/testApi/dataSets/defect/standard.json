@@ -1,0 +1,708 @@
+[{
+  "projectDate": "2016/08/22",
+  "severity": {
+    "Critical": 1,
+    "Major": 2
+  }
+}, {
+  "projectDate": "2016/08/23",
+  "severity": {
+    "Critical": 2,
+    "Major": 4,
+    "Minor": 3,
+    "Trivial": 2
+  }
+}, {
+  "projectDate": "2016/08/24",
+  "severity": {
+    "Critical": 1,
+    "Major": 6,
+    "Minor": 4,
+    "Trivial": 4
+  }
+}, {
+  "projectDate": "2016/08/25",
+  "severity": {
+    "Critical": 1,
+    "Major": 8,
+    "Minor": 5,
+    "Trivial": 5
+  }
+}, {
+  "projectDate": "2016/08/26",
+  "severity": {
+    "Critical": 2,
+    "Major": 8,
+    "Minor": 6,
+    "Trivial": 6
+  }
+}, {
+  "projectDate": "2016/08/27",
+  "severity": {
+    "Critical": 2,
+    "Major": 8,
+    "Minor": 6,
+    "Trivial": 5
+  }
+}, {
+  "projectDate": "2016/08/28",
+  "severity": {
+    "Critical": 2,
+    "Major": 7,
+    "Minor": 6,
+    "Trivial": 4
+  }
+}, {
+  "projectDate": "2016/08/29",
+  "severity": {
+    "Critical": 4,
+    "Major": 5,
+    "Minor": 10,
+    "Trivial": 5
+  }
+}, {
+  "projectDate": "2016/08/30",
+  "severity": {
+    "Critical": 4,
+    "Major": 3,
+    "Minor": 11,
+    "Trivial": 6
+  }
+}, {
+  "projectDate": "2016/08/31",
+  "severity": {
+    "Critical": 4,
+    "Major": 5,
+    "Minor": 12,
+    "Trivial": 7
+  }
+}, {
+  "projectDate": "2016/09/01",
+  "severity": {
+    "Critical": 4,
+    "Major": 7,
+    "Minor": 8,
+    "Trivial": 8
+  }
+}, {
+  "projectDate": "2016/09/02",
+  "severity": {
+    "Critical": 3,
+    "Major": 9,
+    "Minor": 8,
+    "Trivial": 6
+  }
+}, {
+  "projectDate": "2016/09/03",
+  "severity": {
+    "Critical": 3,
+    "Major": 9,
+    "Minor": 8,
+    "Trivial": 7
+  }
+}, {
+  "projectDate": "2016/09/04",
+  "severity": {
+    "Critical": 3,
+    "Major": 4,
+    "Minor": 8,
+    "Trivial": 6
+  }
+}, {
+  "projectDate": "2016/09/05",
+  "severity": {
+    "Critical": 5,
+    "Major": 5,
+    "Minor": 7,
+    "Trivial": 5
+  }
+}, {
+  "projectDate": "2016/09/06",
+  "severity": {
+    "Critical": 5,
+    "Major": 5,
+    "Minor": 6,
+    "Trivial": 4
+  }
+}, {
+  "projectDate": "2016/09/07",
+  "severity": {
+    "Critical": 5,
+    "Major": 5,
+    "Minor": 6,
+    "Trivial": 5
+  }
+}, {
+  "projectDate": "2016/09/08",
+  "severity": {
+    "Critical": 4,
+    "Major": 3,
+    "Minor": 7,
+    "Trivial": 6
+  }
+}, {
+  "projectDate": "2016/09/09",
+  "severity": {
+    "Critical": 1,
+    "Major": 3,
+    "Minor": 8,
+    "Trivial": 7
+  }
+}, {
+  "projectDate": "2016/09/10",
+  "severity": {
+    "Critical": 1,
+    "Major": 3,
+    "Minor": 9,
+    "Trivial": 6
+  }
+}, {
+  "projectDate": "2016/09/11",
+  "severity": {
+    "Critical": 1,
+    "Major": 3,
+    "Minor": 9,
+    "Trivial": 5
+  }
+}, {
+  "projectDate": "2016/09/12",
+  "severity": {
+    "Critical": 7,
+    "Major": 9,
+    "Minor": 9,
+    "Trivial": 4
+  }
+}, {
+  "projectDate": "2016/09/13",
+  "severity": {
+    "Critical": 7,
+    "Major": 9,
+    "Minor": 9,
+    "Trivial": 2
+  }
+}, {
+  "projectDate": "2016/09/14",
+  "severity": {
+    "Critical": 8,
+    "Major": 9,
+    "Minor": 10,
+    "Trivial": 2
+  }
+}, {
+  "projectDate": "2016/09/15",
+  "severity": {
+    "Critical": 9,
+    "Major": 13,
+    "Minor": 11,
+    "Trivial": 4
+  }
+}, {
+  "projectDate": "2016/09/16",
+  "severity": {
+    "Critical": 10,
+    "Major": 13,
+    "Minor": 20,
+    "Trivial": 5
+  }
+}, {
+  "projectDate": "2016/09/17",
+  "severity": {
+    "Critical": 10,
+    "Major": 13,
+    "Minor": 20,
+    "Trivial": 6
+  }
+}, {
+  "projectDate": "2016/09/18",
+  "severity": {
+    "Critical": 10,
+    "Major": 13,
+    "Minor": 20,
+    "Trivial": 2
+  }
+}, {
+  "projectDate": "2016/09/19",
+  "severity": {
+    "Critical": 5,
+    "Major": 7,
+    "Minor": 20,
+    "Trivial": 7
+  }
+}, {
+  "projectDate": "2016/09/20",
+  "severity": {
+    "Critical": 5,
+    "Major": 7,
+    "Minor": 15,
+    "Trivial": 7
+  }
+}, {
+  "projectDate": "2016/09/21",
+  "severity": {
+    "Critical": 4,
+    "Major": 5,
+    "Minor": 14,
+    "Trivial": 7
+  }
+}, {
+  "projectDate": "2016/09/22",
+  "severity": {
+    "Critical": 3,
+    "Major": 5,
+    "Minor": 13,
+    "Trivial": 7
+  }
+}, {
+  "projectDate": "2016/09/23",
+  "severity": {
+    "Critical": 1,
+    "Major": 5,
+    "Minor": 15,
+    "Trivial": 5
+  }
+}, {
+  "projectDate": "2016/09/24",
+  "severity": {
+    "Critical": 1,
+    "Major": 4,
+    "Minor": 15,
+    "Trivial": 5
+  }
+}, {
+  "projectDate": "2016/09/25",
+  "severity": {
+    "Critical": 1,
+    "Major": 4,
+    "Minor": 15,
+    "Trivial": 5
+  }
+}, {
+  "projectDate": "2016/09/26",
+  "severity": {
+    "Critical": 15,
+    "Major": 4,
+    "Minor": 10,
+    "Trivial": 5
+  }
+}, {
+  "projectDate": "2016/09/27",
+  "severity": {
+    "Critical": 15,
+    "Major": 2,
+    "Minor": 3,
+    "Trivial": 2
+  }
+}, {
+  "projectDate": "2016/09/28",
+  "severity": {
+    "Critical": 15,
+    "Major": 2,
+    "Minor": 3,
+    "Trivial": 2
+  }
+}, {
+  "projectDate": "2016/09/29",
+  "severity": {
+    "Critical": 2,
+    "Major": 1,
+    "Minor": 23,
+    "Trivial": 2
+  }
+}, {
+  "projectDate": "2016/09/30",
+  "severity": {
+    "Critical": 0,
+    "Major": 1,
+    "Minor": 23,
+    "Trivial": 2
+  }
+}, {
+  "projectDate": "2016/10/01",
+  "severity": {
+    "Critical": 0,
+    "Minor": 23,
+    "Trivial": 2
+  }
+}, {
+  "projectDate": "2016/10/02",
+  "severity": {
+    "Critical": 0,
+    "Minor": 23,
+    "Trivial": 2
+  }
+}, {
+  "projectDate": "2016/10/03",
+  "severity": {
+    "Critical": 6,
+    "Major": 8,
+    "Minor": 23,
+    "Trivial": 8
+  }
+}, {
+  "projectDate": "2016/10/04",
+  "severity": {
+    "Critical": 6,
+    "Major": 8,
+    "Minor": 20,
+    "Trivial": 8
+  }
+}, {
+  "projectDate": "2016/10/05",
+  "severity": {
+    "Critical": 5,
+    "Major": 15,
+    "Minor": 15,
+    "Trivial": 8
+  }
+}, {
+  "projectDate": "2016/10/06",
+  "severity": {
+    "Critical": 4,
+    "Major": 15,
+    "Minor": 15,
+    "Trivial": 8
+  }
+}, {
+  "projectDate": "2016/10/07",
+  "severity": {
+    "Critical": 3,
+    "Major": 15,
+    "Minor": 15,
+    "Trivial": 8
+  }
+}, {
+  "projectDate": "2016/10/08",
+  "severity": {
+    "Critical": 5,
+    "Major": 15,
+    "Minor": 15,
+    "Trivial": 8
+  }
+}, {
+  "projectDate": "2016/10/09",
+  "severity": {
+    "Critical": 6,
+    "Major": 9,
+    "Minor": 30,
+    "Trivial": 8
+  }
+}, {
+  "projectDate": "2016/10/10",
+  "severity": {
+    "Critical": 4,
+    "Major": 9,
+    "Minor": 30,
+    "Trivial": 11
+  }
+}, {
+  "projectDate": "2016/10/11",
+  "severity": {
+    "Critical": 4,
+    "Major": 5,
+    "Minor": 30,
+    "Trivial": 11
+  }
+}, {
+  "projectDate": "2016/10/12",
+  "severity": {
+    "Critical": 5,
+    "Major": 5,
+    "Minor": 30,
+    "Trivial": 11
+  }
+}, {
+  "projectDate": "2016/10/13",
+  "severity": {
+    "Critical": 2,
+    "Major": 5,
+    "Minor": 30,
+    "Trivial": 11
+  }
+}, {
+  "projectDate": "2016/10/14",
+  "severity": {
+    "Critical": 3,
+    "Major": 5,
+    "Minor": 30,
+    "Trivial": 11
+  }
+}, {
+  "projectDate": "2016/10/15",
+  "severity": {
+    "Critical": 1,
+    "Major": 3,
+    "Minor": 30,
+    "Trivial": 11
+  }
+}, {
+  "projectDate": "2016/10/16",
+  "severity": {
+    "Critical": 3,
+    "Major": 3,
+    "Minor": 30,
+    "Trivial": 11
+  }
+}, {
+  "projectDate": "2016/10/17",
+  "severity": {
+    "Critical": 2,
+    "Major": 3,
+    "Minor": 20,
+    "Trivial": 7
+  }
+}, {
+  "projectDate": "2016/10/18",
+  "severity": {
+    "Major": 2,
+    "Minor": 20,
+    "Trivial": 7
+  }
+}, {
+  "projectDate": "2016/10/19",
+  "severity": {
+    "Critical": 2,
+    "Major": 2,
+    "Minor": 20,
+    "Trivial": 7
+  }
+}, {
+  "projectDate": "2016/10/20",
+  "severity": {
+    "Critical": 6,
+    "Major": 4,
+    "Minor": 20,
+    "Trivial": 7
+  }
+}, {
+  "projectDate": "2016/10/21",
+  "severity": {
+    "Critical": 6,
+    "Major": 4,
+    "Minor": 20,
+    "Trivial": 7
+  }
+}, {
+  "projectDate": "2016/10/22",
+  "severity": {
+    "Critical": 6,
+    "Major": 4,
+    "Minor": 10,
+    "Trivial": 2
+  }
+}, {
+  "projectDate": "2016/10/23",
+  "severity": {
+    "Critical": 6,
+    "Major": 11,
+    "Minor": 10,
+    "Trivial": 2
+  }
+}, {
+  "projectDate": "2016/10/24",
+  "severity": {
+    "Critical": 6,
+    "Major": 11,
+    "Minor": 10,
+    "Trivial": 2
+  }
+}, {
+  "projectDate": "2016/10/25",
+  "severity": {
+    "Critical": 5,
+    "Major": 6,
+    "Minor": 10,
+    "Trivial": 2
+  }
+}, {
+  "projectDate": "2016/10/26",
+  "severity": {
+    "Critical": 4,
+    "Major": 6,
+    "Minor": 10,
+    "Trivial": 2
+  }
+}, {
+  "projectDate": "2016/10/27",
+  "severity": {
+    "Critical": 2,
+    "Major": 5,
+    "Minor": 10,
+    "Trivial": 2
+  }
+}, {
+  "projectDate": "2016/10/28",
+  "severity": {
+    "Critical": 1,
+    "Major": 2,
+    "Minor": 10,
+    "Trivial": 2
+  }
+}, {
+  "projectDate": "2016/10/29",
+  "severity": {
+    "Minor": 20,
+    "Trivial": 15
+  }
+}, {
+  "projectDate": "2016/10/30",
+  "severity": {
+    "Minor": 20,
+    "Trivial": 15
+  }
+}, {
+  "projectDate": "2016/10/31",
+  "severity": {
+    "Minor": 20,
+    "Trivial": 15
+  }
+}, {
+  "projectDate": "2016/11/01",
+  "severity": {
+    "Minor": 18,
+    "Trivial": 15
+  }
+}, {
+  "projectDate": "2016/11/02",
+  "severity": {
+    "Minor": 18,
+    "Trivial": 15
+  }
+}, {
+  "projectDate": "2016/11/03",
+  "severity": {
+    "Minor": 18,
+    "Trivial": 15
+  }
+}, {
+  "projectDate": "2016/11/04",
+  "severity": {
+    "Minor": 18,
+    "Trivial": 15
+  }
+}, {
+  "projectDate": "2016/11/05",
+  "severity": {
+    "Minor": 12,
+    "Trivial": 10
+  }
+}, {
+  "projectDate": "2016/11/06",
+  "severity": {
+    "Minor": 12,
+    "Trivial": 10
+  }
+}, {
+  "projectDate": "2016/11/07",
+  "severity": {
+    "Minor": 12,
+    "Trivial": 10
+  }
+}, {
+  "projectDate": "2016/11/08",
+  "severity": {
+    "Minor": 12,
+    "Trivial": 10
+  }
+}, {
+  "projectDate": "2016/11/09",
+  "severity": {
+    "Minor": 12,
+    "Trivial": 10
+  }
+}, {
+  "projectDate": "2016/11/10",
+  "severity": {
+    "Minor": 12,
+    "Trivial": 10
+  }
+}, {
+  "projectDate": "2016/11/11",
+  "severity": {
+    "Minor": 12,
+    "Trivial": 10
+  }
+}, {
+  "projectDate": "2016/11/12",
+  "severity": {
+    "Minor": 12,
+    "Trivial": 10
+  }
+}, {
+  "projectDate": "2016/11/13",
+  "severity": {
+    "Minor": 12,
+    "Trivial": 10
+  }
+}, {
+  "projectDate": "2016/11/14",
+  "severity": {
+    "Minor": 12,
+    "Trivial": 10
+  }
+}, {
+  "projectDate": "2016/11/15",
+  "severity": {
+    "Minor": 12,
+    "Trivial": 10
+  }
+}, {
+  "projectDate": "2016/11/16",
+  "severity": {
+    "Minor": 12,
+    "Trivial": 10
+  }
+}, {
+  "projectDate": "2016/11/17",
+  "severity": {
+    "Minor": 12,
+    "Trivial": 10
+  }
+}, {
+  "projectDate": "2016/11/18",
+  "severity": {
+    "Minor": 12,
+    "Trivial": 10
+  }
+}, {
+  "projectDate": "2016/11/19",
+  "severity": {
+    "Minor": 12,
+    "Trivial": 10
+  }
+}, {
+  "projectDate": "2016/11/20",
+  "severity": {
+    "Minor": 12,
+    "Trivial": 10
+  }
+}, {
+  "projectDate": "2016/11/21",
+  "severity": {
+    "Minor": 10,
+    "Trivial": 10
+  }
+}, {
+  "projectDate": "2016/11/22",
+  "severity": {
+    "Minor": 10,
+    "Trivial": 10
+  }
+}, {
+  "projectDate": "2016/11/23",
+  "severity": {
+    "Minor": 10,
+    "Trivial": 10
+  }
+}, {
+  "projectDate": "2016/11/24",
+  "severity": {
+    "Minor": 10,
+    "Trivial": 10
+  }
+}, {
+  "projectDate": "2016/11/25",
+  "severity": {
+    "Minor": 10,
+    "Trivial": 10
+  }
+}]

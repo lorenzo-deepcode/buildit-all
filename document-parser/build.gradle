@@ -1,0 +1,27 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group 'com.buildit'
+version '1.0.3'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    compile "org.apache.tika:tika-core:1.18"
+    compile "org.apache.tika:tika-parsers:1.18"
+    testCompile "junit:junit:4.11"
+}
+
+task fatJar(type: Jar) {
+    zip64=true
+    manifest {
+        attributes 'Implementation-Title': 'AWS Lambda PoC',
+                'Implementation-Version': version
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}

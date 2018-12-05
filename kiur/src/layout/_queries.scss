@@ -1,0 +1,8 @@
+////
+/// @group Layout
+////
+
+/// Medium screen media query.  `@include media($medium-screen-up) {}`
+$medium-screen-up: new-breakpoint(min-width $medium-screen 12);
+/// Large screen media query.  `@include media($large-screen-up) {}`
+$large-screen-up: new-breakpoint(min-width $large-screen 12);

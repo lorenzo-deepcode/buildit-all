@@ -1,0 +1,99 @@
+---
+
+Description: Load Balancer
+AWSTemplateFormatVersion: 2010-09-09
+
+Parameters:
+  AppStackName:
+    Description: App stack name
+    Type: String
+
+  FoundationStackName:
+    Description: Foundation stack name
+    Type: String
+
+  InstancePort:
+    Description: The port exposed by the instance
+    Type: String
+
+  ListenerRulePriority:
+    Description: The priority for the listener rule
+    Type: Number
+
+  DnsHostedZoneName:
+    Description: Name of HostedZone (domain name) for DNS record creation
+    Type: String
+
+  DnsSubdomainName:
+    Description: Name of subdomain for DNS record creation.
+    Type: String
+
+
+Resources:
+  TargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      VpcId:
+        Fn::ImportValue: !Sub "${FoundationStackName}--VpcId"
+      Port: !Ref InstancePort
+      Protocol: HTTP
+      Matcher:
+        HttpCode: 200-299
+      HealthCheckIntervalSeconds: 10
+      HealthCheckPath: /
+      HealthCheckProtocol: HTTP
+      HealthCheckTimeoutSeconds: 5
+      HealthyThresholdCount: 2
+      TargetGroupAttributes:
+        - Key: deregistration_delay.timeout_seconds
+          Value: 30
+
+  ListenerRuleHttp:
+    Type: AWS::ElasticLoadBalancingV2::ListenerRule
+    Properties:
+      ListenerArn: 
+        Fn::ImportValue: !Sub "${AppStackName}--ALB--HttpListener"
+      Priority: !Ref ListenerRulePriority
+      Conditions:
+        - Field: host-header
+          Values:
+            - !Sub "${DnsSubdomainName}.${DnsHostedZoneName}"
+      Actions:
+        - TargetGroupArn: !Ref TargetGroup
+          Type: forward
+
+  ListenerRuleHttps:
+    Type: AWS::ElasticLoadBalancingV2::ListenerRule
+    Properties:
+      ListenerArn: 
+        Fn::ImportValue: !Sub "${AppStackName}--ALB--HttpsListener"
+      Priority: !Ref ListenerRulePriority
+      Conditions:
+        - Field: host-header
+          Values:
+            - !Sub "${DnsSubdomainName}.${DnsHostedZoneName}"
+      Actions:
+        - TargetGroupArn: !Ref TargetGroup
+          Type: forward
+
+  elbDNS:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneName: !Sub "${DnsHostedZoneName}."
+      Comment: DNS for ELB.
+      RecordSets:
+      - Name: !Sub "${DnsSubdomainName}.${DnsHostedZoneName}."
+        Type: A
+        AliasTarget:
+          HostedZoneId:
+            Fn::ImportValue: !Sub "${AppStackName}--ALB--CanonicalHostedZoneID"
+          DNSName: 
+            Fn::ImportValue: !Sub "${AppStackName}--ALB--DNSName"
+
+Outputs:
+  TargetGroup:
+    Value: !Ref TargetGroup
+
+  FQDN:
+    Description: The fully qualified domain name
+    Value: !Sub "${DnsSubdomainName}.${DnsHostedZoneName}"

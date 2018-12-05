@@ -1,0 +1,96 @@
+<doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Icarus</title>
+    <link rel="stylesheet" 
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" 
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="./main.css">          
+  </head>
+  <body>
+    <div id="landing-page" class="container">
+      <div class="jumbotron">
+        <h1>Icarus</h1>
+        <h4 v-if="hasAccessToken">Welcome back, {{ accessToken.userName }}</h4>
+      </div>
+      <div v-if="mustLogIn" class="row main-login">
+          <div class="panel panel-default">
+              <div class="panel-heading"><button v-on:click="slackLogin" class="btn btn-lg btn-primary">Login / Sign in with Slack</button></div>
+              <div class="panel-body">Icarus only accesses your user basic info (name, user ID, team ID).<br/>
+                  The Slack user is your main identity in Icarus.
+              </div>
+          </div>  
+      </div>
+      
+      <!-- Slack login -->
+      <div v-if="hasAccessToken" class="container-fluid">
+        <!-- Dropbox -->
+        <div class="row integrations">          
+          <div v-if="accessToken.dropboxAccountId">
+              <div class="panel panel-success">
+                  <div class="panel-heading">Icarus is monitoring your Dropbox activity</div>
+                  <div class="panel-body">Icarus logs your actions (e.g. file created/modified) and the time it happened,
+                    but no file name or content.
+                  </div>
+              </div>
+          </div>
+          <div v-else>
+            <div class="panel panel-default">
+                <div class="panel-heading"><button v-on:click="dropboxLogin()" class="btn btn-lg btn-primary">Link Dropbox account</button></div>
+                <div class="panel-body">Icarus will only log your action (e.g. file created/modified) and the time it happened,
+                        but no file name or content.            
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Github -->
+        <div class="row integrations">
+            <div v-if="accessToken.githubUsername">
+                <div class="panel panel-success">
+                    <div class="panel-heading">Icarus is monitoring your Github activity</div>
+                    <div class="panel-body">Icarus only logs your actions (e.g. open an Issue) and the time it happened, but no ID, content or text.<br/>
+                        Only Organisations and Repositories configured to notify events to Icarus are monitored.
+                    </div>
+                  </div>
+            </div>
+            <div v-else>
+                <div class="panel panel-default">
+                    <div class="panel-heading"><button v-on:click="githubLogin()" class="btn btn-lg btn-primary">Link Github account</button></div>
+                    <div class="panel-body">Icarus will only log your actions (e.g. open an Issue) and the time it happened, but ID, content or text.<br/>
+                        Only Organisations and Repositories configured to notify events to Icarus are monitored.
+                    </div>
+                </div>              
+            </div>
+        </div>
+        
+        <!-- Logout -->
+        <div v-if="hasAccessToken" class="row logout">
+            <div class="panel panel-default">
+                <div class="panel-heading"><button  v-on:click="logout()" class="btn btn-lg btn-warning">Logout</button></div>
+                <div class="panel-body">Logging out this page will not stop Icarus from monitoring your activity.
+                    This is only useful while the product in development to refresh your status.
+                </div>
+            </div>    
+        </div>
+ 
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue-ls"></script>
+    <script src="https://unpkg.com/vue-router"></script>
+    <script src="config.js"></script>
+    <script src="common.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>

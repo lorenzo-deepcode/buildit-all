@@ -1,0 +1,26 @@
+<div class="modal-header">
+  <h4 class="modal-title" *ngIf="viewUrl">Overwrite {{ name }}</h4>
+  <h4 class="modal-title" *ngIf="!viewUrl">Create New View</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form [formGroup]="form" (ngSubmit)="processForm()">
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="name" class="control-label">*Name:</label>
+      <input #autofocus type="text" class="form-control" name="name" formControlName="name" required>
+      <div *ngIf="formErrors.name" class="alert-danger form-control">
+        {{ formErrors.name }}
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="description" class="control-label">Description:</label>
+      <input type="text" class="form-control" name="description" formControlName="description">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="button btn-sm btn-secondary" (click)="activeModal.close('Close click')">Close</button>
+    <button type="submit" class="button btn-sm" [disabled]="!this.form.valid">Save</button>
+  </div>
+</form>

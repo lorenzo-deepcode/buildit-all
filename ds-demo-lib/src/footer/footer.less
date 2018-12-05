@@ -1,0 +1,39 @@
+.dsdemo-footer {
+  .inverted-colours();
+
+  /* Box model */
+  padding: @dsdemo-space-inset-md 0;
+
+  > div {
+    .content-wrapper();
+    .grid-container();
+  }
+
+  p,
+  ul {
+    .grid-element(12);
+  }
+
+
+  li {
+    /* Box model */
+    list-style-type: none;
+    display: inline;
+
+
+    & + li:before {
+      /* Box model */
+      display: inline-block;
+      margin-left: @dsdemo-space-sm;
+      margin-right: @dsdemo-space-sm;
+
+      /* Misc */
+      content: '|';
+    }
+  }
+
+  ul {
+    /* Box model */
+    margin-bottom: 0;
+  }
+}

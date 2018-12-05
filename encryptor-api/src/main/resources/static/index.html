@@ -1,0 +1,104 @@
+<html>
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <script src="jquery-3.2.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $(".submit").click(function(e){
+            e.preventDefault();
+            var form = this.form
+            var multipart = (form.enctype == 'multipart/form-data')
+            var contentType = multipart ? false: form.enctype;
+            var data = multipart ? new FormData(form) : $(form).serialize();
+            $.ajax({
+                url: form.action,
+                data: data,
+                cache: false,
+                contentType: contentType,
+                processData: false,
+                type: 'POST',
+                success: function(data){
+                    $('#results').removeClass("alert alert-danger")
+                    $('#results').text(data);
+                },
+                error: function(data){
+                    $('#results').addClass("alert alert-danger")
+                    $('#results').text(data.responseText);
+                }
+            });
+        });
+        $(".copy").click(function(e){
+            e.preventDefault();
+            var aux = document.createElement("input");
+            aux.setAttribute("value", document.getElementById('results').innerHTML);
+            document.body.appendChild(aux);
+            aux.select();
+            document.execCommand("copy");
+            document.body.removeChild(aux);
+
+        });
+        $(".showpassword").click(function(e){
+            e.preventDefault();
+            var siblings = $(e.target).parent().children()
+            siblings.each(function(index,element) {
+                if(element.type == 'password'){
+                  $(element).attr('type','text')
+                } else if(element.type == 'text'){
+                  $(element).attr('type','password')
+                }
+            });
+            if ($(e.target).text() == 'Show passwords') {
+                $(e.target).text('Hide passwords')
+            } else {
+                $(e.target).text('Show passwords')
+            }
+        });
+    });
+    </script>
+</head>
+<body>
+    <form method="post" action="api/encrypted" enctype="application/x-www-form-urlencoded" name="passwordForm">
+        <fieldset>
+            <legend>Encrypt a Password</legend>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+            <label for="passwordSecret">Secret</label>
+            <input type="password" name="secret" id="passwordSecret">
+            <input type="submit" value="Submit" class="submit btn btn-default">
+            <button class="showpassword btn btn-default">Show passwords</button>
+        </fieldset>
+    </form>
+
+    <form method="post" action="api/encrypted" enctype="multipart/form-data" name="fileForm">
+        <fieldset>
+            <legend>Encrypt a File</legend>
+            <label class="btn btn-default" for="file">
+                <input id="file" type="file" style="display:none;" name="file">
+                Choose File...
+            </label>
+            <label for="fileSecret">Secret</label>
+            <input type="password" name="secret" id="fileSecret">
+            <input type="submit" value="Submit" class="submit btn btn-default">
+            <button class="showpassword btn btn-default">Show passwords</button>
+        </fieldset>
+    </form>
+    <form method="post" action="api/key" enctype="application/x-www-form-urlencoded" name="keyForm">
+        <fieldset>
+            <legend>Generate a Key</legend>
+            <input type="radio" id="keySizeSmall" name="keySize" value="AES_128_BIT">
+            <label for="keySizeSmall">128-bit</label>
+
+            <input type="radio" id="keySizeMedium" name="keySize" value="AES_192_BIT">
+            <label for="keySizeMedium">192-bit</label>
+
+            <input type="radio" id="keySizeLarge" name="keySize" value="AES_256_BIT" checked="checked">
+            <label for="keySizeLarge">256-bit</label>
+
+            <input type="submit" value="Submit" class="submit btn btn-default">
+
+        </fieldset>
+    </form>
+    <button class="copy btn btn-default pull-right">Copy</button>
+    <pre id="results">&nbsp;</pre>
+</body>
+</html>

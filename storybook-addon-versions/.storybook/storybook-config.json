@@ -1,0 +1,15 @@
+{
+  "storybook": {
+    "versions": {
+      "availableVersions": [
+        "0.2.4",
+        "0.2.5",
+        "0.2.6",
+        "0.3.0"
+      ],
+      "hostname": "localhost:8000",
+      "localhost": "localhost:9001",
+      "regex": "\/([^\/]+?)\/?$"
+    }
+  }
+}

@@ -1,0 +1,97 @@
+@import '../../../styles_colors';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .event-controls {
+    flex: 0 0 30px;
+  }
+
+  .overflow-scroll {
+    flex: 1;
+    height: auto;
+    max-height: 290px;
+    overflow: scroll;
+  }
+
+  i {
+    padding: 2px;
+  }
+
+  .clickable {
+    cursor: pointer;
+  }
+
+  .fa-trash {
+    margin-left: 2px;
+  }
+
+  .grey {
+    color: $buildit-medgray;
+  }
+
+  p {
+    padding-left: 0;
+    vertical-align: middle;
+  }
+
+  .card-block {
+    padding: 5px;
+  }
+
+  .form-control {
+    font-family: Arial, FontAwesome;
+  }
+
+  li {
+    padding-left: 0 !important;
+
+    &.checkbox-toggle {
+      max-height: 35px;
+      min-height: 35px;
+
+      &.active {
+        background: $buildit-blue;
+        font-weight: bolder;
+      }
+
+      span {
+        max-height: 35px;
+        min-height: 35px;
+        padding-top: 3px;
+      }
+    }
+  }
+
+  label {
+    &.checkbox-toggle {
+      box-sizing: border-box;
+      color: $buildit-white;
+      cursor: pointer;
+      display: inline-block;
+      line-height: 34px;
+      margin: -5px 0 0 5px;
+      max-width: 125px;
+      overflow: hidden;
+      padding-left: 5px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  input {
+    &.checkbox-toggle {
+      display: none;
+
+      &:checked {
+        &+ label {
+          border-left: .5em solid $buildit-blue;
+          margin-left: 0;
+          padding-left: .5em;
+        }
+      }
+    }
+  }
+}

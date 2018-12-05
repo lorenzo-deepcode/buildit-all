@@ -1,0 +1,8 @@
+{
+  "control": {
+    "type": "button",
+    "label": "Do something"
+  },
+  "symbolId": "buildit-logo-hollow",
+  "titleId": "buildit-logo-hollow__title"
+}

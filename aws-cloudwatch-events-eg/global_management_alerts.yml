@@ -1,0 +1,65 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Description: "Maintains management alerts"
+
+Parameters:
+  SlackNotificationLambdaArn:
+    Type: String
+    Description: Enter fully-qualified ARN to slack notification Lambda.  Clear field to stop Slack notifications.
+
+
+Conditions:
+  CreateSlackNotificationSub: !Not [!Equals [!Ref SlackNotificationLambdaArn, ""]]
+
+
+Resources:
+  Ec2LargeInstanceCreationTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      DisplayName: "Large EC2 instance creation."
+
+
+  Ec2LargeInstanceSlackNotificationSub:
+    Type: "AWS::SNS::Subscription"
+    Condition: CreateSlackNotificationSub
+    Properties:
+      Endpoint:
+        Ref: SlackNotificationLambdaArn
+      Protocol: lambda
+      TopicArn: !Ref 'Ec2LargeInstanceCreationTopic'
+
+  Ec2LargeInstanceCreationTopicPermission:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref SlackNotificationLambdaArn
+      Principal: sns.amazonaws.com
+      SourceArn: !Ref 'Ec2LargeInstanceCreationTopic'
+
+
+
+  Ec2LargeInstanceCreationFilter:
+    Type: AWS::Logs::MetricFilter
+    Properties:
+      LogGroupName: CloudTrail/aws-changes
+      FilterPattern: "{ ($.eventName = RunInstances) && (($.requestParameters.instanceType = *.32xlarge) || ($.requestParameters.instanceType = *.16xlarge) || ($.requestParameters.instanceType = *.8xlarge) || ($.requestParameters.instanceType = *.4xlarge) || ($.requestParameters.instanceType = *.2xlarge) || ($.requestParameters.instanceType = *.10xlarge)) }"
+      MetricTransformations:
+      -
+        MetricValue: 1
+        MetricNamespace: CloudTrailMetrics
+        MetricName: Ec2LargeInstanceCreationEventCount
+
+
+  Ec2LargeInstanceCreationAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      AlarmDescription:  "Instance greater than allowed size was created."
+      Namespace: CloudTrailMetrics
+      MetricName: Ec2LargeInstanceCreationEventCount
+      Statistic: Sum
+      Period: 60
+      EvaluationPeriods: 1
+      Threshold: 1
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      AlarmActions:
+      - Ref: Ec2LargeInstanceCreationTopic

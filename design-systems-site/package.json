@@ -1,0 +1,47 @@
+{
+  "name": "design-systems-site",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Website about Design Systems and Buildit's services in that area",
+  "main": "index.js",
+  "scripts": {
+    "clean": "gulp clean",
+    "build": "DEBUG='metalsmith-glossary' gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buildit/design-systems-site.git"
+  },
+  "keywords": [
+    "website",
+    "design-systems",
+    "glossary",
+    "case-studies",
+    "buildit",
+    "buildit-gravity"
+  ],
+  "author": "Buildit",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/buildit/design-systems-site/issues"
+  },
+  "homepage": "https://github.com/buildit/design-systems-site#readme",
+  "devDependencies": {
+    "debug": "^3.1.0",
+    "del": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-front-matter": "^1.3.0",
+    "gulpsmith": "^0.6.0",
+    "jstransformer-nunjucks": "^0.5.0",
+    "metalsmith": "^2.3.0",
+    "metalsmith-collections": "^0.9.0",
+    "metalsmith-debug": "^1.2.0",
+    "metalsmith-drafts": "0.0.1",
+    "metalsmith-layouts": "^2.1.0",
+    "metalsmith-markdown": "^0.2.2",
+    "metalsmith-permalinks": "^0.5.0",
+    "metalsmith-relative-links": "^1.2.0",
+    "multimatch": "^2.1.0"
+  }
+}

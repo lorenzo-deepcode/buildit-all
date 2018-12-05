@@ -1,0 +1,73 @@
+
+@import 'global/typography';
+@import 'global/colors';
+
+.errorInput {
+    input {
+        border: 1px solid #e6e8ed;
+        border-radius: 4px;
+        font-size: 14px;
+        padding: 10px;
+        font-family: $base-font-family;
+        margin-left: 20px;
+
+    }
+
+    label {
+        display: block;
+        margin: 10px 0;
+        font-size: 14px;
+        color: #c5c5c5;
+        font-family: $base-font-family;
+
+        margin-left: 20px;
+    }
+
+    span {
+        color: red;
+        margin-left: 20px;
+        display: inline-block;
+        font-size: 13px;
+        margin-top: 5px;
+        font-family: $base-font-family;
+
+
+    }
+}
+
+.success-notif, .error-notif{
+    .trigger{
+        border-radius: 2px;
+        border: none;
+        color: #ffffff;
+        cursor: pointer;
+        font-size: 18px;
+        line-height: 18px;
+        margin-top: 20px;
+        margin-left: 20px;
+        padding: 20px 0px;
+        width: 60%;
+        font-family: $base-font-family;
+    }
+
+    p{
+        color: $black;
+        font-size: 14px;
+        margin-left: 25px;
+    }
+}
+
+.success-notif{
+    .trigger{
+        background-color: $green;
+    }
+    
+}
+
+.error-notif{
+    .trigger{
+        background-color: $red;
+    }
+}
+
+

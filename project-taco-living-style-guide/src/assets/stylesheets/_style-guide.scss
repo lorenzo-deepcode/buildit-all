@@ -1,0 +1,63 @@
+// Styles for this guide
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+
+  .iphone6-container {
+    width: 375px;
+  }
+
+  header {
+    .title {
+    }
+  }
+  .component {
+    margin-bottom: 3rem;
+  }
+}
+
+.style-guide {
+  font-family: 'Open Sans', sans-serif;
+
+  &.introduction {
+    margin-bottom: 3rem;
+    .title {
+      text-align: left;
+      margin-bottom: 0.5rem;
+      font-size: 2rem;
+    }
+    .description {
+      margin: 0;
+    }
+  }
+
+  &.description {
+    color: #AAA;
+  }
+
+  &.element-list {
+    .label {
+      margin-right: 0.5rem;
+    }
+    .element {
+      margin-right: 0.3rem;
+    }
+    .element:not(:last-child):after {
+      content: ",";
+    }
+  }
+
+  &.filters {
+    border: 3px solid #AAA;
+    border-radius: 8px;
+    padding: 1rem;
+
+    .filter-button {
+      margin-right: 1rem;
+    }
+  }
+
+}

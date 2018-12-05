@@ -1,0 +1,16 @@
+@import 'global/colors';
+@import 'global/typography';
+
+.bookingCard{
+    display: inline-block;
+    color: $black;
+    border: 1px solid $border-gray;
+    margin: 6px 12px;
+    padding: 15px 17px;
+    
+
+    p,h4{
+        margin: 0;
+        font-family: $base-font-family;
+    }
+}

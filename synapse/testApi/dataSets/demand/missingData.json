@@ -1,0 +1,5 @@
+[
+  { "projectDate": "2016/08/01", "status": { "Backlog": 150 } },
+  { "projectDate": "2016/08/02", "status": {} },
+  { "projectDate": "2016/08/03", "status": { "Backlog": 160 } }
+]

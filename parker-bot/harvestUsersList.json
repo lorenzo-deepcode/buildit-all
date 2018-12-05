@@ -1,0 +1,47 @@
+[
+    {
+        "user": {
+            "id": 0,
+            "is_active": true,
+            "email": "zero@test.com",
+            "first_name": "Agent",
+            "last_name": "Zero"
+        }
+    },
+    {
+        "user": {
+            "id": 1,
+            "is_active": true,
+            "email": "one@test.com",
+            "first_name": "One",
+            "last_name": "Person"
+        }
+    },
+    {
+        "user": {
+            "id": 2,
+            "is_active": true,
+            "email": "two@test.com",
+            "first_name": "Two",
+            "last_name": "Much"
+        }
+    },
+    {
+        "user": {
+            "id": 3,
+            "is_active": true,
+            "email": "three@test.com",
+            "first_name": "Climba",
+            "last_name": "Three"
+        }
+    },
+    {
+        "user": {
+            "id": 4,
+            "is_active": false,
+            "email": "four@test.com",
+            "first_name": "No Mo",
+            "last_name": "Four"
+        }
+    }
+]

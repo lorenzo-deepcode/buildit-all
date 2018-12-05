@@ -1,0 +1,17 @@
+@import './typography';
+@import './form';
+
+/// Default spacing used throughout the rest of the docs
+/// @group Layout
+$base-spacing: 2rem !default;
+
+$base-table-padding: .5rem;
+
+
+
+/// Medium screen size
+/// @group Layout
+$medium-screen: 600px;
+/// Large screen size
+/// @group Layout
+$large-screen: 900px;

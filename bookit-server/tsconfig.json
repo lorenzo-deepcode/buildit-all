@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "declaration": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "baseUrl": ".",
+    "outDir": "./lib",
+    "preserveConstEnums": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "lib": ["ES2015"],
+    "skipLibCheck": true,
+    "typeRoots": [
+      "./node_modules/@types"
+    ]
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "test",
+    "test-int"
+  ]
+}

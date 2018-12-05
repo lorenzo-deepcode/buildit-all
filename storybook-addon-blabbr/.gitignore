@@ -1,0 +1,10 @@
+node_modules
+npm-debug.log
+dist
+.idea/
+.DS_Store
+.vscode
+storybook-config.json
+storybook-static
+reports
+.nyc_output/

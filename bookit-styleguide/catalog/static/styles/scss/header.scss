@@ -1,0 +1,42 @@
+//header styles
+@import 'global/colors';
+@import 'global/typography';
+
+.myBookingHeader {
+    display: flex;
+    flex-direction: row;
+    font-family: $base-font-family;
+    color: $blackish;
+    
+    img{
+        width: 40px;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+    
+    h2 {
+        flex: 1;
+        margin-left: 20px;
+    }
+}
+
+
+.bookablesheader {
+    display: flex;
+    flex-direction: row;
+    font-family: $base-font-family;
+    color: $blackish;
+    
+    img{
+        width: 40px;
+        margin-left: 2%;
+        cursor: pointer;
+    }
+    
+    h3 {
+        flex: 1;
+        text-align: center;
+        font-size: 25px;
+    }
+}
+

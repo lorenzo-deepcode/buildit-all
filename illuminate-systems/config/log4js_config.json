@@ -1,0 +1,30 @@
+{
+  "appenders": {
+    "console": {
+      "type": "console",
+      "layout": {
+        "type": "pattern",
+        "pattern": "%d{ABSOLUTE} %[%-5p%] %c %m"
+      }
+    },
+    "file": {
+      "type": "dateFile",
+      "filename": "./logs/illuminate-systems.log",
+        "pattern": "-MM-dd",
+      "alwaysIncludePattern": true,
+      "layout": {
+          "type": "pattern",
+          "pattern": "[%r] [%h] [%p] - %m"
+        }
+    }
+  },
+  "categories": {
+    "default": { 
+      "appenders": [
+        "console",
+        "file"
+      ],
+      "level": "ERROR"
+    }
+  }
+}

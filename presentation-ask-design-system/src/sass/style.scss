@@ -1,0 +1,423 @@
+
+// Custom Reveal.js theme
+@import 'theme';
+
+@mixin text-outline($width, $color) {
+  // Using technique described here:
+  // https://css-tricks.com/adding-stroke-to-web-text/
+  text-shadow:
+    $width $width 0 $color,
+    $width (-1 * $width) 0 $color,
+    (-1 * $width) (-1 * $width) 0 $color,
+    (-1 * $width) $width 0 $color;
+}
+
+
+.reveal {
+
+  section img {
+    // Undo irritating image styling from reveal.js
+    border: none;
+    box-shadow: none;
+    background: none;
+  }
+
+  // Take the sub-title font-size down a notch
+  hgroup h2 {
+    font-size: $heading3Size;
+  }
+
+
+  .meme {
+    font-family: 'League Gothic', Impact, sans-serif;
+    text-transform: uppercase;
+    font-size: $heading3Size;
+    color: #fff;
+    @include text-outline(0.07em, #000);
+  }
+
+
+
+
+  // Character slides
+  .character {
+    // Make slide container match slide height
+    box-sizing: border-box;
+    height: 100%;
+  }
+
+
+
+  // Additional fragment SFX
+  .slides section .fragment {
+
+    &.invert {
+      filter: invert(100%);
+
+      &.visible {
+        filter: invert(0%);
+      }
+    }
+  }
+
+}
+
+// "Special" slides
+  #cover {
+    text-align: left;
+
+    h1 {
+      margin-bottom: 1em;
+    }
+
+    p {
+      text-align: center;
+      color: rgba(255,255,255,0.4);
+
+      padding-bottom: 1em;
+      border-bottom: 1px solid rgba(255,255,255,0.4);
+    }
+
+    img {
+      float: right;
+      padding: 0 0 0.8em 1.6em;
+      width: 32%;
+    }
+
+    .presenter {
+      color: #fff;
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+      font-size: 0.8em;
+
+      a:first-child {
+        font-size: $mainFontSize;
+        display: block;
+      }
+
+      &:nth-of-type(1) {
+        padding-right: 1em;
+      }
+
+      &:nth-of-type(2) {
+        padding-right: 1em;
+        padding-left: 1em;
+      }
+
+      &:nth-of-type(3) {
+        padding-left: 1em;
+      }
+    }
+
+  }
+
+
+  #hands-up {
+    box-sizing: border-box;
+    height: 100%;
+
+    text-align: left;
+
+    p {
+      font-size: $heading3Size;
+    }
+  }
+
+  #trenches {
+    text-align: left;
+
+    h1 {
+      width: 70%;
+    }
+  }
+
+
+  #freyas-story {
+    text-align: left;
+
+    .portrait {
+      position: absolute;
+      top: 0;
+      left: 0;
+      max-height: 110%;
+    }
+
+    .name {
+      max-width: 40%;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+
+
+  #daves-story {
+    text-align: right;
+
+    .portrait {
+      position: absolute;
+      right: 0;
+      top: 10%;
+    }
+
+    .name {
+      max-width: 40%;
+      position: absolute;
+      left: 0;
+      top: 30%;
+    }
+  }
+
+
+  #beths-story {
+    text-align: left;
+
+    .portrait {
+      // Make the portrait image overflow the slide
+      position: absolute;
+      top: 10%;
+      left: 0;
+      max-height: 110%;
+    }
+
+    .name {
+      max-width: 40%;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+
+
+  #pain-summary {
+    li {
+      font-size: $heading2Size;
+      list-style-type: none;
+
+      + li {
+        margin-top: 0.5em;
+      }
+
+      &:before {
+        content: '💩';
+        margin-right: 0.5em;
+      }
+    }
+  }
+
+  #modular-mindset {
+    box-sizing: border-box;
+    height: 60%;
+    text-align: center;
+
+    h2 {
+      font-size: $heading1Size;
+      text-shadow: 0 0.05em 0.1em rgba(0,88,194,0.8);
+    }
+  }
+
+  #challenges {
+    h2,
+    li,
+    p {
+      text-shadow: 0 0.05em 0.8em rgba(0,0,0,0.9);
+    }
+
+    li {
+      margin-top: 0.5em;
+      list-style-type: none;
+    }
+
+    ul {
+      width: 40%;
+    }
+
+    p {
+      width: 70%;
+      text-align: right;
+    }
+  }
+
+
+  #atomic-design {
+    width: 100%;
+
+    .atomic {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+
+    .portrait {
+      // Make the portrait image overflow the slide
+      position: absolute;
+      top: 40%;
+      right: -6%;
+      max-height: 70%;
+    }
+
+    .fragment.fade-left {
+      transform: translate(200%, 100%) rotate(-40deg);
+
+      &.visible {
+        transform: translate(0, 0) rotate(-40deg);
+      }
+    }
+
+  }
+
+  #hostile-environment {
+    box-sizing: border-box;
+    height: 100%;
+
+    img {
+      position: absolute;
+      left: 13%;
+      bottom: -22%;
+      width: 65%;
+    }
+  }
+
+
+
+  #undead-styleguide {
+    box-sizing: border-box;
+    height: 100%;
+
+    .name {
+      position: absolute;
+      width: 40%;
+      max-height: auto;
+      top: 5%;
+      left: 5%;
+    }
+
+    .portrait {
+      position: absolute;
+      width: 40%;
+      max-height: auto;
+      bottom: -15%;
+      right: 10%;
+    }
+  }
+
+  #ds-morpheus {
+    box-sizing: border-box;
+    height: 100%;
+
+    .top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 60%;
+      text-align: left;
+    }
+
+    .bottom {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      text-align: right;
+    }
+  }
+
+  #web-party {
+    box-sizing: border-box;
+    height: 100%;
+
+    img {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 40%;
+    }
+  }
+
+  #product-not-project {
+    box-sizing: border-box;
+    height: 100%;
+    background-image: url('images/nathan-curtis.png');
+    background-size: cover;
+
+    blockquote {
+      background: none;
+      box-shadow: none;
+      border: none;
+
+      font-style: normal;
+      font-size: 1.6em;
+      color: #000;
+      text-align: left;
+
+      position: absolute;
+      top: 1%;
+      right: 7%;
+      width: 46%;
+
+      footer {
+        text-align: right;
+        margin-top: 1.5em;
+        font-size: $mainFontSize;
+        color: #888;
+      }
+
+      cite:before {
+        content: '- ';
+      }
+    }
+
+  }
+
+  #to-do,
+  #to-do-2 {
+    box-sizing: border-box;
+    height: 100%;
+
+    > ul {
+      column-count: 2;
+      column-gap: 2em;
+
+      > li {
+        font-size: $heading3Size;
+        break-inside: avoid;
+        list-style-type: none;
+      }
+
+      > li + li {
+        margin-top: 1em;
+      }
+    }
+
+
+    li ul {
+      font-size: $mainFontSize;
+
+      li {
+        margin-top: 0.5em;
+      }
+    }
+  }
+
+  #ask-not {
+    text-align: left;
+
+    blockquote {
+      background: none;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+      margin: 0 auto;
+      width: 90%;
+
+      text-transform: uppercase;
+      font-size: $heading4Size;
+      font-style: normal;
+
+      p:nth-child(n + 2) {
+        font-weight: bold;
+        font-size: $heading3Size;
+      }
+    }
+  }

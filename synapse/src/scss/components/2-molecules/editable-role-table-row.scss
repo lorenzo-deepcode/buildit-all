@@ -1,0 +1,20 @@
+.editable-role-table-row {
+  background-color: #fbfbfb;
+  transition: background-color 0.2s ease;
+  &:hover {
+    background-color: #ffffff;
+  }
+  .actions * {
+    display: inline-block;
+    font-size: 1.8rem;
+    width: 2rem;
+    span.fa { cursor: pointer; }
+  }
+  .icon {
+    color: $brand-colour-blue;
+    transition: color 0.2s ease;
+    &:hover {
+      color: $brand-colour-red;
+    }
+  }
+}

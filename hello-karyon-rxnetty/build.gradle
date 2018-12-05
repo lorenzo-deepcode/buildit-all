@@ -1,0 +1,104 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: "com.github.hierynomus.license"
+apply plugin: 'nebula.ospackage-base'
+
+sourceCompatibility = 1.8
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.9'
+}
+
+repositories { 
+    mavenCentral()
+    jcenter()
+}
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin:0.12.1"
+        classpath 'com.netflix.nebula:gradle-ospackage-plugin:3.1.0'
+    }
+}
+
+dependencies {
+    // Karyon core dependencies
+    compile (group: 'com.netflix.karyon', name: 'karyon2-core', version: '2.7.0')
+    compile (group: 'com.netflix.karyon', name: 'karyon2-archaius', version: '2.7.0')
+
+    // Karyon admin dependencies
+    compile (group: 'com.netflix.karyon', name: 'karyon2-admin', version: '2.7.0')
+    compile (group: 'com.netflix.karyon', name: 'karyon2-admin-web', version: '2.7.0')
+
+    // Karyon eureka dependency
+    compile (group: 'com.netflix.karyon', name: 'karyon2-eureka', version: '2.7.0')
+
+    // logback dependencies
+    compile (group: 'ch.qos.logback', name: 'logback-classic', version: '1.1.3')
+
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '1.10.19'
+}
+
+license {
+    header rootProject.file('codequality/HEADER')
+    ext.year = Calendar.getInstance().get(Calendar.YEAR)
+    include "**/*.java"
+}
+
+task run(dependsOn: [classes], type: JavaExec) {
+    main = "com.kenzan.karyon.rxnetty.KaryonRxNettyExample"
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Karyon RxNetty Example app',
+            'Implementation-Version': version,
+            'Main-Class': 'com.kenzan.karyon.rxnetty.KaryonRxNettyExample'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+def getDate() {
+    new Date().format('yyyyMMddHHmmss')
+}
+
+task packDeb(type: Deb, dependsOn: fatJar) {
+
+  packageName = project.name
+  version = '1'
+  release "5-" + getDate()
+
+  requires('openjdk-8-jre-headless')
+  from('build/libs/.') {
+    into "/opt/${project.name}"
+  }
+
+  // installer scripts
+  preInstall = file('pkg_scripts/preInstall.sh')
+  postInstall = file('pkg_scripts/postInstall.sh')
+  postUninstall = file('pkg_scripts/postUninstall.sh')
+
+  from(file('pkg_scripts/hello-karyon-rxnetty.service')) {
+    into('/lib/systemd/system/')
+    user = 'root'
+    permissionGroup = 'root'
+    fileType = CONFIG | NOREPLACE
+  }
+
+  from(file('pkg_scripts/hello-karyon-rxnetty')) {
+    into('/etc/logrotate.d')
+    user = 'root'
+    permissionGroup = 'root'
+    fileType = CONFIG | NOREPLACE
+  }
+
+}

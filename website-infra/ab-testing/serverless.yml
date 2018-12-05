@@ -1,0 +1,53 @@
+service: website-lambda
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: ${opt:stage, 'noenv'} # Stage is named after the Website environment name
+  region: us-east-1 # To be used as Lambda@Edge functions must be in us-east-1
+  logRetentionInDays: 7
+  role: lambaEdgeExecutionRole
+  timeout: 1
+  memorySize: 128
+
+package:
+  individually: true
+  exclude: 
+    - src/**
+    - build/**
+
+functions:
+  OriginRequest:
+    handler:
+      build/originRequest.handler
+    package:
+      include:
+        - build/originRequest.js      
+
+resources:
+  Resources:
+    lambaEdgeExecutionRole:
+      Type: AWS::IAM::Role
+      Properties:
+        RoleName: LambdaAtEdgeExecutionRole
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service:
+                  - lambda.amazonaws.com
+                  - edgelambda.amazonaws.com
+              Action: sts:AssumeRole
+        ManagedPolicyArns:
+          - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+
+
+  Outputs:
+    # No way of directly referencing Outputs from this stack from the website-infra stack
+    # unless the website is deployed on us-east-1. 
+    # CloudFormation does not support ImportValue from different Regions
+    OriginRequestFunctionArn:
+      Description: OriginRequest function ARN
+      Value:
+        Ref: OriginRequestLambdaFunction

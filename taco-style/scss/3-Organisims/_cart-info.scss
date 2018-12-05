@@ -1,0 +1,243 @@
+.total-plain {
+  width: 375px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+.subtotal-plain{
+  width: 66px;
+  height: 17px;
+  margin-left: 30px;
+  margin-right: 215px;
+  font-family: Oswald;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-transform: uppercase;
+  color: $warm-grey;
+}
+.amount-plain {
+  width: 44px;
+  height: 23px;
+  font-family: Oswald;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: right;
+  color: $warm-grey;
+}
+}
+.pick-up-change-location {
+  width: 110px;
+  height: 24px;
+  margin-bottom: 11px;
+  margin-left: 75px;
+  font-family: Oswald;
+  font-size: 15px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  text-transform: uppercase;
+  letter-spacing: normal;
+  color: $pink;
+  a {
+    text-decoration: none;
+    color: $pink;
+    width: 110px;
+    height: 24px;
+  }
+}
+.cart-list-holder {
+  padding-top: 27px;
+  padding-left: 21px;
+  width: 375px;
+  .cart-block {
+    display: flex;
+    flex-flow: row wrap;
+  }
+  .cart-info {
+    width: 187px;
+  }
+.cart-list-holder-address{
+  width: 187px;
+  height: 34px;
+  font-family: BrandonText;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.21;
+  letter-spacing: normal;
+  color: $black;
+}
+.cart-image {
+  width: 67px;
+  height: 67px;
+  margin-left: 40px;
+}
+.directions {
+  width: 96px;
+ height: 23px;
+ margin-top: 11px;
+ font-family: Oswald;
+ font-size: 15px;
+ font-weight: normal;
+ font-style: normal;
+ font-stretch: normal;
+ line-height: 1.53;
+ text-transform: uppercase;
+ letter-spacing: normal;
+ color: $teal;
+}
+}
+.cart-history-list {
+  margin-top: 25px;
+}
+.cart-history-item {
+    width: 375px;
+    display: flex;
+    margin-bottom: 25px;
+    align-items: center;
+.cart-history-item-count{
+    width: 8px;
+    height: 17px;
+    font-family: BrandonText;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.21;
+    letter-spacing: normal;
+    color: $warm-grey;
+}
+.cart-desc {
+    width: 197px;
+    margin-right: 30px;
+    margin-left: 40px;
+    font-family: BrandonText;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.21;
+    letter-spacing: normal;
+    color: $warm-grey;
+}
+.cart-price {
+  width: 31px;
+  height: 17px;
+  font-family: Oswald;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.31;
+  letter-spacing: normal;
+  text-align: right;
+  color: $warm-grey;
+}
+}
+.payment {
+  width: 329px;
+  margin-top: 15px;
+  margin-left: 33px;
+  display: flex;
+  align-items: center;
+  .payment-info {
+    width: 257px;
+    margin-left: 13px;
+  }
+  .cc-info {
+    width: 92px;
+    height: 23px;
+    font-family: Oswald;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.44;
+    text-transform: uppercase;
+    letter-spacing: normal;
+    color: $black;
+  }
+  .cc-exp {
+    width: 271px;
+      height: 20px;
+      font-family: BrandonText;
+      font-size: 14px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: normal;
+      color: $black;
+  }
+
+}
+.divider {
+  width: 332px;
+  height: 1px;
+  margin-top: 14px;
+  margin-left: 23px;
+  border-bottom: solid 1px #ebebeb;
+}
+.terms {
+  width: 327px;
+  height: 142px;
+  margin: 28px 0 0 24px;
+  background-color: $grey-4;
+  .terms-header {
+    width: 154px;
+    height: 24px;
+    padding: 17px 0 0 15px;
+    font-family: Oswald;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    text-transform: uppercase;
+    letter-spacing: normal;
+    color: $black;
+  }
+  .terms-content {
+    width: 293px;
+    height: 80px;
+    padding: 7px 0 0 15px;
+    font-family: BrandonText;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: $black;
+  }
+}
+.place-order {
+  width: 327px;
+  display: flex;
+  padding-top: 30px;
+  align-items: center;
+  justify-content: space-between;;
+  .sub {
+    width: 116px;
+    height: 23px;
+    margin-left: 38px;
+    font-family: FranchiseFree;
+    font-size: 24px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    text-transform: uppercase;
+    letter-spacing: normal;
+    color: $black;
+  }
+}

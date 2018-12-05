@@ -1,0 +1,47 @@
+body > footer {
+  @include typi('small-text');
+  margin-top: vr(3);
+  padding: $grav-sp-l 0;
+  background-color: $grav-co-neutral-charcoal;
+  color: $grav-co-neutral-dirty-snow-white;
+
+
+  > * {
+    @include grav-l-container;
+    padding-bottom: $grav-sp-s;
+    text-align: center;
+
+    &:last-child {
+      padding: 0;
+    }
+  }
+
+  a[href]:link,
+  a[href]:visited {
+    color: $grav-co-neutral-dirty-snow-white;
+  }
+
+  a[href]:hover {
+    color: $grav-co-neutral-ashtray;
+  }
+
+  .grav-c-logo {
+    max-width: 7rem;
+    height: 1rem;
+    border-bottom: 1px solid currentColor;
+  }
+
+  .grav-c-icon {
+    width: 24px; // To ensure icon renders at the correct size in IE
+    height: 24px;
+  }
+
+  ul {
+    justify-content: center;
+  }
+
+  /* stylelint-disable-next-line selector-no-qualifying-type */
+  &.grav-c-footer-no-margin {
+    margin-top: 0;
+  }
+}

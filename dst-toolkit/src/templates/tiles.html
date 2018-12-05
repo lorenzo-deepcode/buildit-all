@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>{{title}}</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<meta name="robots" content="noindex, nofollow">
+		<link rel="stylesheet" href="assets/tiles/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+				<header id="header">
+					<div class="inner">
+
+						<!-- Logo -->
+							<a href="index.html{{{logo.href}}}" class="logo">
+								<span class="symbol"><img src="images/{{{logo.src}}}" alt="{{logo.alt}}" /></span><span class="title">{{logo.anchor}}</span>
+							</a>
+
+						<!-- Nav -->
+							<nav>
+								<ul>
+									<li><a class="close" href="index.html{{{nav.href}}}" title="Close"></a></li>
+								</ul>
+							</nav>
+
+					</div>
+				</header>
+
+				<!-- Main -->
+				<div id="main">
+					<div class="inner">
+						<header>
+							<h1>{{{header.headingOne}}}</h1>
+							<p>{{#header.img}}<img src="assets/{{{header.img.src}}}" alt="{{header.img.alt}}" style="float:left;width:40%;margin-right:1em" />{{/header.img}} {{{header.paragraph}}}</p>
+							<ol style="font-size:0.8em;margin-top:-1.5em">
+								{{#header.introList}}
+									<li>{{{.}}}</li>
+								{{/header.introList}}
+							</ol>
+						</header>
+
+						{{#squareTilesA}}
+							<section class="tiles" style="margin-top:-2em;">
+								{{#squareTilesA.items}}
+									<article class="{{style}}">
+										<span class="image">
+											<img src="assets/{{{img.src}}}" alt="{{img.alt}}" />
+										</span>
+										{{#actions}}
+											<a href="{{{actions.href}}}" title="{{actions.href}}" {{#target}}target="{{{target}}}"{{/target}}>{{#anchor}} {{{anchor}}} {{/anchor}}</a>
+										{{/actions}}
+									</article>
+								{{/squareTilesA.items}}
+							</section>
+
+							{{{squareTilesA.title}}}
+
+						{{/squareTilesA}}
+
+						<section class="tiles" style="width:100%;">
+
+              {{#tiles}}
+
+								{{#style}}
+	                <article class="{{style}}">
+	                  <span class="image">
+	                    <img src="assets/{{{img.src}}}" alt="{{img.alt}}" />
+	                  </span>
+	                  {{#actions}}
+	                    <a href="{{{actions.href}}}" title="{{actions.href}}" {{#target}}target="{{{target}}}"{{/target}}>{{#anchor}} {{{anchor}}} {{/anchor}}</a>
+	                  {{/actions}}
+	                </article>
+								{{/style}}
+
+								{{#tileParagraph}}
+									{{{tileParagraph}}}
+								{{/tileParagraph}}
+
+              {{/tiles}}
+
+						</section>
+
+						{{#squareTilesB}}
+							{{{squareTilesB.title}}}
+
+							<section class="tiles cuatro" style="margin-top:-2em">
+								{{#squareTilesB.items}}
+									<article class="{{style}}">
+										<span class="image">
+											<img src="assets/{{{img.src}}}" alt="{{img.alt}}" />
+										</span>
+										{{#actions}}
+											<a href="{{{actions.href}}}" title="{{actions.href}}" {{#target}}target="{{{target}}}"{{/target}}>{{#anchor}} {{{anchor}}} {{/anchor}}</a>
+										{{/actions}}
+									</article>
+								{{/squareTilesB.items}}
+							</section>
+
+						{{/squareTilesB}}
+
+						{{#moreText}}
+						<section style="margin-top:3em">
+							<h3>{{{moreText.title}}}</h3>
+							<ul>
+								{{#moreText.paragraph}}
+									<li style="margin-top:1em">{{{.}}}</li>
+								{{/moreText.paragraph}}
+							</ul>
+						</section>
+						{{/moreText}}
+					</div>
+				</div>
+
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/tiles/js/jquery.min.js"></script>
+			<script src="assets/tiles/js/skel.min.js"></script>
+			<script src="assets/tiles/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/tiles/js/main.js"></script>
+
+	</body>
+</html>

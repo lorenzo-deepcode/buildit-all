@@ -1,0 +1,11 @@
+{
+  "name": "aws-sns-lambda-to-slack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "node ./lib/post-message.test.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

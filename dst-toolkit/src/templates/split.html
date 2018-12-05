@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>{{title}}</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="./assets/prototypes/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+				<a class="close" href="{{{closeHref}}}" title="Close"></a>
+				<!-- Wrapper -->
+					<section id="wrapper">
+						<div class="inner">
+							<h1>{{{copy.headingOne}}}</h1>
+							<h2>{{{copy.headingTwoA}}}</h2>
+							<p>{{{copy.paragraphA}}}</p>
+							<h2>{{{copy.headingTwoB}}}</h2>
+							<p>{{{copy.paragraphB}}}</p>
+							<h2>{{{copy.headingTwoC}}}</h2>
+							<img src="assets/images-prototype/{{copy.imgSrc}}" width="75%">
+							<ul class="actions">
+                {{#copy.anchor}}
+                  <li><a href="{{href}}" class="button" target="_blank">{{anchor}}</a></li>
+                {{/copy.anchor}}
+							</ul>
+						</div>
+						<footer>
+							<ul class="icons">
+                <li>
+                  {{#nav.back}}
+                    <a href="{{nav.back.href}}" class="icon fa-arrow-left"><span class="label">Previous Prototype</span></a>&nbsp;&nbsp;
+                  {{/nav.back}}
+                  {{#nav.next}}
+                    <a href="{{nav.next.href}}" class="icon fa-arrow-right"><span class="label">Next Prototype</span></a>
+                  {{/nav.next}}
+                </li>
+							</ul>
+						</footer>
+					</section>
+
+				<!-- Banner -->
+					<section id="banner">
+						<div class="inner">
+							<a href="{{{demo.href}}}">
+								<div class="content">
+									<ul>
+                    {{#demo.slides}}
+                      <li><img src="assets/images-prototype/{{{.}}}" alt="{{{.}}}"></li>
+                    {{/demo.slides}}
+									</ul>
+								</div>
+							</a>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/prototypes/js/main.js"></script>
+			<!--
+				Split Screen by HTML5 UP
+				html5up.net | @n33co
+				Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+			-->
+	</body>
+</html>

@@ -1,0 +1,116 @@
+.hpe-footer {
+  background-color: $light-grey-1;
+  padding: 2.5rem 0;
+
+  @include respond-to(medium) {
+    padding: 3.5rem 0 2.5rem;
+  }
+
+  &__content {
+    padding: 0 $bootstrap-gutter;
+  }
+
+  &__column {
+    @include respond-to(medium) {
+      &:first-child {
+        padding-right: $bootstrap-gutter * 3;
+      }
+
+      &:last-child {
+        padding-left: $bootstrap-gutter * 3;
+      }
+    }
+  }
+
+  &__title {
+    font-size: 1rem;
+    line-height: 1;
+    margin: 0 0 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  &__list {
+    margin: 0 0 1.75rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item {
+    color: $dark-grey-1;
+    display: block;
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
+    line-height: 1.33;
+    text-decoration: none;
+
+    &--social {
+      display: inline-block;
+      margin-right: 1.5rem;
+      font-size: 1.5rem;
+      color: $dark-grey-1;
+      transition: transform 0.2s linear;
+
+      &:hover {
+        color: $black;
+        transform: scale(1.25);
+      }
+    }
+  }
+
+  &__language {
+    margin: 1.5rem 0;
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: 200;
+    color: $dark-grey-4;
+
+    @include respond-to(medium) {
+      text-align: right;
+    }
+  }
+
+  &__copyright {
+    flex: 1 1 50%;
+  }
+
+  &__legal {
+    font-size: 1.125rem;
+
+    @include respond-to(medium) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &__legal-list {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+
+    @include respond-to(medium) {
+      margin-top: 0;
+    }
+  }
+
+  &__legal-item {
+    display: inline-block;
+    color: $dark-grey-1;
+
+    &:not(:last-child) {
+      margin-right: 1rem;
+    }
+  }
+
+  &__mark {
+    padding: 1.5rem 0 0;
+    text-align: center;
+  }
+}
+
+svg.hpe-brand-mark {
+  color: $brand;
+  font-size: 5rem;
+  stroke-width: 5;
+  height: 1.5rem;
+}

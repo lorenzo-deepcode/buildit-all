@@ -1,0 +1,11 @@
+{% extends "page.njk" %}
+
+{% block main %}
+  <ul>
+  {% for term in collections.glossary %}
+    <li>
+      <a href="{{ link.to(term) }}">{{ term.title }}</a>
+    </li>
+  {% endfor %}
+  </ul>
+{% endblock %}

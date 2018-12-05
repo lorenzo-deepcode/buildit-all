@@ -1,0 +1,17 @@
+<div>
+    <p>Specify index, host, source, soucetype for the events. </p>
+    </p> index is a data repository in Splunk, please create the 4 indexes in Splunk:
+    <span class="warning">
+    jenkins, jenkins_statistics, jenkins_console and jenkins_artifact
+    </span>
+    </p>
+    <p>
+        host is used to identify which Jenkins master is the source of the data.
+        the metadata can be used in Splunk query language such as <br/>
+        index="jenkins" host="servername" sourcetype="json:jenkins" <br/>
+    </p>
+
+    <p>
+        <a href="https://wiki.jenkins-ci.org/display/JENKINS/Splunk+Plugin+for+Jenkins">See more details</a>
+    </p>
+</div>

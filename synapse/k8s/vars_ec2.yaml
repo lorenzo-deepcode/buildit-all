@@ -1,0 +1,10 @@
+image:
+  repository: 006393696278.dkr.ecr.us-east-1.amazonaws.com/synapse
+  tag: "latest"
+  pullPolicy: Always
+service:
+  hostName: synapse.riglet
+app:
+  eolasUrl: http://eolas.riglet/
+  noauth: true
+

@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+
+  web:
+    container_name: web
+    build:
+      context: .
+    ports:
+      - "80:9080"
+      - "443:9443"
+    logging:
+      driver: syslog
+      options:
+        syslog-address: tcp://127.0.0.1:5000
+        tag: "logger-test"

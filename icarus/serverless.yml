@@ -1,0 +1,656 @@
+service:
+  name: icarus
+
+# Add the serverless-webpack plugin
+plugins:
+  - serverless-webpack        # compiles and bundles together typescript code
+  - serverless-domain-manager # custom DNS domain for lambda endpoints
+  - serverless-s3-sync        # deploys static web pages to S3
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  region: us-east-1 # Domain Manager plugin supports us-east-1 only!
+  stage: ${env:ICARUS_STAGE, 'dev'} # Ignores any stage defined by CLI `--stage` option
+
+  iamRoleStatements: 
+    # DynamoDB access
+    - Effect: Allow
+      Action:
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:BatchWriteItem
+        - dynamodb:Query
+        - dynamodb:DeleteItem   
+      Resource:
+        - arn:aws:dynamodb:*:*:table/${self:provider.environment.DROPBOXCURSORS_TABLE}
+        - arn:aws:dynamodb:*:*:table/${self:provider.environment.FILECHANGES_TABLE}
+        - arn:aws:dynamodb:*:*:table/${self:provider.environment.GITHUBEVENTS_TABLE}
+        - arn:aws:dynamodb:*:*:table/${self:provider.environment.GITHUBEVENTS_TABLE}/index/events_by_user
+        - arn:aws:dynamodb:*:*:table/${self:provider.environment.ACCOUNTS_TABLE}
+        - arn:aws:dynamodb:*:*:table/${self:provider.environment.IDENTITIES_TABLE}
+        - arn:aws:dynamodb:*:*:table/${self:provider.environment.ACCOUNTS_TABLE}/index/slack_id_by_access_token
+        - arn:aws:dynamodb:*:*:table/${self:provider.environment.IDENTITIES_TABLE}/index/identity_by_account_id_and_type
+    # For listening to DynamoDB Streams
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeStream
+        - dynamodb:GetRecords
+        - dynamodb:GetShardIterator
+        - dynamodb:ListStreams
+      Resource:
+        - arn:aws:dynamodb:*:*:table/${self:provider.environment.GITHUBEVENTS_TABLE}
+        - arn:aws:dynamodb:*:*:table/${self:provider.environment.FILECHANGES_TABLE}
+    # For deploying in VPC
+    - Effect: Allow
+      Action:
+        - ec2:CreateNetworkInterface
+        - ec2:DescribeNetworkInterfaces
+        - ec2:DeleteNetworkInterface
+      Resource: "*"       
+
+  environment:
+    DROPBOX_CLIENT_ID: ${env:DROPBOX_CLIENT_ID}
+    DROPBOX_CLIENT_SECRET: ${env:DROPBOX_CLIENT_SECRET}
+
+    SLACK_TEAM_URL: ${env:SLACK_TEAM_URL}
+    SLACK_CLIENT_ID: ${env:SLACK_CLIENT_ID}
+    SLACK_CLIENT_SECRET: ${env:SLACK_CLIENT_SECRET}
+
+    GITHUB_WEBHOOK_SECRET: ${env:GITHUB_WEBHOOK_SECRET}
+    GITHUB_CLIENT_ID: ${env:GITHUB_CLIENT_ID}
+    GITHUB_CLIENT_SECRET: ${env:GITHUB_CLIENT_SECRET}
+
+    TABLE_PREFIX: ${self:custom.nameSpace}-
+
+    ACCOUNTS_TABLE: ${self:provider.environment.TABLE_PREFIX}accounts
+    IDENTITIES_TABLE: ${self:provider.environment.TABLE_PREFIX}identities
+
+    GITHUBEVENTS_TABLE: ${self:provider.environment.TABLE_PREFIX}github_events
+    DROPBOXCURSORS_TABLE: ${self:provider.environment.TABLE_PREFIX}dropbox_cursors
+    FILECHANGES_TABLE: ${self:provider.environment.TABLE_PREFIX}dropbox_file_changes
+
+    RDS_HOST: # TODO This value being dynamically generated on deployment blocks from deploying a single function relying on it
+      "Fn::GetAtt": [ServerlessRDSCluster, Endpoint.Address]
+    RDS_PORT: 
+      "Fn::GetAtt": [ServerlessRDSCluster, Endpoint.Port]
+    RDS_DB: read_models
+    RDS_USER: ${env:RDS_USER, 'master'}
+    RDS_PWD: ${env:RDS_PWD}
+custom:
+  nameSpace: ${self:service}-${self:provider.stage}
+  apiDomain: ${env:ICARUS_API_DOMAIN}
+  siteBaseDomain: ${env:ICARUS_SITE_BASE_DOMAIN}
+  frontendDomain: ${self:custom.nameSpace}.${self:custom.siteBaseDomain} # `icarus-<stage>.<site-base-domain>`
+  acmCertificateArn: ${env:CERTIFICATE_ARN}
+  siteBucket: ${self:custom.frontendDomain} # S3 Bucket: named after the frontend DNS host
+
+  # Domain Manager
+  ## Comment out the entire branch to disable custom DNS domain
+  customDomain:
+    # API service base URI becomes: `https://<api-domain>/<stage>/`
+    basePath: ${self:provider.stage}
+    domainName: ${self:custom.apiDomain}
+    stage: ${self:provider.stage}
+    createRoute53Record: true
+  
+  # S3 Sync to deploy frontend
+  s3Sync:
+    - bucketName: ${self:custom.siteBucket}
+      localDir: client/dist/
+
+
+  # DynamoDB and RDS table deletion policy
+  # Default is 'Delete'. Override with 'Retain' not to drop datastores when removing the stack
+  dbDeletionPolicy: ${opt:dbDeletion, 'Delete'} # 'Retain' | 'Delete'
+
+functions:
+
+  # Slack
+  slack-oauth:
+    handler: src/main/slack/handler.oauth
+    events:
+      - http:
+          method: get
+          path: slack-oauth-initiate
+          cors: true  
+      - http:
+          method: post
+          path: slack-oauth-complete
+          cors: true
+
+  # Dropbox
+  dropbox-webhook-challenge:
+    handler: src/main/dropbox/handler.webhookChallenge
+    events:
+      - http:
+          method: get
+          path: dropbox-webhook
+
+  dropbox-webhook-notify:
+    handler: src/main/dropbox/handler.webhookNotify
+    events:
+      - http:
+          method: post
+          path: dropbox-webhook
+
+  dropbox-oauth:
+    handler: src/main/dropbox/handler.oauth
+    events:
+      - http:
+          method: post
+          path: dropbox-oauth-initiate
+          cors: true
+      - http:
+          method: post
+          path: dropbox-oauth-complete
+          cors: true
+
+  # Github
+  gihub-webhook-receive:
+    handler: src/main/github/handler.webhookReceive
+    events:
+      - http:
+          method: post
+          path: github-webhook
+
+  github-oauth:
+    handler: src/main/github/handler.oauth
+    events:
+      - http:
+          method: post
+          path: github-oauth-initiate
+          cors: true
+      - http:
+          method: post
+          path: github-oauth-complete
+          cors: true
+
+  # Identity management
+  forget-me:
+    handler: src/main/slack/handler.forgetMe
+    events:
+      - http:
+          method: delete
+          path: forget-me
+          cors:
+            origin: '*'
+            headers:
+              - X-AccessToken          
+
+  # DynamoDB event processors: builds read models
+  file-changes-event-processor:
+    handler: src/main/reads/handler.fileChangesEvents
+    vpc:
+      securityGroupIds:
+        - "Fn::GetAtt": ServerlessSecurityGroup.GroupId
+      subnetIds:
+        - Ref: ServerlessPrivateSubnetA
+        - Ref: ServerlessPrivateSubnetB 
+    events:
+      - stream:
+          type: dynamodb
+          arn:
+            Fn::GetAtt:
+              - FileChangesTable
+              - StreamArn
+
+  github-events-processor:
+    handler: src/main/reads/handler.githubEvents
+    vpc:
+      securityGroupIds:
+        - "Fn::GetAtt": ServerlessSecurityGroup.GroupId
+      subnetIds:
+        - Ref: ServerlessPrivateSubnetA
+        - Ref: ServerlessPrivateSubnetB 
+    events:
+      - stream:
+          type: dynamodb
+          arn:
+            Fn::GetAtt:
+              - GithubEventsTable
+              - StreamArn
+
+  # Reports
+  user-activity-distribution:
+    handler: src/main/reads/handler.userActivityDistribition
+    vpc:
+      securityGroupIds:
+        - "Fn::GetAtt": ServerlessSecurityGroup.GroupId
+      subnetIds:
+        - Ref: ServerlessPrivateSubnetA
+        - Ref: ServerlessPrivateSubnetB
+    events:
+      - http:
+          method: get
+          path: user-activity-distribution
+          cors:
+            origin: '*'
+            headers:
+              - X-AccessToken 
+
+resources:
+  Resources:
+  
+    ######
+    # VPC
+    ######
+
+    ServerlessVPC:
+      Type: AWS::EC2::VPC
+      Properties:
+        CidrBlock: "10.42.0.0/16"
+        Tags:
+          - Key: Name
+            Value: "${self:custom.nameSpace}"
+
+    # VPC Networking.
+    # See:
+    #   https://github.com/mugglmenzel/serverless-examples-cached-rds-ws/blob/master/serverless.yml
+    #   https://gist.github.com/romaninsh/81d4ee778c1e20f709f3518c22521ba4
+    #   https://gist.github.com/reggi/dc5f2620b7b4f515e68e46255ac042a7
+
+    ServerlessPrivateSubnetA:
+      DependsOn: ServerlessVPC
+      Type: AWS::EC2::Subnet
+      Properties:
+        VpcId:
+          Ref: ServerlessVPC
+        AvailabilityZone: ${self:provider.region}c # There is some issue with Aurora, not able to be deployed on us-east-1a and -1b
+        CidrBlock: "10.42.10.0/24"
+
+    ServerlessPrivateSubnetB:
+      DependsOn: ServerlessVPC
+      Type: AWS::EC2::Subnet
+      Properties:
+        VpcId:
+          Ref: ServerlessVPC
+        AvailabilityZone: ${self:provider.region}d
+        CidrBlock: "10.42.11.0/24"
+
+    ServerlessPublicSubnet:
+      DependsOn: ServerlessVPC
+      Type: AWS::EC2::Subnet
+      Properties:
+        VpcId:
+          Ref: ServerlessVPC
+        AvailabilityZone: ${self:provider.region}a
+        CidrBlock: "10.42.0.0/24"
+
+    ServerlessNATIP:
+      DependsOn: ServerlessVPC
+      Type: AWS::EC2::EIP
+      Properties:
+        Domain: vpc
+
+    ServelessNatGateway:
+      DependsOn: ServerlessPublicSubnet
+      Type: AWS::EC2::NatGateway
+      Properties:
+        SubnetId:
+          Ref: ServerlessPublicSubnet
+        AllocationId:
+          "Fn::GetAtt": ServerlessNATIP.AllocationId
+
+    ServelessPrivateRouteTable:
+      Type: AWS::EC2::RouteTable
+      Properties:
+        VpcId:
+          Ref: ServerlessVPC
+        Tags:
+          - Key: Name
+            Value: "${self:custom.nameSpace} Private (Lambda)"
+
+    ServerlessDefaultPrivateRoute:
+      Type: AWS::EC2::Route
+      Properties:
+        RouteTableId:
+          Ref: ServelessPrivateRouteTable
+        DestinationCidrBlock: "0.0.0.0/0"
+        NatGatewayId:
+          Ref: ServelessNatGateway
+          
+    ServerlessPrivateARouteTableAssoiciation:
+      Type: AWS::EC2::SubnetRouteTableAssociation
+      Properties:
+        RouteTableId:
+          Ref: ServelessPrivateRouteTable
+        SubnetId:
+          Ref: ServerlessPrivateSubnetA
+
+    ServerlessPrivateBRouteTableAssoiciation:
+      Type: AWS::EC2::SubnetRouteTableAssociation
+      Properties:
+        RouteTableId:
+          Ref: ServelessPrivateRouteTable
+        SubnetId:
+          Ref: ServerlessPrivateSubnetB
+
+    ServerlessIgw:
+      Type: AWS::EC2::InternetGateway
+
+    ServerlessIgwAttachment:
+      Type: AWS::EC2::VPCGatewayAttachment
+      Properties:
+        VpcId:
+          Ref: ServerlessVPC
+        InternetGatewayId:
+          Ref: ServerlessIgw    
+
+    ServerlessPublicRouteTable:
+      Type: AWS::EC2::RouteTable
+      Properties:
+        VpcId:
+          Ref: ServerlessVPC
+        Tags:
+          - Key: Name
+            Value: "${self:custom.nameSpace} Public (IGW)"
+
+    ServerlessDefaultPublicRoute:
+      DependsOn: ServerlessIgw
+      Type: AWS::EC2::Route
+      Properties:
+        RouteTableId:
+          Ref: ServerlessPublicRouteTable
+        DestinationCidrBlock: "0.0.0.0/0"
+        GatewayId:
+          Ref: ServerlessIgw
+
+    ServerlessPublicRouteTableAssociation:
+      Type: AWS::EC2::SubnetRouteTableAssociation
+      Properties:
+        RouteTableId:
+          Ref: ServerlessPublicRouteTable
+        SubnetId:
+          Ref: ServerlessPublicSubnet         
+
+    ServerlessSecurityGroup:
+      DependsOn: ServerlessVPC
+      Type: AWS::EC2::SecurityGroup
+      Properties:
+        GroupDescription: SecurityGroup for Icarus Serverless Functions
+        VpcId:
+          Ref: ServerlessVPC
+  
+    # RDS
+    ServerlessStorageSecurityGroup:
+      DependsOn: ServerlessVPC
+      Type: AWS::EC2::SecurityGroup
+      Properties:
+        GroupDescription: Ingress for Aurora (MySQL) Cluster
+        VpcId:
+          Ref: ServerlessVPC
+        SecurityGroupIngress:
+        - IpProtocol: tcp # MySQL (Aurora)
+          FromPort: '3306'
+          ToPort: '3306'
+          SourceSecurityGroupId:
+            Ref: ServerlessSecurityGroup
+
+    ServerlessRDSSubnetGroup:
+      Type: AWS::RDS::DBSubnetGroup
+      Properties:
+        DBSubnetGroupDescription: "RDS Subnet Group"
+        SubnetIds:
+        - Ref: ServerlessPrivateSubnetA
+        - Ref: ServerlessPrivateSubnetB
+        
+    ServerlessRDSCluster:
+      DependsOn: ServerlessStorageSecurityGroup
+      Type: AWS::RDS::DBCluster
+      DeletionPolicy: ${self:custom.dbDeletionPolicy}
+      Properties:
+        Engine: aurora
+        Port: 3306
+        DatabaseName: ${self:provider.environment.RDS_DB}
+        MasterUsername: ${self:provider.environment.RDS_USER}
+        MasterUserPassword: ${self:provider.environment.RDS_PWD}
+        VpcSecurityGroupIds:
+          - Ref: ServerlessStorageSecurityGroup
+        DBSubnetGroupName:
+          Ref: ServerlessRDSSubnetGroup
+        Tags:
+          - Key: Name
+            Value: "${self:custom.nameSpace} Read Models"        
+   
+    ServerlessRDSPrimaryInstance:
+      Type: AWS::RDS::DBInstance
+      Properties:
+        Engine: aurora
+        DBClusterIdentifier: 
+          Ref: ServerlessRDSCluster
+        DBInstanceClass: db.t2.medium
+        DBSubnetGroupName:
+          Ref: ServerlessRDSSubnetGroup
+        Tags:
+          - Key: Name
+            Value: "${self:custom.nameSpace} Read Models - Primary"  
+
+    ##################
+    # DynamoDB tables
+    ##################
+
+    AccountsTable:
+      Type: AWS::DynamoDB::Table
+      DeletionPolicy: ${self:custom.dbDeletionPolicy}
+      Properties:
+        TableName: ${self:provider.environment.ACCOUNTS_TABLE}
+        AttributeDefinitions:
+          - AttributeName: slack_id
+            AttributeType: S        
+          - AttributeName: access_token
+            AttributeType: S
+        KeySchema: 
+          - AttributeName: slack_id
+            KeyType: HASH   
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1  
+        GlobalSecondaryIndexes:
+          - IndexName: slack_id_by_access_token   
+            KeySchema:
+            - AttributeName: access_token
+              KeyType: HASH  
+            Projection:
+              ProjectionType: KEYS_ONLY
+            ProvisionedThroughput:
+              ReadCapacityUnits: 5
+              WriteCapacityUnits: 1                     
+
+    Identities:
+      Type: AWS::DynamoDB::Table
+      DeletionPolicy: ${self:custom.dbDeletionPolicy}
+      Properties:
+        TableName: ${self:provider.environment.IDENTITIES_TABLE}
+        AttributeDefinitions:
+          - AttributeName: slack_id
+            AttributeType: S
+          - AttributeName: integration_type
+            AttributeType: S
+          - AttributeName: account_id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: slack_id
+            KeyType: HASH
+          - AttributeName: integration_type
+            KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        GlobalSecondaryIndexes:
+          - IndexName: identity_by_account_id_and_type
+            KeySchema:
+            - AttributeName: account_id
+              KeyType: HASH
+            - AttributeName: integration_type
+              KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+            ProvisionedThroughput:
+              ReadCapacityUnits: 5
+              WriteCapacityUnits: 1                     
+
+    DropboxCursorsTable:
+      Type: AWS::DynamoDB::Table
+      DeletionPolicy: ${self:custom.dbDeletionPolicy}
+      Properties:
+        TableName: ${self:provider.environment.DROPBOXCURSORS_TABLE}
+        AttributeDefinitions:
+          - AttributeName: account_id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: account_id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
+
+    FileChangesTable:
+      Type: AWS::DynamoDB::Table
+      DeletionPolicy: ${self:custom.dbDeletionPolicy}
+      Properties:
+        TableName: ${self:provider.environment.FILECHANGES_TABLE}
+        AttributeDefinitions:
+          - AttributeName: account_id
+            AttributeType: S
+          - AttributeName: event_timestamp
+            AttributeType: S
+        KeySchema:
+          - AttributeName: account_id
+            KeyType: HASH
+          - AttributeName: event_timestamp
+            KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 10
+        StreamSpecification:
+          StreamViewType: NEW_IMAGE
+
+    GithubEventsTable:
+      Type: AWS::DynamoDB::Table
+      DeletionPolicy: ${self:custom.dbDeletionPolicy}
+      Properties:
+        TableName: ${self:provider.environment.GITHUBEVENTS_TABLE}
+        AttributeDefinitions:
+          - AttributeName: "id"
+            AttributeType: S
+          - AttributeName: "username"
+            AttributeType: S
+          - AttributeName: "event_timestamp"
+            AttributeType: S
+        KeySchema:
+          - AttributeName: "id"
+            KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: "events_by_user"
+            KeySchema:
+            - AttributeName: "username"
+              KeyType: HASH
+            - AttributeName: "event_timestamp"
+              KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+            ProvisionedThroughput:
+              ReadCapacityUnits: 1
+              WriteCapacityUnits: 5
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 5
+        StreamSpecification:
+          StreamViewType: NEW_IMAGE
+
+    ############
+    # Front End
+    ############
+
+    # FE S3 Bucket
+    # We are creating the Bucket even though the Finch plugin will try to do the same again on `client deploy`
+    # but we need to create the Cloudfront Distribution attached to the bucket
+    FrontendS3Bucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.siteBucket}
+        AccessControl: PublicRead
+        WebsiteConfiguration:
+          IndexDocument: index.html
+          ErrorDocument: index.html
+
+    FrontendS3BucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket:
+          Ref: FrontendS3Bucket
+        PolicyDocument:
+          Statement:
+            - Sid: PublicReadGetObject
+              Effect: Allow
+              Principal: "*"
+              Action:
+              - s3:GetObject
+              Resource: arn:aws:s3:::${self:custom.siteBucket}/*
+
+    # Cloudfront Distribution
+    FrontendCloudFrontDistribution:
+      Type: AWS::CloudFront::Distribution
+      Properties:
+        DistributionConfig:
+          Origins:
+            - DomainName: ${self:custom.siteBucket}.s3-website-${self:provider.region}.amazonaws.com # Accessing S3 as Website hosting
+              Id: Frontend
+              CustomOriginConfig:
+                HTTPPort: 80
+                HTTPSPort: 443
+                OriginProtocolPolicy: http-only
+          Enabled: 'true'
+          Aliases:
+            - ${self:custom.frontendDomain}
+          # DefaultRootObject: index.html
+          CustomErrorResponses:
+             - ErrorCode: 404
+               ResponseCode: 200
+               ErrorCachingMinTTL: 0
+               ResponsePagePath: /index.html
+          DefaultCacheBehavior:
+            AllowedMethods:
+              - GET
+              - HEAD
+            TargetOriginId: Frontend
+            ## Defining if and how the QueryString and Cookies are forwarded to the origin which in this case is S3
+            ForwardedValues:
+              QueryString: 'false'
+              Cookies:
+                Forward: none
+            ViewerProtocolPolicy: redirect-to-https
+          ## The certificate to use when viewers use HTTPS to request objects.
+          ViewerCertificate:
+            AcmCertificateArn: ${self:custom.acmCertificateArn}
+            SslSupportMethod: sni-only            
+
+    # Frontend Route53 Alias record to Cloudfront
+    FrontendDnsRecordSet:
+      Type: AWS::Route53::RecordSet
+      Properties:
+        HostedZoneName: '${self:custom.siteBaseDomain}.' # Hosted zone name ends with a period
+        Name: '${self:custom.frontendDomain}.' # Host name ends with a period
+        Type: A
+        AliasTarget:
+          DNSName:
+            "Fn::GetAtt": FrontendCloudFrontDistribution.DomainName
+          HostedZoneId: 'Z2FDTNDATAQYW2' # This is fixed for CloudFront. This is not a hardwired value           
+
+  Outputs:
+    NameSpace: 
+      Description: NameSpace used as name prefix for most of resources
+      Value:  ${self:custom.nameSpace}
+
+    FrontEndUri:
+      Description: FrontEnd URI
+      Value: 'https://${self:custom.frontendDomain}'
+      Export:
+        Name: ${self:custom.nameSpace}:FrontEndUri
+
+    ApiBaseUri:
+      Description: API base URI
+      Value: 'https://${self:custom.customDomain.domainName}/${self:custom.customDomain.basePath}/'
+      Export:
+        Name: ${self:custom.nameSpace}:ApiBaseUri

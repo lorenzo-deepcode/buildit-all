@@ -1,0 +1,56 @@
+{
+  "name": "@buildit/gravy",
+  "version": "2.1.0",
+  "description": "SASS foundation library.",
+  "main": "sass/index.scss",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:buildit/gravy.git"
+  },
+  "keywords": [
+    "eyeglass-module",
+    "sass",
+    "scss",
+    "foundation",
+    "typography"
+  ],
+  "eyeglass": {
+    "sassDir": "sass",
+    "exports": false,
+    "name": "gravy",
+    "needs": "*"
+  },
+  "author": "Matteo Pescarin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/buildit/gravy/issues"
+  },
+  "homepage": "https://github.com/buildit/gravy",
+  "contributors": [
+    "Ringo De Smet (https://ringo.de-smet.name/)",
+    "James Nash (http://cirrus.twiddles.com/)"
+  ],
+  "engines": {
+    "node": ">=8.9.3"
+  },
+  "dependencies": {
+    "typi": "^3.2.0"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "node-sass": "^4.9.4",
+    "sass-true": "^4.0.0",
+    "sassdoc": "^2.5.1",
+    "stylelint": "^9.6.0",
+    "stylelint-config-sass-guidelines": "^5.2.0",
+    "stylelint-order": "^1.0.0",
+    "stylelint-scss": "^3.3.1"
+  },
+  "scripts": {
+    "test": "mocha",
+    "compile": "npm run stylelint && npm run sass",
+    "sass": "node-sass sass/gravy.scss dist/css/gravy.css",
+    "stylelint": "stylelint sass/**/*.scss",
+    "docs": "sassdoc sass/ -d docs/"
+  }
+}

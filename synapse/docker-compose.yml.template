@@ -1,0 +1,5 @@
+nginx:
+  restart: always
+  image: ${registry_base}/synapse:${tag}
+  ports:
+    - 80

@@ -1,0 +1,20 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = "${groupId}"
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    compile 'com.buildit.documents:document-model:1.0.0'
+    compile 'io.searchbox:jest:5.3.3'
+    compile 'org.elasticsearch:elasticsearch:6.2.4'
+    compile 'vc.inreach.aws:aws-signing-request-interceptor:0.0.20'
+    testCompile 'ch.qos.logback:logback-classic:1.2.3'
+    testCompile 'pl.allegro.tech:embedded-elasticsearch:2.4.2'
+    testCompile 'junit:junit:4.11'
+    testCompile 'org.assertj:assertj-core:3.10.0'
+}

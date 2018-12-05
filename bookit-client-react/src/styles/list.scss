@@ -1,0 +1,89 @@
+@import './mixins/flex';
+@import './mixins/media';
+@import 'variables';
+
+
+.bookables-list {
+    background-color: white;
+
+    @include page;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    flex-flow: column nowrap;
+}
+
+
+.bookables-header {
+    display: flex;
+    flex-flow: row nowrap;
+    position: fixed;
+    width: 100vw;
+    padding: 10px;
+    background-color: white;
+    height: 50px;
+
+.back {
+    padding: 10px;
+    text-decoration: none;
+    font-size: 18px;
+
+    @include desktop{
+         img{
+            width: 50px;
+        }
+    }
+
+    @include mobile{
+         img{
+            width: 40px;
+        }
+    }    
+}
+
+    .heading {
+        color: black;
+        text-align: center;
+        width: 100vw;
+        pointer-events: none;
+        font-size: 25px;
+        font-family: $base-font-family;
+        font-weight: bold;
+        margin-top: 19px;
+        width: 100vw;
+
+    }
+}
+
+.bookable {
+    color: black;
+    display: flex;
+    border-top: 1px solid #d5d5d5;
+    padding: 30px;
+    align-content: center;
+    justify-content: space-between;
+    user-select: none;
+    font-family: $base-font-family;
+    font-size: 18px;
+    font-weight: light;
+
+
+    @include mobile {
+        font-size: 16px;
+    }
+
+
+    
+    @include desktop {
+    width: 95%;
+    margin-left: 5px;
+    &:hover {
+        background-color: #dfe7f1;
+    }
+}
+}
+
+
+.bookablecontainer{
+    padding-top: 85px;
+}

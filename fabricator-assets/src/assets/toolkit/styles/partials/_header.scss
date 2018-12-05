@@ -1,0 +1,288 @@
+$nav-padding: 1rem;
+
+.hpe-header {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  background-color: transparentize($white, 0.05);
+  align-items: center;
+  height: $header-height;
+  padding: 0 $bootstrap-gutter;
+  box-shadow: $border-width $double-border 0.25em transparentize($black, 0.8);
+
+  &__content {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .hpe-logo {
+    width: 6.5rem;
+
+    svg {
+      width: 100%;
+      height: auto;
+    }
+
+    @include respond-to(small) {
+      width: 8rem;
+    }
+  }
+
+  $button--large: 6.25rem;
+  $button--small: 2.5rem;
+
+  &__search {
+    position: absolute;
+    background: $white;
+    height: $header-height;
+    width: 100%;
+    top: $bootstrap-gutter;
+    right: 200%;
+    padding: 0 $bootstrap-gutter;
+    margin: 0 -$bootstrap-gutter;
+    z-index: 1;
+
+    .hpe-centered-section {
+      display: flex;
+    }
+
+    &--active {
+      right: auto;
+    }
+  }
+
+  &__search-input {
+    font-weight: 200;
+    border: 0;
+    flex: 1 1 100%;
+    max-width: $medium + 3rem;
+    font-size: 1.125rem;
+    padding: 1rem 0;
+    height: $header-height;
+
+    @include respond-to(small) {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__search-button {
+    flex: 0 0 auto;
+    color: $dark-grey-4;
+    font-size: 4rem;
+    margin-right: $bootstrap-gutter-double;
+  }
+}
+
+.hpe-nav {
+  display: flex;
+  align-items: center;
+
+  &__link {
+    background: none;
+    border: 0;
+    color: $dark-grey-1;
+    font-weight: 200;
+    font-size: 1.25em;
+    margin: 0 $nav-padding 0 0;
+    text-decoration: none;
+    vertical-align: middle;
+
+    &--icon {
+      font-size: 1rem;
+      padding: 0;
+      position: relative;
+      bottom: -0.125rem;
+    }
+
+    &--status {
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  }
+
+  &__main {
+    flex: 0 0 auto;
+    overflow: hidden;
+
+    .hpe-nav__link:not(:last-of-type) {
+      display: none;
+
+      @include respond-to(large) {
+        display: inline-block;
+      }
+    }
+  }
+
+  &__tools {
+    padding: 0;
+    height: 2.125rem;
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 0.5rem;
+    border-left: $border;
+  }
+
+  &__main {
+    @include respond-to(small) {
+      display: inline-block;
+    }
+  }
+
+  &__menu {
+    position: relative;
+    align-self: center;
+    z-index: 2;
+    flex: 0 0 100%;
+
+    &::before {
+      content: "";
+      border-left: $border-width solid $dark-grey-1;
+      padding: 0.5em 0 0.5em 1rem;
+      width: $border-width;
+    }
+
+    &-label {
+      position: relative;
+      display: none;
+
+      @include respond-to(small) {
+        display: inline-block;
+      }
+
+      &--inactive {
+        position: absolute;
+        left: 0;
+        top: 0;
+        transition: opacity 0.1s linear;
+      }
+
+      &--active {
+        opacity: 0;
+      }
+    }
+  }
+
+  &__search {
+    @include respond-to(medium) {
+      z-index: 2;
+    }
+  }
+}
+
+.hpe-active {
+  $notification-size: 0.3125rem;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: -0.25rem;
+    right: -0.25rem;
+    display: block;
+    background-color: $brand;
+    height: $notification-size;
+    width: $notification-size;
+    border-radius: 50%;
+  }
+}
+
+.hf-hmb-icon {
+  display: inline-block;
+  position: relative;
+  top: -$double-border;
+  width: 1.125rem;
+  height: 1.125rem;
+  vertical-align: middle;
+  margin-right: 1rem;
+}
+
+.hf-line {
+  background: $brand;
+  width: 1.375rem;
+  height: $double-border;
+  display: block;
+  position: absolute;
+  transition: top $transition--slow ease-in-out,
+    bottom $transition--slow ease-in-out,
+    transform $transition--slow ease-in-out,
+    opacity $transition--slow ease-in-out;
+
+  &:first-child {
+    top: 0;
+    transform: rotate(0);
+  }
+
+  &:nth-child(2) {
+    top: 0.5rem;
+    opacity: 1;
+  }
+
+  &:last-of-type {
+    bottom: 0;
+    transform: rotate(0);
+  }
+}
+
+.hpe-nav__menu--active {
+  .hf-line {
+    &:first-child {
+      top: 0.5rem;
+      transform: rotate(-45deg);
+    }
+
+    &:nth-child(2) {
+      opacity: 0;
+    }
+
+    &:last-of-type {
+      bottom: 0.5rem;
+      transform: rotate(45deg);
+    }
+  }
+
+  .hpe-nav__menu-label--inactive {
+    opacity: 0;
+  }
+
+  .hpe-nav__menu-label--active {
+    opacity: 1;
+  }
+}
+
+.hpe-nav__responsive {
+  .hpe-responsive {
+    &--small {
+      @include respond-to(medium) {
+        display: none;
+      }
+    }
+
+    &--large {
+      display: none;
+
+      @include respond-to(medium) {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.hpe-contact {
+  font-weight: 600;
+  text-transform: uppercase;
+  background: url("data:image/svg+xml;utf8, %3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2282%22%20height%3D%2240%22%3E%3Cpath%20stroke%3D%22%2301A982%22%20stroke-width%3D%222%22%20d%3D%22M1%201v26h23v10.583L34.568%2027H81V1H1z%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E")
+    no-repeat;
+  background-size: contain;
+  background-position: center bottom;
+  display: inline-block;
+  padding: 0.5em 0.5em 1em;
+  position: relative;
+  bottom: -0.25em;
+}

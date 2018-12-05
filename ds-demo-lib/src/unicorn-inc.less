@@ -1,0 +1,129 @@
+/**
+  Unicorn Inc. theme.
+*/
+
+// Import our master LESS file (which, in turn imports everything else)
+// All themes must do this.
+@import 'shared/style';
+
+// Include Open Sans and Oswald web fonts from Google Fonts
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Oswald:400,700');
+
+// Load "raw" style variables from Brand.ai
+// The reference option ensures that we don't pull in any unwanted style rules
+@import (reference) './assets/brandai/styles';
+
+// Override variable values from base with values imported from Brand.ai
+
+// ###### COLOURS #######
+
+// Default foreground colour (e.g. for text)
+@dsdemo-color-fg: @color-midnight;
+
+// Default background color (e.g. for page background)
+@dsdemo-color-bg: @color-off-white;
+
+// Default inverted foreground colour
+//@dsdemo-color-fg-inverted: @dsdemo-color-bg;
+
+// Default inverted background colour
+@dsdemo-color-bg-inverted: @color-some-familiar-green;
+
+// Default text link colours
+@dsdemo-color-link: @color-pink;
+@dsdemo-color-link-hover: lighten(@dsdemo-color-link, 20%);
+//@dsdemo-color-link-focus: @dsdemo-color-link-hover;
+@dsdemo-color-link-active: darken(@dsdemo-color-link, 10%);
+@dsdemo-color-link-visited: @dsdemo-color-link;
+
+// Default inverted text link colours
+@dsdemo-color-link-inverted: @color-pale-pink;
+//@dsdemo-color-link-inverted-hover: lighten(@dsdemo-color-link-inverted, 10%);
+//@dsdemo-color-link-inverted-focus: @dsdemo-color-link-inverted-hover;
+//@dsdemo-color-link-inverted-active: darken(@dsdemo-color-link-inverted, 10%);
+@dsdemo-color-link-inverted-visited: @dsdemo-color-link-inverted;
+
+// Default colours for default interactive elements (e.g. default buttons)
+@dsdemo-color-default-fg: @dsdemo-color-fg-inverted;
+@dsdemo-color-default-bg: @dsdemo-color-link;
+@dsdemo-color-default-border: @dsdemo-color-link;
+
+@dsdemo-color-default-hover-fg: @dsdemo-color-fg-inverted;
+@dsdemo-color-default-hover-bg: @dsdemo-color-link-hover;
+@dsdemo-color-default-hover-border: @dsdemo-color-link-hover;
+
+//@dsdemo-color-default-focus-fg: @dsdemo-color-default-hover-fg;
+//@dsdemo-color-default-focus-bg: @dsdemo-color-default-hover-bg;
+//@dsdemo-color-default-focus-border: @dsdemo-color-default-hover-border;
+
+@dsdemo-color-default-active-fg: @dsdemo-color-fg-inverted;
+@dsdemo-color-default-active-bg: @dsdemo-color-link-active;
+@dsdemo-color-default-active-border: @dsdemo-color-link-active;
+
+//@dsdemo-color-default-disabled-fg: desaturate(lighten(@dsdemo-color-default-fg, 5%), 80%);
+//@dsdemo-color-default-disabled-bg: desaturate(darken(@dsdemo-color-default-bg, 5%), 80%);
+//@dsdemo-color-default-disabled-border: inherit;
+
+
+// ###### SPACE #######
+// Inspired by https://medium.com/eightshapes-llc/space-in-design-systems-188bcbae0d62
+
+// Define basic spacing - can also use these for horizontal gaps between inline elements
+//@dsdemo-space-xs: @dsdemo-space-sm / 2;
+//@dsdemo-space-sm: @dsdemo-space-md / 2;
+@dsdemo-space-md: @sizing-padding-small;
+@dsdemo-space-lg: @sizing-padding-medium;
+//@dsdemo-space-xl: 2 * @dsdemo-space-lg;
+
+// Derive some insets - use for padding (or equivalent)
+//@dsdemo-space-inset-xs: @dsdemo-space-xs;
+//@dsdemo-space-inset-sm: @dsdemo-space-sm;
+//@dsdemo-space-inset-md: @dsdemo-space-md;
+//@dsdemo-space-inset-lg: @dsdemo-space-lg;
+//@dsdemo-space-inset-xl: @dsdemo-space-xl;
+
+//@dsdemo-space-inset-squish-sm: @dsdemo-space-xs @dsdemo-space-sm;
+//@dsdemo-space-inset-squish-md: @dsdemo-space-sm @dsdemo-space-md;
+//@dsdemo-space-inset-squish-lg: @dsdemo-space-md @dsdemo-space-lg;
+
+// Derive some stacking spaces - use for margins (or equivalent)
+@dsdemo-space-stack-xs: 0 0 (@spacing-margin-small / 4) 0;
+@dsdemo-space-stack-sm: 0 0 (@spacing-margin-small / 2) 0;
+@dsdemo-space-stack-md: 0 0 @spacing-margin-small 0;
+@dsdemo-space-stack-lg: 0 0 @spacing-margin-medium 0;
+@dsdemo-space-stack-xl: 0 0 (2 * @spacing-margin-medium) 0;
+
+
+// ###### GRID #######
+
+//@dsdemo-grid-cols: 12;
+//@dsdemo-grid-gutter-width: @dsdemo-space-lg;
+
+
+// ###### BREAKPOINTS #######
+
+//@dsdemo-breakpoint: 40rem;
+
+
+// ###### TYPOGRAPHY #######
+
+@dsdemo-body-font-family: @font-body-text-font-family;
+@dsdemo-body-font-weight: @font-body-text-font-weight;
+@dsdemo-body-font-size: @font-body-text-font-size;
+@dsdemo-body-line-height: @font-body-text-line-height;
+
+@dsdemo-h1-font-family: @font-heading-level-1-font-family;
+@dsdemo-h1-font-weight: @font-heading-level-1-font-weight;
+@dsdemo-h1-font-size: @font-heading-level-1-font-size;
+@dsdemo-h1-line-height: @font-heading-level-1-line-height;
+
+@dsdemo-h2-font-family: @font-heading-level-2-font-family;
+@dsdemo-h2-font-weight: @font-heading-level-2-font-weight;
+@dsdemo-h2-font-size: @font-heading-level-2-font-size;
+@dsdemo-h2-line-height: @font-heading-level-2-line-height;
+
+
+// ###### INPUTS #######
+
+@dsdemo-input-border-width: 0;
+@dsdemo-input-border-radius: 10px;

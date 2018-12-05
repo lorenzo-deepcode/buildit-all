@@ -1,0 +1,11 @@
+.top-row {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+button {
+  border-radius: 3px;
+  height: 35px;
+  margin-right: 5px;
+  width: 50px;
+}

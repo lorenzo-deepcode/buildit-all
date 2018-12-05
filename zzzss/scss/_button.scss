@@ -1,0 +1,25 @@
+/* Button */
+.button {
+	display: inline-block;
+	font-size: 1.1em;
+	text-transform: uppercase;
+	padding: 10px 15px;
+	margin: 20px 10px 20px 0;
+	color: $brand-colour-white;
+	background-color: $button-colour;
+	border: 0 none;
+	border-radius: 3px;
+	cursor: pointer;
+	transition: all 150ms ease;
+  &.warning {
+    background-color: $button-warning-colour
+  }
+  &:hover,
+  &:focus {
+    background-color: $button-focus-colour
+  }
+	&:disabled {
+		opacity: 0.65;
+  	cursor: not-allowed;
+	}
+}

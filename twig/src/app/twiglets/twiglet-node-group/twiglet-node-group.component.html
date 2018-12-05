@@ -1,0 +1,21 @@
+<div [class.open]="isOpen" class="card-header entity-header" (click)="toggleOpen()">
+  <div class="node-circle"><i class="fa fa-{{type[0].icon}}" [style.color]="type[0].color"></i></div>
+  <span>{{ type[0].type }}</span>
+  <span>({{ viewNodeCount }})</span>
+</div>
+<div class="entity-child" #nodeList *ngFor="let node of type[1] | objectSort : 'name' : true | nodeSearch : userState.get(USERSTATE.TEXT_TO_FILTER_ON);">
+  <div *ngIf="isOpen">
+    <ngb-accordion class="nodepanel" [activeIds]="currentNodeCard" (panelChange)="beforeChange($event)">
+      <ngb-panel id="node-card-{{node.id}}">
+        <ng-template ngbPanelTitle>
+          <div style="padding-left: 5px;" class="row node" (mouseover)="highlight(node.id)" (mouseout)="unhighlight()">
+           <div class="node-circle child"><i class="fa fa-{{type[0].icon}}" [style.color]="getColor(type, node)"></i></div>{{ node.name }}
+          </div>
+        </ng-template>
+        <ng-template ngbPanelContent>
+          <app-node-info [node]="node"></app-node-info>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+  </div>
+</div>

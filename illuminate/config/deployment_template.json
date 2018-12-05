@@ -1,0 +1,15 @@
+{
+  "illuminate": {
+    "version": "<%= illuminate_version %>"
+  },
+  "datastore": {
+   "dbUrl": "<%= databaseurl %>",
+   "context": "<%= dbcontext %>",
+   "rootDB": "buildit"
+  },
+  "server": {
+   "url": "<%= serverurl %>",
+    "port": "<%= serverport %>"
+  },
+  "log-level": "<%= loglevel %>"
+}

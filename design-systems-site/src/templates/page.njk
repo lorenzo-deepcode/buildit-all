@@ -1,0 +1,15 @@
+{% extends "html.njk" %}
+
+{% block content %}
+  <header>
+    <h1>{{title}}</h1>
+  </header>
+  <main>
+    {% block main %}
+    {{ contents | safe }}
+    {% endblock %}
+  </main>
+  <footer>
+    Copyright 2018 <a href="https://buildit.wiprodigital.com/">Buildit @ Wipro Digital</a>. All rights reserved.
+  </footer>
+{% endblock %}

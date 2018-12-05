@@ -1,0 +1,626 @@
+---
+
+Description: Deployment Pipeline
+AWSTemplateFormatVersion: 2010-09-09
+
+Parameters:
+  AppStackName:
+    Type: String
+
+  PublicDomainName:
+    Type: String
+
+  InfraDevBucketBase:
+    Type: String
+
+  BuildArtifactsBucket:
+    Type: String
+
+  GitHubRepo:
+    Type: String
+
+  GitHubBranch:
+    Type: String
+
+  GitHubToken:
+    Type: String
+
+  GitHubOwner:
+    Type: String
+    Default: buildit
+
+  CodeBuildComputeType:
+    Type: String
+    Default: BUILD_GENERAL1_SMALL
+    AllowedValues:
+      - BUILD_GENERAL1_SMALL
+      - BUILD_GENERAL1_MEDIUM
+      - BUILD_GENERAL1_LARGE
+
+  ApplicationName:
+    Type: String
+
+  Prefix:
+    Type: String
+
+  ContainerPort:
+    Type: Number
+
+  ListenerRulePriority:
+    Description: The unique priority across applications sharing the ALB
+    Type: Number
+
+  HealthCheckPath:
+    Type: String
+
+  SlackWebhook:
+    Type: String
+
+  Project:
+    Type: String
+
+  Owner:
+    Type: String
+
+  NotificationEmailAddressBuild:
+    Description: Email address to send build notifications to
+    Type: String
+
+Conditions:
+  WebhookSpecified: !Not [ !Equals [ !Ref SlackWebhook, "" ] ]
+
+Mappings:
+  EnvironmentDefaults:
+    integration:
+      DesiredTasks: "1"
+    staging:
+      DesiredTasks: "2"
+    production:
+      DesiredTasks: "3"
+
+Resources:
+  Repository:
+    Type: AWS::ECR::Repository
+    Properties:
+      RepositoryName: !Join [ '-', [ !Ref AppStackName, !Ref GitHubRepo, !Ref GitHubBranch, 'ecr', 'repo' ] ]
+
+  CloudFormationExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      Path: /
+      AssumeRolePolicyDocument: |
+        {
+            "Statement": [{
+                "Effect": "Allow",
+                "Principal": { "Service": [ "cloudformation.amazonaws.com" ]},
+                "Action": [ "sts:AssumeRole" ]
+            }]
+        }
+      Policies:
+        - PolicyName: root
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Resource: "*"
+                Effect: Allow
+                Action:
+                  - ecs:*
+                  - ecr:*
+                  - iam:*
+                  - route53:*
+                  - elasticloadbalancing:*
+                  - logs:*
+                  - cloudwatch:*
+
+  LambdaNotifcationExecutionRole:
+    Type: AWS::IAM::Role
+    Condition: WebhookSpecified
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: "sts:AssumeRole"
+      Policies:
+        - PolicyName: root
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Resource: arn:aws:logs:*:*:*
+                Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+              - Resource: arn:aws:codepipeline:*
+                Effect: Allow
+                Action:
+                  - codepipeline:GetPipelineExecution
+
+
+  CodeBuildServiceRole:
+    DependsOn: CloudFormationExecutionRole
+    Type: AWS::IAM::Role
+    Properties:
+      Path: /
+      AssumeRolePolicyDocument: |
+        {
+            "Statement": [{
+                "Effect": "Allow",
+                "Principal": { "Service": [ "codebuild.amazonaws.com" ]},
+                "Action": [ "sts:AssumeRole" ]
+            }]
+        }
+      Policies:
+        - PolicyName: root
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Resource: "*"
+                Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                  - ecr:GetAuthorizationToken
+              - Resource: !Sub arn:aws:s3:::${BuildArtifactsBucket}/*
+                Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:PutObject
+                  - s3:GetObjectVersion
+                  - s3:PutObjectAcl
+              - Resource: !Sub "arn:aws:ecr:${AWS::Region}:${AWS::AccountId}:repository/${Repository}"
+                Effect: Allow
+                Action:
+                  - ecr:GetDownloadUrlForLayer
+                  - ecr:BatchGetImage
+                  - ecr:BatchCheckLayerAvailability
+                  - ecr:PutImage
+                  - ecr:InitiateLayerUpload
+                  - ecr:UploadLayerPart
+                  - ecr:CompleteLayerUpload
+
+  CodePipelineServiceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      Path: /
+      AssumeRolePolicyDocument: |
+        {
+            "Statement": [{
+                "Effect": "Allow",
+                "Principal": { "Service": [ "codepipeline.amazonaws.com" ]},
+                "Action": [ "sts:AssumeRole" ]
+            }]
+        }
+      Policies:
+        - PolicyName: root
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Resource:
+                  - !Sub arn:aws:s3:::${BuildArtifactsBucket}
+                  - !Sub arn:aws:s3:::${BuildArtifactsBucket}/*
+                  - !Sub arn:aws:s3:::${InfraDevBucketBase}.integration
+                  - !Sub arn:aws:s3:::${InfraDevBucketBase}.integration/*
+                  - !Sub arn:aws:s3:::${InfraDevBucketBase}.staging
+                  - !Sub arn:aws:s3:::${InfraDevBucketBase}.staging/*
+                  - !Sub arn:aws:s3:::${InfraDevBucketBase}.production
+                  - !Sub arn:aws:s3:::${InfraDevBucketBase}.production/*
+                Effect: Allow
+                Action:
+                  - s3:PutObject
+                  - s3:GetObject
+                  - s3:GetObjectVersion
+                  - s3:GetBucketVersioning
+              - Resource:
+                  - !Sub arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter/${AppStackName}-*
+                Effect: Allow
+                Action:
+                  - ssm:GetParameters
+              - Resource: "*"
+                Effect: Allow
+                Action:
+                  - codebuild:StartBuild
+                  - codebuild:BatchGetBuilds
+                  - cloudformation:*
+                  - iam:PassRole
+                  - sns:Publish
+
+  CodeBuildProject:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Artifacts:
+        Type: "CODEPIPELINE"
+      Source:
+        Type: "CODEPIPELINE"
+      Environment:
+        ComputeType: !Ref CodeBuildComputeType
+        Image: "aws/codebuild/docker:1.12.1"
+        Type: "LINUX_CONTAINER"
+        EnvironmentVariables:
+          - Name: REPOSITORY_URI
+            Value: !Sub "${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${Repository}"
+          - Name: BRANCH
+            Value: !Ref GitHubBranch
+          - Name: BUILD_BUCKET
+            Value: !Sub "s3://${BuildArtifactsBucket}/${AWS::StackName}"
+      Name: !Join [ '-', [ !Ref AppStackName, !Ref GitHubRepo, !Ref GitHubBranch, 'build' ] ]
+      ServiceRole: !Ref CodeBuildServiceRole
+
+  CodeBuildProjectTest:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Artifacts:
+        Type: "CODEPIPELINE"
+      Source:
+        Type: "CODEPIPELINE"
+        BuildSpec: buildspec.e2e.yml
+      Environment:
+        ComputeType: "BUILD_GENERAL1_SMALL"
+        Image: "aws/codebuild/docker:1.12.1"
+        Type: "LINUX_CONTAINER"
+        EnvironmentVariables:
+          - Name: ENDPOINT_URI
+            Value: !Sub "https://${Prefix}integration-${ApplicationName}.${PublicDomainName}"
+          - Name: REPOSITORY_URI
+            Value: !Sub "${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${Repository}"
+          - Name: BRANCH
+            Value: !Ref GitHubBranch
+          - Name: SCREENSHOTS_BUCKET
+            Value: !Sub "s3://${BuildArtifactsBucket}/${AWS::StackName}/screenshots"
+      Name: !Join [ '-', [ !Ref AppStackName, !Ref GitHubRepo, !Ref GitHubBranch, 'e2e', 'test' ] ]
+      ServiceRole: !Ref CodeBuildServiceRole
+
+  Pipeline:
+    DependsOn: Sns
+    Type: AWS::CodePipeline::Pipeline
+    Properties:
+      RoleArn: !GetAtt CodePipelineServiceRole.Arn
+      ArtifactStore:
+        Type: S3
+        Location: !Ref BuildArtifactsBucket
+      Stages:
+        - Name: Source
+          Actions:
+            - Name: App
+              ActionTypeId:
+                Category: Source
+                Owner: ThirdParty
+                Version: 1
+                Provider: GitHub
+              Configuration:
+                Owner: !Ref GitHubOwner
+                Repo: !Ref GitHubRepo
+                Branch: !Ref GitHubBranch
+                OAuthToken: !Ref GitHubToken
+              OutputArtifacts:
+                - Name: App
+              RunOrder: 1
+            - Name: AppIntegrationTemplate
+              ActionTypeId:
+                Category: Source
+                Owner: AWS
+                Version: 1
+                Provider: S3
+              OutputArtifacts:
+                - Name: IntegrationTemplate
+              RunOrder: 1
+              Configuration:
+                S3Bucket: !Sub "${InfraDevBucketBase}.integration"
+                S3ObjectKey: "templates/templates.zip"
+              RunOrder: 1
+            - Name: AppStagingTemplate
+              ActionTypeId:
+                Category: Source
+                Owner: AWS
+                Version: 1
+                Provider: S3
+              OutputArtifacts:
+                - Name: StagingTemplate
+              RunOrder: 1
+              Configuration:
+                S3Bucket: !Sub "${InfraDevBucketBase}.staging"
+                S3ObjectKey: "templates/templates.zip"
+              RunOrder: 1
+            - Name: AppProductionTemplate
+              ActionTypeId:
+                Category: Source
+                Owner: AWS
+                Version: 1
+                Provider: S3
+              OutputArtifacts:
+                - Name: ProductionTemplate
+              RunOrder: 1
+              Configuration:
+                S3Bucket: !Sub "${InfraDevBucketBase}.production"
+                S3ObjectKey: "templates/templates.zip"
+              RunOrder: 1
+        - Name: Build
+          Actions:
+            - Name: Build
+              ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Version: 1
+                Provider: CodeBuild
+              Configuration:
+                ProjectName: !Ref CodeBuildProject
+              InputArtifacts:
+                - Name: App
+              OutputArtifacts:
+                - Name: BuildOutput
+              RunOrder: 1
+        - Name: Integration
+          Actions:
+            - Name: Deploy-to-Integration
+              ActionTypeId:
+                Category: Deploy
+                Owner: AWS
+                Version: 1
+                Provider: CloudFormation
+              Configuration:
+                ActionMode: CREATE_UPDATE
+                StackName: !Sub "${AppStackName}-integration-app-${GitHubRepo}-${GitHubBranch}"
+                Capabilities: CAPABILITY_NAMED_IAM
+                OutputFileName: CloudFormationOutput.json
+                TemplatePath: IntegrationTemplate::app.yaml
+                RoleArn: !GetAtt CloudFormationExecutionRole.Arn
+                ParameterOverrides: !Sub
+                  - |
+                    {
+                      "Environment": "integration",
+                      "FoundationStackName": "${AppStackName}-integration-foundation",
+                      "ComputeStackName": "${AppStackName}-integration-compute-ecs",
+                      "DbStackName": "${AppStackName}-integration-db-couch",
+                      "InfraDevBucket": "${InfraDevBucketBase}.integration",
+                      "PublicDomainName": "${PublicDomainName}",
+                      "Repository": "${Repository}",
+                      "ApplicationName": "${ApplicationName}",
+                      "Prefix": "${Prefix}",
+                      "ContainerPort": "${ContainerPort}",
+                      "TaskDesiredCount":"${EnvironmentTaskDesiredCount}",
+                      "ListenerRulePriority": "${ListenerRulePriority}",
+                      "HealthCheckPath": "${HealthCheckPath}",
+                      "Tag": { "Fn::GetParam" : [ "BuildOutput", "build.json", "tag" ] }
+                    }
+                  - EnvironmentTaskDesiredCount: !FindInMap [ EnvironmentDefaults, integration, DesiredTasks ]
+              InputArtifacts:
+                - Name: IntegrationTemplate
+                - Name: BuildOutput
+              OutputArtifacts:
+                - Name: IntegrationEnvironment
+              RunOrder: 1
+            - Name: E2E-Tests
+              ActionTypeId:
+                Category: Test
+                Owner: AWS
+                Version: 1
+                Provider: CodeBuild
+              Configuration:
+                ProjectName: !Ref CodeBuildProjectTest
+              InputArtifacts:
+                - Name: App
+              RunOrder: 2
+        - Name: Staging
+          Actions:
+            - Name: Deploy-to-Staging
+              ActionTypeId:
+                Category: Deploy
+                Owner: AWS
+                Version: 1
+                Provider: CloudFormation
+              Configuration:
+                ActionMode: CREATE_UPDATE
+                StackName: !Sub "${AppStackName}-staging-app-${GitHubRepo}-${GitHubBranch}"
+                Capabilities: CAPABILITY_NAMED_IAM
+                OutputFileName: CloudFormationOutput.json
+                TemplatePath: StagingTemplate::app.yaml
+                RoleArn: !GetAtt CloudFormationExecutionRole.Arn
+                ParameterOverrides: !Sub
+                  - |
+                    {
+                      "Environment": "staging",
+                      "FoundationStackName": "${AppStackName}-staging-foundation",
+                      "ComputeStackName": "${AppStackName}-staging-compute-ecs",
+                      "DbStackName": "${AppStackName}-staging-db-couch",
+                      "InfraDevBucket": "${InfraDevBucketBase}.staging",
+                      "PublicDomainName": "${PublicDomainName}",
+                      "Repository": "${Repository}",
+                      "ApplicationName": "${ApplicationName}",
+                      "Prefix": "${Prefix}",
+                      "ContainerPort": "${ContainerPort}",
+                      "TaskDesiredCount":"${EnvironmentTaskDesiredCount}",
+                      "ListenerRulePriority": "${ListenerRulePriority}",
+                      "HealthCheckPath": "${HealthCheckPath}",
+                      "Tag": { "Fn::GetParam" : [ "BuildOutput", "build.json", "tag" ] }
+                    }
+                  - EnvironmentTaskDesiredCount: !FindInMap [ EnvironmentDefaults, staging, DesiredTasks ]
+
+              InputArtifacts:
+                - Name: StagingTemplate
+                - Name: BuildOutput
+              OutputArtifacts:
+                - Name: StagingEnvironment
+              RunOrder: 1
+        - Name: Production
+          Actions:
+            - Name: CreateChangeSet
+              ActionTypeId:
+                Category: Deploy
+                Owner: AWS
+                Provider: CloudFormation
+                Version: '1'
+              InputArtifacts:
+                - Name: ProductionTemplate
+                - Name: BuildOutput
+              Configuration:
+                ActionMode: CHANGE_SET_REPLACE
+                RoleArn: !GetAtt CloudFormationExecutionRole.Arn
+                StackName: !Sub "${AppStackName}-production-app-${GitHubRepo}-${GitHubBranch}"
+                Capabilities: CAPABILITY_NAMED_IAM
+                ChangeSetName: !Sub "${AppStackName}-production-app-${GitHubRepo}-${GitHubBranch}"
+                TemplatePath: ProductionTemplate::app.yaml
+                ParameterOverrides: !Sub
+                  - |
+                    {
+                      "Environment": "production",
+                      "FoundationStackName": "${AppStackName}-production-foundation",
+                      "ComputeStackName": "${AppStackName}-production-compute-ecs",
+                      "DbStackName": "${AppStackName}-production-db-couch",
+                      "InfraDevBucket": "${InfraDevBucketBase}.production",
+                      "PublicDomainName": "${PublicDomainName}",
+                      "Repository": "${Repository}",
+                      "ApplicationName": "${ApplicationName}",
+                      "Prefix": "${Prefix}",
+                      "ContainerPort": "${ContainerPort}",
+                      "TaskDesiredCount":"${EnvironmentTaskDesiredCount}",
+                      "ListenerRulePriority": "${ListenerRulePriority}",
+                      "HealthCheckPath": "${HealthCheckPath}",
+                      "Tag": { "Fn::GetParam" : [ "BuildOutput", "build.json", "tag" ] }
+                    }
+                  - EnvironmentTaskDesiredCount: !FindInMap [ EnvironmentDefaults, production, DesiredTasks ]
+              RunOrder: 1
+            - Name: ApproveChangeSet
+              ActionTypeId:
+                Category: Approval
+                Owner: AWS
+                Provider: Manual
+                Version: '1'
+              Configuration:
+                NotificationArn: !GetAtt Sns.Outputs.SnsTopic
+#                CustomData: !Sub |
+#                  {
+#                     "icon_emjoi": ":tada:",
+#                      "text": "${AppStackName}:  Approval needed for production promotion:",
+#                      "username": "AWS CodePipeline Overlord",
+#                      "mrkdwn": true
+#                  }
+              RunOrder: 2
+            - Name: ExecuteChangeSet
+              ActionTypeId:
+                Category: Deploy
+                Owner: AWS
+                Provider: CloudFormation
+                Version: '1'
+              Configuration:
+                ActionMode: CHANGE_SET_EXECUTE
+                ChangeSetName: !Sub "${AppStackName}-production-app-${GitHubRepo}-${GitHubBranch}"
+                RoleArn: !GetAtt CloudFormationExecutionRole.Arn
+                StackName: !Sub "${AppStackName}-production-app-${GitHubRepo}-${GitHubBranch}"
+                Capabilities: CAPABILITY_NAMED_IAM
+                OutputFileName: CloudFormationOutput.json
+              OutputArtifacts:
+                - Name: ProductionEnvironment
+              RunOrder: 3
+
+  LambdaNotifications:
+    Type: AWS::Lambda::Function
+    Condition: WebhookSpecified
+    Properties:
+      Handler: BuildNotification.handler
+      Role:
+        !GetAtt LambdaNotifcationExecutionRole.Arn
+      Code:
+        S3Bucket: !Sub "${BuildArtifactsBucket}"
+        S3Key: !Sub lambdas/${GitHubRepo}-handlers.zip
+        S3ObjectVersion: <LambdaVersion>
+      Runtime: nodejs6.10
+      Timeout: 5
+      Environment:
+        Variables:
+          BRANCH: !Ref GitHubBranch
+          HOOK_URL: !Ref SlackWebhook
+          TARGET_STAGES: Staging;Production
+          REPO: !Ref GitHubRepo
+          PROJECT: !Ref Project
+          OWNER: !Ref Owner
+          REPORTS_URL: !Sub "http://${BuildArtifactsBucket}.s3-website-${AWS::Region}.amazonaws.com/${AWS::StackName}/reports"
+          SCREENSHOTS_URL: !Sub "http://${BuildArtifactsBucket}.s3-website-${AWS::Region}.amazonaws.com/${AWS::StackName}/screenshots"
+          LAMBDA_VERSION: <LambdaVersion> # Don't actually need this but it forces the CFN to update the Lambda environment.
+
+  EventRuleBuildFailures:
+    Type: "AWS::Events::Rule"
+    Condition: WebhookSpecified
+    Properties:
+      Name: !Sub "${AppStackName}-${GitHubRepo}-${GitHubBranch}-build-fail-rule"
+      Description: "Traps stage failures and notifies slack"
+      EventPattern:
+        source:
+          - "aws.codepipeline"
+        detail:
+          state:
+            - FAILED
+          pipeline:
+            - Ref: Pipeline
+      State: "ENABLED"
+      Targets:
+        - Arn: !GetAtt LambdaNotifications.Arn
+          Id: !Sub "${AWS::StackName}"
+
+  EventRuleBuildSuccesses:
+    Type: "AWS::Events::Rule"
+    Condition: WebhookSpecified
+    Properties:
+      Name: !Sub "${AppStackName}-${GitHubRepo}-${GitHubBranch}-build-pass-rule"
+      Description: "Traps stage successes and notifies slack"
+      EventPattern:
+        source:
+          - "aws.codepipeline"
+        detail:
+          state:
+            - SUCCEEDED
+          pipeline:
+            - Ref: Pipeline
+          stage:
+            - Staging
+            - Production
+      State: "ENABLED"
+      Targets:
+        - Arn: !GetAtt LambdaNotifications.Arn
+          Id: !Sub "${AWS::StackName}"
+
+  PermissionForFailEventsToInvokeLambda:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref LambdaNotifications
+      Action: lambda:InvokeFunction
+      Principal: events.amazonaws.com
+      SourceArn: !GetAtt EventRuleBuildFailures.Arn
+
+  PermissionForPassEventsToInvokeLambda:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref LambdaNotifications
+      Action: lambda:InvokeFunction
+      Principal: events.amazonaws.com
+      SourceArn: !GetAtt EventRuleBuildSuccesses.Arn
+
+  Sns:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: !Sub https://s3.amazonaws.com/${BuildArtifactsBucket}/templates/sns.yaml
+      Parameters:
+        ParentStackName: !Sub ${AWS::StackName}
+        NotificationEmailAddress: !Ref NotificationEmailAddressBuild
+        Purpose: build
+
+Outputs:
+  PipelineUrl:
+    Description: Pipeline Url
+    Value: !Join
+      - ''
+      - - 'https://console.aws.amazon.com/codepipeline/home?region='
+        - !Ref 'AWS::Region'
+        - '#/view/'
+        - !Ref Pipeline
+
+  ReportsUrl:
+    Description: Reports URL
+    Value: !Sub "http://${BuildArtifactsBucket}.s3-website-${AWS::Region}.amazonaws.com/${AWS::StackName}/reports"
+
+  ScreenshotsUrl:
+    Description: E2E Tests Screenshots URL
+    Value: !Sub "http://${BuildArtifactsBucket}.s3-website-${AWS::Region}.amazonaws.com/${AWS::StackName}/screenshots"

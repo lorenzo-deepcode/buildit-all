@@ -1,0 +1,7 @@
+@import 'modularscale';
+
+// stylelint-disable-next-line scss/dollar-variable-pattern
+$modularscale: (
+  ratio: $major-third,
+  base: $grav-font-size-base
+);

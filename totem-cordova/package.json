@@ -1,0 +1,43 @@
+{
+    "name": "com.wiprodigital.buildit.totem",
+    "version": "1.0.0",
+    "displayName": "MicrobitsTotem",
+    "cordova": {
+        "platforms": [
+            "android",
+            "ios"
+        ],
+        "plugins": {
+            "cordova-plugin-whitelist": {},
+            "cordova-plugin-device": {},
+            "cordova-plugin-console": {},
+            "cordova-plugin-inappbrowser": {},
+            "cordova-plugin-ble": {},
+            "cordova-plugin-hostedwebapp": {},
+            "cordova-plugin-fetch": {},
+            "cordova-plugin-customurlscheme": {
+                "URL_SCHEME": "totem",
+                "ANDROID_SCHEME": " ",
+                "ANDROID_HOST": " ",
+                "ANDROID_PATHPREFIX": "/"
+            },
+            "LaunchMyApp": {},
+            "cordova-plugin-splashscreen": {}
+        }
+    },
+    "dependencies": {
+        "cordova-android": "~6.2.3",
+        "cordova-ios": "~4.4.0",
+        "cordova-plugin-ble": "^2.0.1",
+        "cordova-plugin-console": "^1.0.7",
+        "cordova-plugin-customurlscheme": "^4.3.0",
+        "cordova-plugin-device": "^1.1.6",
+        "cordova-plugin-fetch": "git+https://github.com/aporat/cordova-plugin-fetch.git",
+        "cordova-plugin-hostedwebapp": "^0.3.1",
+        "cordova-plugin-inappbrowser": "^1.7.1",
+        "cordova-plugin-splashscreen": "^4.0.3",
+        "cordova-plugin-whitelist": "1",
+        "elementtree": "^0.1.7"
+    },
+    "postinstall": "ln -s ../totem/www ../totem-cordova/"
+}

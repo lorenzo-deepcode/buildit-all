@@ -1,0 +1,18 @@
+/* Footer */
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 1.3rem;
+  width: 100%;
+  margin: 0;
+  background-color: $brand-footer-colour;
+  display: flex;
+  justify-content: flex-end;
+  .app-version {
+    color: $brand-footer-app-version-colour;
+    margin-right: 50px;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+}

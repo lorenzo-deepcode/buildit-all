@@ -1,0 +1,116 @@
+.location-address {
+  width: 126px;
+  height: 34px;
+  padding-bottom: 15px;
+  font-family: BrandonText;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.21;
+  letter-spacing: normal;
+  color: $black;
+}
+.miles-text {
+  font-family: Oswald;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.64;
+  letter-spacing: normal;
+  text-align: center;
+  padding-left: 4px;
+  color: $black;
+}
+.select-location-button {
+  width: 160px;
+  height: 40px;
+  background-color: $pink;
+}
+.select-location-text {
+  width: 137px;
+  height: 23px;
+  padding: 7px 12px 10px 12px;
+  font-family: FranchiseFree;
+  font-size: 24px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 0.96;
+  letter-spacing: normal;
+  text-align: center;
+  color: $white;
+  a {
+    color: $white;
+    text-decoration: none;
+  }
+}
+.list-container {
+
+}
+.list-item {
+  width: 375px;
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  align-items: center;
+  border-bottom: solid 1px hsl(0, 0%, 92%);
+}
+.list-item-content{
+    padding: 0px 22px 0px 22px;
+}
+.item-border{
+  width: 363px;
+  height: 1px;
+  border: solid 1px hsl(0, 0%, 92%);
+}
+.mile-marker-container{
+  width: 43px;
+  align-items: center;
+  padding: 6px 22px 5px 22px;
+}
+.expand {
+  position: relative;
+  top: -35px;
+  left: 45px;
+}
+.search-container {
+  width: 375px;
+  height: 66px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: hsl(0, 0%, 15%);
+}
+.search-input{
+  width: 234.4px;
+  height: 35px;
+  background-color: $white;
+}
+.map-container {
+  margin-bottom: -5px;
+}
+.button-search {
+  padding: 6px 22px 5px 22px;
+  width: 51.3px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $teal;
+  color: $white;
+  text-transform: uppercase;
+  a {
+    vertical-align:middle;
+    text-decoration: none;
+    font-family: Oswald;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: $white;
+  }
+}

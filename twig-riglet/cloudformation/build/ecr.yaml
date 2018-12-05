@@ -1,0 +1,16 @@
+---
+
+Description: ECR definition
+AWSTemplateFormatVersion: 2010-09-09
+
+#Parameters:
+#  Tag:
+#    Type: String
+#    Default: latest
+
+Resources:
+  ECSServiceRole:
+    Type: "AWS::ECR::Repository"
+    Properties: 
+      RepositoryName: 
+      RepositoryPolicyText: JSON object

@@ -1,0 +1,18 @@
+{
+  "name": "ab-testing",
+  "version": "1.0.0",
+  "description": "Lambda functions to be used as Lambda@Edge for A/B testing",
+  "main": "index.js",
+  "scripts": {
+    "build": "mustache build/data.json src/originRequest.mustache > build/originRequest.js"
+  },
+  "author": "Lorenzo Nicora <lorenzo.nicora@gmail.com>",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/buildit/website-infra.git"
+  },
+  "devDependencies": {
+    "mustache": "^2.3.0"
+  }
+}

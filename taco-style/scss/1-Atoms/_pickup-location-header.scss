@@ -1,0 +1,114 @@
+.pick-up {
+  width: 329px;
+  margin: 30px 0 0 23px;
+  display: flex;
+  align-items: center;
+  border-bottom: solid 2px $purple;
+  .pick-up-location-large {
+    width: 186px;
+      height: 24px;
+      margin-bottom: 11px;
+      font-family: FranchiseFree;
+      font-size: 26px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      text-transform: uppercase;
+      letter-spacing: normal;
+      color: $purple;
+  }
+  .pick-up-location-small {
+    width: 146px;
+      height: 24px;
+      margin-bottom: 11px;
+      font-family: FranchiseFree;
+      font-size: 26px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      text-transform: uppercase;
+      letter-spacing: normal;
+      color: $purple;
+  }
+  .pick-up-time {
+    width: 126px;
+      height: 24px;
+        margin-bottom: 11px;
+        margin-left: 25px;
+      font-family: FranchiseFree;
+      font-size: 26px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      text-transform: uppercase;
+      letter-spacing: normal;
+      color: $purple;
+  }
+}
+.pick-up-info {
+  width: 329px;
+  margin: 30px 0 0 23px;
+  display: flex;
+  align-items: center;
+  .pick-up-address {
+    width: 126px;
+    height: 34px;
+    font-family: BrandonText;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.21;
+    letter-spacing: normal;
+    color: $black;
+  }
+  .pick-up-ready-time {
+    width: 126px;
+    height: 34px;
+    margin-left: 45px;
+    font-family: BrandonText;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.21;
+    letter-spacing: normal;
+    color: $black;
+  }
+}
+.pick-up-link {
+  width: 329px;
+  margin: 9px 0 0 23px;
+  display: flex;
+  align-items: center;
+  .directions {
+    width: 126px;
+    height: 34px;
+    font-family: Oswald;
+   font-size: 15px;
+   font-weight: normal;
+   font-style: normal;
+   font-stretch: normal;
+   text-transform: uppercase;
+   line-height: 1.53;
+   letter-spacing: normal;
+    color: $teal;
+  }
+  .pick-up-later {
+    width: 126px;
+    height: 34px;
+    margin-left: 45px;
+    font-family: Oswald;
+   font-size: 15px;
+   font-weight: normal;
+   font-style: normal;
+   font-stretch: normal;
+   text-transform: uppercase;
+   line-height: 1.53;
+   letter-spacing: normal;
+    color: $teal;
+  }
+}

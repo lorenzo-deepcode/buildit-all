@@ -1,0 +1,9 @@
+////
+/// @group Components
+////
+
+h3 {
+  /// Font size for an `<h3>` tag
+  $h3-font-size: 1rem !default;
+  font-size: $h3-font-size;
+}

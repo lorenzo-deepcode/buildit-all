@@ -1,0 +1,103 @@
+@import './mixins/media';
+@import 'variables';
+
+
+.booking {
+    background-color: $white;
+    padding: 20px;
+    display: flex;
+    flex-flow: column;
+}
+
+.booking-item {
+  padding: 80px 20px;
+
+  .booking-input {
+      margin-bottom: 10px;
+  }
+    
+
+  p {
+      color: #c5c5c5;
+      margin-bottom: 10px;
+  }
+
+  h3 {
+      font-size: 16px;
+      font-color: #666;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #d5d5d5;
+  }
+}
+
+.heading {
+    display:flex;
+}
+
+.title {
+    font-weight: bold;
+    text-align: center;
+    
+    @include mobile {
+        font-size: 18px;
+        margin-top: 31px;
+    }
+    
+    @include desktop {
+        font-size: 25px;
+        font-weight: bold;
+        text-align: center;
+        margin: 29px auto;
+    }
+}
+
+.cancel {
+    padding: 20px;
+    text-decoration: none;
+    font-size: 18px;
+
+    @include desktop{
+         img{
+            width: 50px;
+        }
+    }
+
+    @include mobile{
+         img{
+            width: 40px;
+        }
+    }
+    
+}
+
+.bigButton {
+    color: white;
+    background-color: #e8324e;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 2px;
+    height: 60px;
+    align-self: center;
+    
+    @include mobile {
+        width: 100%;
+    }
+    
+    @include desktop{
+        width: 45%;
+    }
+}
+
+.bookingCard{
+    align-self: center;
+    
+    @include mobile {
+        width: 100%;
+    }
+    
+    @include desktop {
+        width: 45%;
+    }
+}
+

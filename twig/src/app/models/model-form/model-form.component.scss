@@ -1,0 +1,65 @@
+@import '../../../styles_colors';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .alert {
+    margin: 3px;
+  }
+
+  .model-title {
+    font-size: 16px;
+  }
+
+  .edit-mode {
+    position: initial;
+  }
+
+  .fa-trash,
+  .fa-plus-square-o,
+  .clickable,
+  .fa-arrows-v {
+    cursor: pointer;
+  }
+
+  .top {
+    flex: 0;
+  }
+
+  .form {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    max-height: 90%;
+    max-width: 100%;
+    min-height: 50%;
+    overflow: scroll;
+    width: 100%;
+  }
+
+  .info-header {
+    border-bottom: 1px solid lighten($buildit-coal, 70%);
+    font-size: 20px;
+    font-weight: 800;
+  }
+
+  .new-button {
+    margin-top: 0;
+  }
+
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    min-width: 100%;
+    width: 100%;
+
+    &.entity-row {
+      .form-row {
+        padding-top: 10px;
+      }
+    }
+  }
+}

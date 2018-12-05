@@ -1,0 +1,31 @@
+machine:
+  node:
+    version: 6.9.2
+  services:
+    - docker
+
+test:
+  override:
+    - "true"
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PWD
+      - docker build --rm=false --pull -t $PRODUTION_IMAGE .
+      - docker push $PRODUTION_IMAGE
+      - |
+        cat >~/.netrc <<EOF
+        machine api.heroku.com
+          login $HEROKU_EMAIL
+          password $HEROKU_TOKEN
+        machine git.heroku.com
+          login $HEROKU_EMAIL
+          password $HEROKU_TOKEN
+        EOF
+      - chmod 600 ~/.netrc # Heroku cli complains about permissions without this
+      - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
+      - git push git@heroku.com:buildit-ds-demo-lib.git $CIRCLE_SHA1:refs/heads/master
+      - heroku run rake db:migrate --app buildit-ds-demo-lib:
+          timeout: 400 # if your deploys take a long time

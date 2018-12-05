@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+  - "6"
+
+before_script:
+  - npm install -g nyc
+
+script:
+  - npm run postinstall
+
+deploy:
+  provider: surge
+  project: ./dist/
+  domain: taco-style-guide.surge.sh
+  skip_cleanup: true
+  on:
+    all_branches: true

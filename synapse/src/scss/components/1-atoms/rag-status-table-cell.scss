@@ -1,0 +1,22 @@
+.rag-status-cell {
+  .indicator {
+    width: 1.3rem;
+    height: 1.3rem;
+    display: block;
+    border-radius: 50%;
+  }
+
+  .blank { background-color: $light-gray; }
+  .red { background-color: $brand-colour-red; }
+  .amber { background-color: $brand-colour-yellow; }
+  .green { background-color: $brand-colour-green; }
+
+  @media (min-width: $screen-md-min) {
+    .indicator {
+      width: 2rem;
+      height: 2rem;
+      display: block;
+      border-radius: 50%;
+    }
+  }
+}

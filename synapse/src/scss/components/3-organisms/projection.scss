@@ -1,0 +1,22 @@
+.projection {
+  .sliders {
+    background-color: white;
+
+    .legend {
+      background: $gray;
+      display: inline-block;
+      height: 1rem;
+      margin-right: 0.5rem;
+      width: 1rem;
+    }
+    .backlog {
+      background: $backlog;
+    }
+    .dark-matter {
+      background: $dark-matter;
+    }
+    .max-y {
+      background: white;
+    }
+  }
+}

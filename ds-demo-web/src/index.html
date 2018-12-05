@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Design System Demo Website</title>
+
+  <link rel="stylesheet" type="text/css" href="css/base.css">
+
+  <script src="handlebars.runtime.js"></script>
+  <script src="templates.js"></script>
+</head>
+
+<body class="ds-site">
+  <div id="content"></div>
+  <script>
+    document.querySelector('#content').innerHTML = MySite.templates.main();
+  </script>
+</body>
+</html>

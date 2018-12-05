@@ -1,0 +1,54 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sample-node-app-deployment
+  labels:
+    component: "sample-node-app"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        component: "sample-node-app"
+    spec:
+      containers:
+        - name: sample-node-app
+          image: "my-environment:snapshot"
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 80
+              name: http
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "64Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-node-app-svc
+  labels:
+    component: "sample-node-app"
+spec:
+  ports:
+    - port: 80
+      name: http
+      targetPort: 80
+  selector:
+    component: "sample-node-app"
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: sample-node-app-ingress
+  labels:
+    realm: "public"
+spec:
+  rules:
+  - host: sample.kube.local
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: sample-node-app-svc
+          servicePort: 80

@@ -1,0 +1,13 @@
+{
+  "presets": ["es2015"],
+  "plugins": [
+    ["module-resolver", {
+      "root": ["./src"],
+      "alias": {
+        "formatters": "./formatters",
+        "lib": "./lib",
+        "processors": "./processors",
+      }
+    }]
+  ]
+}

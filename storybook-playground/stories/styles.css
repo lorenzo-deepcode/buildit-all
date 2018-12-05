@@ -1,0 +1,14 @@
+button.my-button-styles {
+  border: 1px solid #eee;
+  border-radius: 30px;
+  background-color: #FFFFFF;
+  cursor: pointer;
+  font-size: 20pt;
+  padding: 0.25em;
+  margin: 10px;
+}
+
+button.my-button-styles:hover {
+  background-color: #000 !important;
+  color: #FFFFFF !important;
+}

@@ -1,0 +1,32 @@
+= Acceptance test framework for Jenkins CI/CD
+
+== Target use cases
+
+. Jenkins CI post upgrade acceptance tests execution
+. Pipeline scripts TDD (it should work faster than embadded jenkins start / stop)
+. Pipeline library compatability testing against target server
+
+== Features
+
+. Fully automated execution (compile -> deploy -> run -> verify build result)
+. JUnit wrapper
+. Pipeline output on the client side
+
+== Build
+
+. Checkout code
+. Configure Jenkins URL in javaposse/jobdsl/dsl/RigJenkinsTest.java
+. Execute tests
+
+== Useful tips
+
+. Configure pipeline autocompletion (see http://st-g.de/2016/08/jenkins-pipeline-autocompletion-in-intellij)
+
+== Possible improvements
+
+. Simplify Jenkins URL configuration
+. Add Jenkins authentication support
+. In-process assertions
+. Client-side assertions support
+. Stream build output
+. Use annotation / junit rule to deploy jobs

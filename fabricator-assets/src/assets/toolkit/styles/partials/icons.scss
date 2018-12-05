@@ -1,0 +1,33 @@
+/* stylelint-disable */
+.svg-icon-lib {
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  height: $border-width !important;
+  margin: -$border-width !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: $border-width !important;
+}
+/* stylelint-enable */
+
+.hpe-icon {
+  height: 1em;
+  width: 1em;
+  fill: transparent;
+  stroke: currentColor;
+  stroke-width: 2;
+  vertical-align: baseline;
+
+  &--inline {
+    position: relative;
+    bottom: -0.125em;
+    margin-right: 0.25em;
+  }
+
+  &--filled {
+    fill: currentColor;
+    stroke: transparent;
+    stroke-width: 0;
+  }
+}

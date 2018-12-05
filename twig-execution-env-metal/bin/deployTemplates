@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -o errexit -o xtrace
+
+PROJECT=${1}
+DEPLOY_DIR=deploy
+MAIN_YML=main.yaml
+
+if [ ! -d ${DEPLOY_DIR} ]; then
+mkdir ${DEPLOY_DIR}
+fi
+zip ${DEPLOY_DIR}/templates.zip ${MAIN_YML} templates/*
+
+aws s3 cp deploy/templates.zip "s3://${PROJECT}" --acl public-read
+aws s3 cp ${MAIN_YML} "s3://${PROJECT}" --acl public-read
+aws s3 cp --recursive templates/ "s3://${PROJECT}/templates" --acl public-read
+
+echo "Use https://s3.amazonaws.com/${PROJECT}/${MAIN_YML} in CloudFormation console or API calls"

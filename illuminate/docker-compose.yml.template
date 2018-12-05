@@ -1,0 +1,8 @@
+node:
+  restart: always
+  image: ${registry_base}/illuminate:${tag}
+  ports:
+    - "80"
+  environment:
+    - NODE_ENV=production
+    - NODE_CONFIG={"datastore":{"dbUrl":"${mongo_url}"},"server":{"url":"${server_url}","port":"${server_port}"}}

@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <h4 class="modal-title">Create New Model</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form [formGroup]="form" (ngSubmit)="processForm()">
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="name" class="control-label">Name: </label>
+      <input #autofocus type="text" formControlName="name" class="form-control">
+      <ngb-alert class="alert" [dismissible]="false" type="danger" *ngIf="formErrors.name">{{ formErrors.name }}</ngb-alert>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="button btn-sm btn-secondary" (click)="activeModal.close('Close click')">Close</button>
+    <button type="submit" class="button btn-sm " id="submitButton" [disabled]="!this.form.valid">Create</button>
+  </div>
+</form>

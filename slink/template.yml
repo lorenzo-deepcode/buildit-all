@@ -1,0 +1,250 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform:
+- AWS::Serverless-2016-10-31
+- AWS::CodeStar
+
+Parameters:
+  ProjectId:
+    Type: String
+    Description: AWS CodeStar projectID used to associate new resources to team members
+  ScheduledFunctionAlias:
+    Type: String
+    Description: Function Alias that is executed by the CW Event rule for scheduled runs.
+    Default: PROD
+
+
+Globals:
+  Function:
+    Runtime: nodejs8.10
+    Timeout: 180
+    Handler: index.handler
+
+Resources:
+  SlinkMainFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./slink-main/
+      AutoPublishAlias: STAGE
+      Environment:
+        Variables:
+          RUNS_TABLE: !Ref Runs
+          LAST_RUN_DATE_TABLE: !Ref LastRunDate
+          INTRODUCTIONS_TABLE: !Ref Introductions
+          ACTIVATIONS_TABLE: !Ref Activations
+          LOCAL_DYNAMO_IP: ''
+      Role:
+        Fn::ImportValue:
+          !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
+      Events:
+        GetApiEndpoint:
+          Type: Api
+          Properties:
+            Method: get
+            Path: /slink
+
+  Runs:
+    Type: "AWS::DynamoDB::Table"
+    Properties:
+      AttributeDefinitions:
+        -
+          AttributeName: "requestId"
+          AttributeType: "S"
+        -
+          AttributeName: "alias"
+          AttributeType: "S"
+      KeySchema:
+        -
+          AttributeName: "requestId"
+          KeyType: "HASH"
+        -
+          AttributeName: "alias"
+          KeyType: "RANGE"
+      ProvisionedThroughput:
+        ReadCapacityUnits: "5"
+        WriteCapacityUnits: "5"
+
+  LastRunDate:
+    Type: "AWS::DynamoDB::Table"
+    Properties:
+      AttributeDefinitions:
+        -
+          AttributeName: "alias"
+          AttributeType: "S"
+      KeySchema:
+        -
+          AttributeName: "alias"
+          KeyType: "HASH"
+      ProvisionedThroughput:
+        ReadCapacityUnits: "5"
+        WriteCapacityUnits: "5"
+
+
+  Introductions:
+    Type: "AWS::DynamoDB::Table"
+    Properties:
+      AttributeDefinitions:
+        -
+          AttributeName: "srCandidateId"
+          AttributeType: "S"
+        -
+          AttributeName: "alias"
+          AttributeType: "S"
+      KeySchema:
+        -
+          AttributeName: "srCandidateId"
+          KeyType: "HASH"
+        -
+          AttributeName: "alias"
+          KeyType: "RANGE"
+      ProvisionedThroughput:
+        ReadCapacityUnits: "5"
+        WriteCapacityUnits: "5"
+
+  Activations:
+    Type: "AWS::DynamoDB::Table"
+    Properties:
+      AttributeDefinitions:
+        -
+          AttributeName: "srCandidateId"
+          AttributeType: "S"
+        -
+          AttributeName: "alias"
+          AttributeType: "S"
+      KeySchema:
+        -
+          AttributeName: "srCandidateId"
+          KeyType: "HASH"
+        -
+          AttributeName: "alias"
+          KeyType: "RANGE"
+      ProvisionedThroughput:
+        ReadCapacityUnits: "5"
+        WriteCapacityUnits: "5"
+
+  SlinkIntroRun:
+     Type: AWS::Serverless::SimpleTable
+     Properties:
+       PrimaryKey:
+         Name: requestId
+         Type: String
+       ProvisionedThroughput:
+         ReadCapacityUnits: 5
+         WriteCapacityUnits: 5
+
+  SlinkIntroductionRule:
+    Type: "AWS::Events::Rule"
+    Properties:
+      Description: "Invoke Slink Introduction Process"
+      ScheduleExpression: "rate(15 minutes)"
+      State: "ENABLED"
+      Targets:
+        -
+          Arn: !Join
+            - ':'
+            - - !GetAtt SlinkMainFunction.Arn
+              - !Ref ScheduledFunctionAlias
+          Id: "SlinkMainV1"
+
+  PermissionForEventsToInvokeLambda:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      FunctionName: !Join
+        - ':'
+        - - !GetAtt SlinkMainFunction.Arn
+          - !Ref ScheduledFunctionAlias
+
+      Action: "lambda:InvokeFunction"
+      Principal: "events.amazonaws.com"
+      SourceArn:
+        Fn::GetAtt:
+          - "SlinkIntroductionRule"
+          - "Arn"
+
+  SlinkSNSTopic:
+    Type: "AWS::SNS::Topic"
+    Properties:
+      Subscription:
+        - Endpoint: "a5u9g5c9t4m3v0z5@wiprodigital.slack.com"
+          Protocol: "email"
+
+  Slink429Metric:
+    Type: "AWS::Logs::MetricFilter"
+    Properties:
+      LogGroupName: !Join ['/', ['/aws', 'lambda', !Ref SlinkMainFunction]]
+      FilterPattern: "Request failed with status code 429"
+      MetricTransformations:
+      -
+        MetricValue: "1"
+        MetricNamespace: "Slink"
+        MetricName: "429Errors"
+
+  SapPostFailuresMetric:
+    Type: "AWS::Logs::MetricFilter"
+    Properties:
+      LogGroupName: !Join ['/', ['/aws', 'lambda', !Ref SlinkMainFunction]]
+      FilterPattern: "SAP post failed"
+      MetricTransformations:
+      -
+        MetricValue: "1"
+        MetricNamespace: "Slink"
+        MetricName: "SapPostFailures"
+
+  SlinkCandidatesSentSuccessMetric:
+    Type: "AWS::Logs::MetricFilter"
+    Properties:
+      LogGroupName: !Join ['/', ['/aws', 'lambda', !Ref SlinkMainFunction]]
+      FilterPattern: "Sent candidate to SAP"
+      MetricTransformations:
+      -
+        MetricValue: "1"
+        MetricNamespace: "Slink"
+        MetricName: "CandidatesSentSuccess"
+
+  Slink429Alarm:
+    Type: "AWS::CloudWatch::Alarm"
+    Properties:
+      AlarmName: "Slink 429 Alarm"
+      AlarmDescription: "Alarm for 429 errors"
+      AlarmActions:
+      - !Ref SlinkSNSTopic
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      EvaluationPeriods: "15"
+      Namespace: Slink
+      MetricName: !Ref Slink429Metric
+      Period: '60'
+      Statistic: Maximum
+      Threshold: '1'
+      TreatMissingData: notBreaching
+
+  SlinkSapPostFailureAlarm:
+    Type: "AWS::CloudWatch::Alarm"
+    Properties:
+      AlarmName: "Slink SAP Post Failure Alarm"
+      AlarmDescription: "Alarm for failures when posting to SAP API"
+      AlarmActions:
+      - !Ref SlinkSNSTopic
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      EvaluationPeriods: "1"
+      Namespace: Slink
+      MetricName: !Ref SapPostFailuresMetric
+      Period: '3600'
+      Statistic: Maximum
+      Threshold: '1'
+      TreatMissingData: notBreaching
+
+
+  SlinkCandidatesSentSuccessNotification:
+    Type: "AWS::CloudWatch::Alarm"
+    Properties:
+      AlarmName: "Slink Candidates Sent Notification"
+      AlarmDescription: "Notification for candidates sent"
+      AlarmActions:
+      - !Ref SlinkSNSTopic
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      EvaluationPeriods: "15"
+      Namespace: Slink
+      MetricName: !Ref SlinkCandidatesSentSuccessMetric
+      Period: '60'
+      Statistic: Maximum
+      Threshold: '1'
+      TreatMissingData: notBreaching

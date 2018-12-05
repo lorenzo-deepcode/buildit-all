@@ -1,0 +1,12 @@
+{
+  "presets": ["es2015", "stage-0"],
+  "plugins": [
+    "es6-promise",
+    "transform-async-functions",
+    "transform-regenerator",
+    ["transform-runtime", {
+      "polyfill": false,
+      "regenerator": true
+    }],
+  ],
+}

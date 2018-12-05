@@ -1,0 +1,40 @@
+def target = "${project.buildDir}"
+def temp = "${target}/temp"
+
+configurations {
+    jenkinsPlugins
+}
+
+repositories {
+    ivy {
+        artifactPattern "http://updates.jenkins-ci.org/download/plugins/[module]/[revision]/[module].[ext]"
+    }
+}
+
+task init {
+  loadPluginsFromFile()
+}
+
+task copyPlugins(type: Copy) {
+  into "${temp}/plugins"
+  from configurations.jenkinsPlugins
+  eachFile {details ->
+        details.path = getNameFromPath(details.file.absolutePath)
+    }
+}
+
+def getNameFromPath(def path) {
+  def bits = path.split("/")
+  def name = bits[bits.length-1]
+  def version = bits[bits.length-3]
+  def artifact = bits[bits.length-4]
+  return "${artifact}-${version}.hpi"
+}
+
+def loadPluginsFromFile() {
+  def configFile = file("config.groovy")
+  project.ext.set("jenkinsPlugins", new ConfigSlurper().parse(configFile.toURL()))
+  project.jenkinsPlugins.plugins.each {
+    project.dependencies.add('jenkinsPlugins', it)
+  }
+}

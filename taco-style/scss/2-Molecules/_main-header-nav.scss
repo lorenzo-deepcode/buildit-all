@@ -1,0 +1,36 @@
+.header {
+  width: 375px;
+  height: 67px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $black;
+}
+.header-text {
+  width: 190px;
+  font-family: FranchiseFree;
+  font-size: 30px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 0.9;
+  letter-spacing: normal;
+  text-align: center;
+  padding-left: 55px;
+  padding-right: 55px;
+  color: $white;
+}
+.back-icon {
+  font-family: FranchiseFree;
+  font-size: 20px;
+  font-style: normal;
+  font-stretch: normal;
+  color: $white;
+}
+.cart-icon {
+  font-family: FranchiseFree;
+  font-size: 20px;
+  font-style: normal;
+  font-stretch: normal;
+  color: $white;
+}

@@ -1,0 +1,19 @@
+{
+  "extends": "airbnb",
+  "plugins": ["mocha"],
+  "rules": {
+    "arrow-parens": "off",
+    "no-extra-boolean-cast": "off",
+    "indent": ["error", 2],
+    "no-class-assign": "warn",
+  },
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "env": {
+    "mocha": true
+  }
+}

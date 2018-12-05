@@ -1,0 +1,9 @@
+////
+/// @group Components
+////
+
+h2 {
+  /// Font size for an `<h2>` tag
+  $h2-font-size: 1rem !default;
+  font-size: $h2-font-size;
+}

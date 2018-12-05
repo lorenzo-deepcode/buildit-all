@@ -1,0 +1,15 @@
+<section class="hpe-guided-filter row">
+  <header class="hpe-guided-filter__title">
+    <h3 class="hpe-headline hpe-headline--black hpe-headline--caps hpe-guided-filter__heading">Not sure where to start?</h3>
+    <p>Answer these quick questions and we'll point you to the right server.</p>
+  </header>
+  <div class="hpe-guided-filter__question">
+    <h3 class="hpe-headline hpe-headline--strong hpe-guided-filter__question-heading">What operating system will you use?</h3>
+    <p class="hpe-guided-filter__instructions">(Select One)</p>
+    {{> form.radio text="Windows" name="guided1" group="filter-guided"}}
+    {{> form.radio text="Linux" name="guided2" group="filter-guided"}}
+    <footer class="hpe-guided-filter__footer">
+      {{> buttons.anchor-primary--reverse text="Skip Question" icon="link-next"}}
+    </footer>    
+  </div>
+</section>

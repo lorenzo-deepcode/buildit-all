@@ -1,0 +1,13 @@
+/*Text */
+.text {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  width: 400px;
+  .text-label {
+    text-transform: uppercase;
+    color: $brand-text-label-colour;
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+  }
+}

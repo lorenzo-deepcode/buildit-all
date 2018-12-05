@@ -1,0 +1,34 @@
+.hpe-breadcrumbs {
+  padding: 1rem $bootstrap-gutter;
+  list-style: none;
+  width: 100%;
+  color: $dark-grey-4;
+
+  &__item {
+    display: inline;
+
+    &:last-child {
+      font-weight: 700;
+    }
+
+    &:not(:last-child)::after {
+      content: "/";
+      margin: 0 0.25em;
+    }
+
+    &--current {
+      &::after {
+        content: none;
+      }
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    color: currentColor;
+
+    &:hover {
+      color: $black;
+    }
+  }
+}

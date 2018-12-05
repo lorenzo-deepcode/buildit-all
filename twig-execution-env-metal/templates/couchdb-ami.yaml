@@ -1,0 +1,90 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  This template creates a CouchDb instance from an AMI.
+
+
+Parameters:
+
+  Name:
+    Type: String
+    Description: >
+      The name with which to tag resources.
+
+  AmiId:
+    Type: String
+    MinLength: 1
+    Default:  ami-bc1e34aa
+    Description: >
+      The AMI to use for the CouchDB instance (default is us-east-1).
+
+  InstanceType:
+    Type: String
+
+  SubnetId:
+    Type: String
+    MinLength: 1
+    Default:  ami-bc1e34aa
+    Description: >
+      Subnet in which the AMI should be started.
+
+#  KeyName:
+#    Type: String
+#    MinLength: 1
+#    Default:  ami-bc1e34aa
+#    Description: >
+#      The IAM keypair to associate to the image.
+
+  AppDbAccessSgId:
+    Type: String
+    MinLength: 1
+    Default:  sg-*****
+    Description: >
+      The application security group to which the DB instance should allow access.
+
+  SubnetId:
+    Type: AWS::EC2::Subnet::Id
+
+  VpcId:
+    Type: AWS::EC2::VPC::Id
+
+
+Resources:
+
+  AppAccessSecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      GroupDescription: !Sub ${AWS::StackName}-app-couchdb
+      SecurityGroupIngress:
+        - SourceSecurityGroupId: !Ref AppDbAccessSgId
+          IpProtocol: TCP
+          FromPort: 5984
+          ToPort: 5984
+      VpcId: !Ref VpcId
+
+  CouchEc2Instance:
+    Type: "AWS::EC2::Instance"
+    Properties:
+      ImageId: !Ref AmiId
+#      KeyName:
+#        Ref: "KeyName"
+      InstanceType: !Ref InstanceType
+      Tags:
+        - Key: Name
+          Value: !Ref Name
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: "false"
+          DeviceIndex: "0"
+          GroupSet:
+            - Ref: "AppAccessSecurityGroup"
+          SubnetId:
+            Ref: "SubnetId"
+
+Outputs:
+  CouchDbPrivIpAddress:
+    Description: Private IP Address of CouchDb instance.
+    Value: !GetAtt CouchEc2Instance.PrivateIp
+
+  CouchDbAz:
+    Description: Private IP Address of CouchDb instance.
+    Value: !GetAtt CouchEc2Instance.AvailabilityZone
+

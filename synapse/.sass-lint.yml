@@ -1,0 +1,42 @@
+# Full documentation at https://github.com/sasstools/sass-lint/tree/master/docs/rules
+options:
+  merge-default-rules: false
+files:
+  include: 'src/scss/**/*.s+(a|c)ss'
+  ignore:
+    - 'sass/vendor/**/*.*'
+rules:
+  extends-before-mixins: 2
+  extends-before-declarations: 2
+  placeholder-in-extend: 2
+  mixins-before-declarations:
+    - 2
+    -
+      exclude:
+        - breakpoint
+        - mq
+
+  no-warn: 1
+  no-debug: 1
+  # no-ids: 2
+  # no-important: 2
+  no-ids: 0
+  no-important: 0
+  hex-notation:
+    - 2
+    -
+      style: lowercase
+  indentation:
+    - 2
+    -
+      size: 2
+  variable-for-property:
+    - 2
+    -
+      properties:
+        - margin
+        - content
+  leading-zero:
+    - 1
+    -
+      include: true

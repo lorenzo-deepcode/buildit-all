@@ -1,0 +1,42 @@
+<div class="modal-header">
+  <h4 class="modal-title" *ngIf="clone.get(TWIGLET.NAME)">Clone {{ clone.get(TWIGLET.NAME) }}</h4>
+  <h4 class="modal-title" *ngIf="!clone.get(TWIGLET.NAME)">Create New Twiglet</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form [formGroup]="form" (ngSubmit)="processForm()">
+  <div class="modal-body">
+    <div *ngIf="this.clone.get(TWIGLET.NAME) === ''">
+      <div class="form-group" *ngIf="!fileString">
+        <label for="model" class="control-label">*Select Model:</label>
+        <select type="text" class="form-control" name="model" formControlName="model">
+          <option value="N/A" selected>--- You must choose a model ---</option>
+          <option *ngFor="let model of modelNames">{{ model }}</option>
+        </select>
+        <div *ngIf="formErrors.model" class="alert alert-danger">
+          {{ formErrors.model }}
+        </div>
+      </div>
+      <div class="form-group" *ngIf="form.controls['model'].value === 'N/A' && !useModel">
+        <label class="control-label">Upload JSON</label>
+        <input type="file" class="form-control" (change)="getFiles($event)">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="name" class="control-label">*Name:</label>
+      <input #autofocus type="text" class="form-control" name="name" formControlName="name" required>
+      <div *ngIf="formErrors.name" class="alert alert-danger">
+        {{ formErrors.name }}
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="description" class="control-label">Description (Markdown supported):</label>
+      <textarea autosize type="text" class="form-control" name="description" formControlName="description"></textarea>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="button btn-sm btn-secondary" (click)="activeModal.close('Close click')">Close</button>
+    <button type="submit" class="button btn-sm" [disabled]="!this.form.valid">Create</button>
+  </div>
+</form>

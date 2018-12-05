@@ -1,0 +1,223 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "program": {
+      "type": "string"
+    },
+    "portfolio": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "startDate": {
+      "type": "string"
+    },
+    "endDate": {
+      "type": "string"
+    },
+    "demand": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "project": {
+          "type": "string"
+        },
+        "authPolicy": {
+          "type": "string"
+        },
+        "userData": {
+          "type": "string"
+        },
+        "flow": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "groupWith": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "groupWith"
+            ]
+          }
+        }
+      },
+      "required": [
+        "source",
+        "url",
+        "project",
+        "authPolicy",
+        "userData",
+        "flow"
+      ]
+    },
+
+    "defect": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "project": {
+          "type": "string"
+        },
+        "authPolicy": {
+          "type": "string"
+        },
+        "userData": {
+          "type": "string"
+        },
+        "initialStatus": {
+          "type": "string"
+        },
+        "resolvedStatus": {
+          "type": "string"
+        },
+        "severity": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "groupWith": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "groupWith"
+            ]
+          }
+        }
+      },
+      "required": [
+        "url",
+        "project",
+        "authPolicy",
+        "userData",
+        "initialStatus",
+        "resolvedStatus",
+        "severity"
+      ]
+    },
+
+    "effort": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "project": {
+          "type": "string"
+        },
+        "authPolicy": {
+          "type": "string"
+        },
+        "userData": {
+          "type": "string"
+        },
+        "role": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "groupWith": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "groupWith"
+            ]
+          }
+        }
+      },
+      "required": [
+        "url",
+        "project",
+        "authPolicy",
+        "userData",
+        "role"
+      ]
+    },
+    "projection": {
+      "type": "object",
+      "properties": {
+        "backlogSize": {
+          "type": "integer"
+        },
+        "darkMatterPercentage": {
+          "type": "integer"
+        },
+        "iterationLength": {
+          "type": "integer"
+        },
+        "startVelocity": {
+          "type": "integer"
+        },
+        "targetVelocity": {
+          "type": "integer"
+        },
+        "startIterations": {
+          "type": "integer"
+        },
+        "endIterations": {
+          "type": "integer"
+        },
+        "endVelocity": {
+          "type": "integer"
+        },
+        "startDate": {
+          "type": "string"
+        },
+        "endDate": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "backlogSize",
+        "darkMatterPercentage",
+        "iterationLength",
+        "startVelocity",
+        "targetVelocity",
+        "startIterations",
+        "endIterations",
+        "endVelocity",
+        "startDate",
+        "endDate"
+      ]
+    }
+  },
+  "required": [
+    "name",
+    "program",
+    "portfolio",
+    "description",
+    "startDate",
+    "endDate",
+    "demand",
+    "defect",
+    "effort",
+    "projection"
+  ]
+}

@@ -1,0 +1,50 @@
+<div class="top">
+  <app-header-model
+      [models]="models"
+      [model]="model"
+      [userState]="userState"
+  ></app-header-model>
+  <div class="container form">
+    <div class="info-header" style="margin-bottom:20px;">
+      <div class="form-row">
+        <div class="col-8">Type</div>
+        <div class="col-4">Icon</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container form">
+  <div class="fill-up">
+    <div class="form-row entity-row" *ngFor="let entity of entities; let i = index;">
+      <div class="col-8">
+        <div class="form-row">
+          {{entity.type}}
+          <span *ngIf="entity.attributes && entity.attributes.length" class="clickable" (click)="toggleAttributes(i)">
+            &nbsp;(Attributes <i class="fa fa-arrow-up" *ngIf="expanded[i]"></i><i class="fa fa-arrow-down" *ngIf="!expanded[i]"></i>)
+          </span>
+        </div>
+        <div class="form-row" *ngIf="entity.attributes && entity.attributes.length">
+          <div class="form-row" *ngIf="entity.attributes && entity.attributes.length && expanded[i]">
+            <div class="form-row info-header">
+              <div class="col-1"></div>
+              <div class="col-5"><strong>Name</strong></div>
+              <div class="col-4"><strong>Data Type</strong></div>
+              <div class="col-2"><strong>Required</strong></div>
+            </div>
+            <div class="form-row" *ngIf="expanded[i]">
+              <div class="form-row attribute-row" *ngFor="let attribute of entity.attributes">
+                <div class="col-1"></div>
+                <div class="col-5">{{ attribute.name }}</div>
+                <div class="col-4">{{ attribute.dataType }}</div>
+                <div class="col-2">{{ attribute.required }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div [style.color]="entity.color" class="col-4">
+        <i class="fa fa-{{entity.class}} fa-2x"></i>
+      </div>
+    </div>
+  </div>
+</div>

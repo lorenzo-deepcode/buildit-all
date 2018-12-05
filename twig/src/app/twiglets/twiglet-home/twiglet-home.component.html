@@ -1,0 +1,19 @@
+<div class="mainframe">
+  <app-header-twiglet
+      [dirtyTwiglet]="dirtyTwiglet"
+      [dirtyTwigletModel]="dirtyTwigletModel"
+      [dirtyView]="dirtyView"
+      [twiglet]="twiglet"
+      [userState]="userState"
+      [twiglets]="twiglets"
+      [models]="models"
+      [eventsList]="eventsList"
+      [view]="view"
+      [viewData]="viewData"
+      [views]="views"
+      [twigletModel]="twigletModel"
+      (addEntity)="addEntity($event)"
+  ></app-header-twiglet>
+  <app-twiglet-graph [class]="getTwigletGraphClass()" boundSensor="resize"></app-twiglet-graph>
+  <app-twiglet-model-view [class]="getTwigletModelClass()" #modelEditor ></app-twiglet-model-view>
+</div>

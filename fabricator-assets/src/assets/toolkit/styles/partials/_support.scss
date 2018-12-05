@@ -1,0 +1,84 @@
+.hpe-support {
+  background: $light-grey-1;
+
+  &__content {
+    width: 100%;
+    padding: 4.5rem $bootstrap-gutter 0;
+  }
+
+  &__title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  &__message {
+    margin: 0 0 1.75rem;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $black;
+    font-weight: 600;
+  }
+
+  &__image {
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: none;
+
+    @include respond-to(medium) {
+      display: block;
+    }
+  }
+
+  &__tiles {
+    @include respond-to(medium) {
+      margin-left: -$bootstrap-gutter;
+    }
+  }
+
+  &__tile {
+    text-align: center;
+    background-color: $dark-3;
+    color: $white;
+    margin: 0 0 $bootstrap-gutter;
+    height: 9.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    &--bottom {
+      @include respond-to(small) {
+        margin-bottom: 0;
+      }
+    }
+
+    &--left {
+      @include respond-to(small) {
+        padding-left: 0;
+      }
+    }
+  }
+
+  &__tile-icon {
+    display: block;
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    line-height: 0.5;
+  }
+
+  &__tile-link {
+    color: $white !important; /* stylelint-disable-line declaration-no-important */
+    text-decoration: none;
+  }
+
+  &__tile-label {
+    display: block;
+    flex: 0 0 100%;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+  }
+}

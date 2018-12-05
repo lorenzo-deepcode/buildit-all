@@ -1,0 +1,46 @@
+{
+  "moduleNameMapper": {
+    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/unit/__mocks__/fileMock.js",
+    "^[./a-zA-Z0-9!&$_-]+\\.(css|scss)$": "identity-obj-proxy",
+    "^Store(.*)$": "<rootDir>/src/store$1",
+    "^History(.*)$": "<rootDir>/src/history$1",
+    "^Redux(.*)$": "<rootDir>/src/redux$1",
+    "^Models(.*)$": "<rootDir>/src/models$1",
+    "^Components(.*)$": "<rootDir>/src/components$1",
+    "^Containers(.*)$": "<rootDir>/src/containers$1",
+    "^Hoc(.*)$": "<rootDir>/src/hoc$1",
+    "^Utils(.*)$": "<rootDir>/src/utils$1",
+    "^Constants(.*)$": "<rootDir>/src/constants$1",
+    "^Styles(.*)$": "<rootDir>/src/styles$1",
+    "^Api(.*)$": "<rootDir>/src/api$1",
+    "^Fixtures(.*)$": "<rootDir>/test/unit/__fixtures__$1"
+  },
+  "moduleFileExtensions": [ "js", "jsx", "json" ],
+  "transformIgnorePatterns": [
+    "node_modules/(?!(date-fns)/)"
+  ],
+  "testPathIgnorePatterns": [ "<rootDir>/(build|docs|node_modules|images)/" ],
+  "testEnvironment": "jsdom",
+  "testRegex": "\\.test.jsx?$",
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "!src/**/index.*(js|jsx)",
+    "!src/*(store|history)/*",
+    "src/**/*.*(js|jsx)"
+  ],
+  "coverageReporters": [
+    "html",
+    "text",
+    "json",
+    "lcov"
+  ],
+  "rootDir": ".",
+  "globals": {
+    "window": {}
+  },
+  "setupTestFrameworkScriptFile": "<rootDir>/test/unit/setup-test-framework.js",
+  "setupFiles": [
+    "<rootDir>/test/unit/__mocks__/storageMock.js"
+  ],
+  "verbose": true
+}

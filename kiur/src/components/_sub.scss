@@ -1,0 +1,20 @@
+////
+/// @group Components
+////
+
+/**
+ * Prevent `sub` elements from affecting the line height in
+ * all browsers.
+ */
+
+sub {
+  /// Font size for a <sub> tag
+  $sub-font-size: 75% !default;
+  /// Offset from the typography grid for a <sub> tag
+  $sub-bottom-offset: -.25em !default;
+  font-size: $sub-font-size;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+  bottom: $sub-bottom-offset;
+}

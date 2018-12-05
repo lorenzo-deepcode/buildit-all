@@ -1,0 +1,14 @@
+body {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}
+
+.container-narrow > hr {
+  margin: 10px 0;
+}

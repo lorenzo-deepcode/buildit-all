@@ -1,0 +1,26 @@
+////
+/// @group Components
+////
+
+/*
+ * Keeping the <b> tag in here as well, since it's been deprecated and shouldn't
+ * be used anymore, so it's just along for the ride with the <strong> tags.
+ */
+
+/**
+ * Prevent the duplicate application of `bolder` by the next rule in Safari 6.
+ */
+
+b,
+strong {
+  font-weight: inherit;
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+
+b,
+strong {
+  font-weight: bolder;
+}

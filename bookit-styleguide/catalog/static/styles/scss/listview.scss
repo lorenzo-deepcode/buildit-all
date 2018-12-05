@@ -1,0 +1,27 @@
+@import 'global/colors';
+@import 'global/typography';
+
+.listview-wrapper{
+    background-color: $white;
+    color: $blackish;
+    font-family: $base-font-family;
+
+    .listview-item{
+        border-top: 1px solid $border-gray;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 30px;
+
+        cursor: pointer;
+        
+        h4{
+            font-family: $base-font-family;;
+            font-weight: 400;
+        }
+
+        &:hover{
+            background-color: $hoverblue;
+        }
+    }
+}

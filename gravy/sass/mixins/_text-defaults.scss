@@ -1,0 +1,30 @@
+/// if called this will output some sensible defaults.
+///
+@mixin gravy-text-defaults() {
+  body {
+    @if map-has-key($typefaces, 'primary') {
+      @include gravy-font('primary');
+    }
+    @else {
+      @warn 'primary key in typi map is not set.';
+      @warn 'you have to set body font-face and weight yourself!';
+    }
+    margin: 0;
+  }
+
+  * {
+    box-sizing: border-box;
+    font-kerning: auto;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%; // stylelint-disable property-no-vendor-prefix
+  }
+
+  *:focus {
+    outline-style: auto;
+  }
+}

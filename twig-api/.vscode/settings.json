@@ -1,0 +1,7 @@
+{
+    "search.exclude": {
+      "**/node_modules": true,
+      "reports": true,
+      ".nyc_output": true
+    }
+}

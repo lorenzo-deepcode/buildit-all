@@ -1,0 +1,6 @@
+jdk:
+  - oraclejdk8
+
+script:
+  - mvn clean install && ./scripts/release.sh
+

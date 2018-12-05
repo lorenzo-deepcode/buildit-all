@@ -1,0 +1,6 @@
+{
+  "opts": {
+    "destination": "./doc"
+  },
+  "plugins": ["node_modules/jsdoc-export-default-interop/dist/index"]
+}

@@ -1,0 +1,68 @@
+h1,
+h2,
+h2,
+h4,
+h5 {
+  font-weight: 100;
+}
+
+button,
+input {
+  font-family: $font-family;
+}
+
+.hpe-headline {
+  font-weight: 100;
+  margin: 0 0 1.5rem;
+  line-height: 1;
+
+  &--xlarge {
+    font-size: $headline--xlarge;
+  }
+
+  &--large {
+    font-size: $headline--large;
+  }
+
+  &--medium {
+    font-size: $headline--medium;
+  }
+
+  &--small {
+    font-size: $headline--small;
+  }
+
+  &--strong {
+    font-weight: 600;
+  }
+
+  &--black {
+    font-weight: 900;
+  }
+
+  &--caps {
+    text-transform: uppercase;
+  }
+}
+
+.hpe-section-headline {
+  font-size: 1.5rem;
+  @include respond-to(medium) {
+    font-size: 2.5rem;
+  }
+}
+
+.hpe-page-headline {
+  line-height: 1;
+  font-size: 1.5rem;
+
+  @include respond-to(medium) {
+    font-size: 2rem;
+  }
+
+  @include respond-to(large) {
+    font-size: 3rem;
+  }
+}
+
+$hpe-font-size-med: 0.9375rem;

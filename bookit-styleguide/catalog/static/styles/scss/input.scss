@@ -1,0 +1,20 @@
+@import 'global/typography';
+
+.standardInput {
+    input {
+        border: 1px solid #e6e8ed;
+        border-radius: 4px;
+        font-size: 14px;
+        padding: 10px;
+        font-family: $base-font-family;
+
+    }
+
+    label {
+        display: block;
+        margin: 10px 0;
+        font-size: 14px;
+        color: #c5c5c5;
+        font-family: $base-font-family;
+    }
+}

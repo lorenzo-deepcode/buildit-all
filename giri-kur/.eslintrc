@@ -1,0 +1,35 @@
+{
+  "extends": "airbnb-base",
+  "rules": {
+    "arrow-parens": "off",
+    "indent": ["error", 2],
+    "no-class-assign": "warn",
+    "no-unused-expressions": 0,
+    "chai-friendly/no-unused-expressions": 2,
+  },
+  "globals": {
+    "describe": false,
+    "it": false,
+    "xit": false,
+    "expect": false,
+    "browser": false,
+    "beforeEach": false,
+    "after": false,
+    "afterEach": false,
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    },
+    "sourceType": "module"
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  },
+  "plugins": [
+    "chai-friendly",
+  ],
+}

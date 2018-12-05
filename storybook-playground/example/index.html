@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <title>React Storybook example</title>
+  </head>
+
+  <body>
+    <p>This is a demo of <a href="https://storybook.js.org/">React Storybook</a> using the
+    <a href="https://github.com/buildit/storybook-addon-blabbr">blabbr</a> and
+    <a href="https://github.com/buildit/storybook-addon-versions">versions</a> addons.
+    To begin with click to open a version of the style guide.</p>
+    <ul>
+      <li><a href="1.1.1/">v1.1.1</a></li>
+      <li><a href="1.1.0/">v1.1.0</a></li>
+      <li><a href="1.0.1/">v1.0.1</a></li>
+      <li><a href="1.0.0/">v1.0.0</a></li>
+      <li><a href="0.2.5/">v0.2.5</a></li>
+      <li><a href="0.1.2/">v0.1.2</a></li>
+      <li><a href="0.0.2/">v0.0.2</a></li>
+      <li><a href="0.0.1/">v0.0.1</a></li>
+    </ul>
+
+    <b>Important</b>
+    <p>If this is the first time running this you will need to create a config.
+      Create a <code>storybook-config.json</code> file in your static-storybook folder which contains the following:</p>
+    <pre>
+{
+  "storybook": {
+    "blabbr": {
+      "db": {
+        "user": "DB_USERNAME",
+        "pwd": "DB_PASSWORD",
+        "host": "DB_HOST"
+      },
+      "slack": {
+        "endPoint": "<your slack endpoint>"
+      },
+      "ui": {
+        "avatar": true
+      }
+    },
+    "versions": {
+      "availableVersions": [
+        "0.0.1",
+        "0.0.2",
+        "0.1.2",
+        "0.2.5"
+      ],
+      "hostname": "localhost:8000",
+      "localhost": "localhost:9001",
+      "regex": "\/([^\/]+?)\/?$"
+    }
+  }
+}
+    </pre>
+    <p>You can skip the <code>blabbr</code> section is you are not using that addon it.</p>
+  </body>
+</html>

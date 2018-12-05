@@ -1,0 +1,50 @@
+{
+  "name": "@buildit/job-listings",
+  "version": "1.0.2",
+  "description": "Small JS library for fetching Buildit job listings data from SmartRecruiter's API",
+  "main": "lib/index.js",
+  "files": [
+    "lib/",
+    "src/*.js"
+  ],
+  "scripts": {
+    "clean": "del lib/*",
+    "build": "babel src -d lib",
+    "watch": "npm run build -- --watch",
+    "lint": "eslint src/",
+    "test": "jest --coverage",
+    "prepublish": "npm run clean && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buildit/fetch-job-listings.git"
+  },
+  "keywords": [
+    "smartrecruiters",
+    "job",
+    "list",
+    "opening",
+    "careers",
+    "recruitment",
+    "browser",
+    "node"
+  ],
+  "author": "Buildit @ Wipro Digital (https://buildit.wiprodigital.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/buildit/fetch-job-listings/issues"
+  },
+  "homepage": "https://github.com/buildit/fetch-job-listings#readme",
+  "dependencies": {
+    "cross-fetch": "^2.1.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "del-cli": "^1.1.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "jest": "^22.4.3"
+  }
+}

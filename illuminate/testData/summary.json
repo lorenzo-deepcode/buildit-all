@@ -1,0 +1,55 @@
+{"_id":{"$oid":"582e086b30a37f3c21c28645"},"projectDate":"2016-10-24","status":{"undefined":8,"In Development":1,"In Refinement":3}}
+{"_id":{"$oid":"582e086b30a37f3c21c28646"},"projectDate":"2016-10-25","status":{"In Refinement":2,"In Development":2,"undefined":6,"Test in Progress":1}}
+{"_id":{"$oid":"582e086b30a37f3c21c28647"},"projectDate":"2016-10-26","status":{"In Refinement":2,"In Development":2,"undefined":6,"Test in Progress":1}}
+{"_id":{"$oid":"582e086b30a37f3c21c28648"},"projectDate":"2016-10-27","status":{"In Refinement":1,"In Development":2,"undefined":6,"Test in Progress":1}}
+{"_id":{"$oid":"582e086b30a37f3c21c28649"},"projectDate":"2016-10-28","status":{"In Refinement":1,"In Development":2,"undefined":6,"Test in Progress":1}}
+{"_id":{"$oid":"582e086b30a37f3c21c2864a"},"projectDate":"2016-10-29","status":{"In Refinement":1,"In Development":2,"undefined":6,"Test in Progress":1}}
+{"_id":{"$oid":"582e086b30a37f3c21c2864b"},"projectDate":"2016-10-30","status":{"In Refinement":1,"In Development":2,"undefined":6,"Test in Progress":1}}
+{"_id":{"$oid":"582e086b30a37f3c21c2864c"},"projectDate":"2016-10-31","status":{"In Refinement":1,"In Development":2,"undefined":6,"Test in Progress":1}}
+{"_id":{"$oid":"582e086b30a37f3c21c2864d"},"projectDate":"2016-11-01","status":{"In Refinement":1,"In Development":2,"undefined":6}}
+{"_id":{"$oid":"582e086b30a37f3c21c2864e"},"projectDate":"2016-11-02","status":{"In Refinement":1,"In Development":2,"undefined":6}}
+{"_id":{"$oid":"582e086b30a37f3c21c2864f"},"projectDate":"2016-11-03","status":{"In Refinement":1,"In Development":2,"undefined":6}}
+{"_id":{"$oid":"582e086b30a37f3c21c28650"},"projectDate":"2016-11-04","status":{"In Refinement":1,"In Development":2,"undefined":6}}
+{"_id":{"$oid":"582e086b30a37f3c21c28651"},"projectDate":"2016-11-05","status":{"In Refinement":1,"In Development":2,"undefined":6}}
+{"_id":{"$oid":"582e086b30a37f3c21c28652"},"projectDate":"2016-11-06","status":{"In Refinement":1,"In Development":2,"undefined":6}}
+{"_id":{"$oid":"582e086b30a37f3c21c28653"},"projectDate":"2016-11-07","status":{"In Refinement":1,"In Development":2,"undefined":6}}
+{"_id":{"$oid":"582e086b30a37f3c21c28654"},"projectDate":"2016-11-08","status":{"In Refinement":1,"In Development":2,"undefined":6}}
+{"_id":{"$oid":"582e086b30a37f3c21c28655"},"projectDate":"2016-11-09","status":{"In Refinement":1,"In Development":2,"undefined":6}}
+{"_id":{"$oid":"582e086b30a37f3c21c28656"},"projectDate":"2016-11-10","status":{"In Refinement":1,"In Development":2,"undefined":6}}
+{"_id":{"$oid":"582e086b30a37f3c21c28657"},"projectDate":"2016-11-11","status":{"In Refinement":1,"In Development":2,"undefined":6}}
+{"_id":{"$oid":"582e086b30a37f3c21c28658"},"projectDate":"2016-11-12","status":{"In Refinement":1,"In Development":2,"undefined":6}}
+{"_id":{"$oid":"582e086b30a37f3c21c28659"},"projectDate":"2016-11-13","status":{"In Refinement":1,"In Development":2,"undefined":6}}
+{"_id":{"$oid":"582e086b30a37f3c21c2865a"},"projectDate":"2016-11-14","status":{"In Refinement":1,"In Development":2,"undefined":6}}
+{"_id":{"$oid":"582e086b30a37f3c21c2865b"},"projectDate":"2016-11-15","status":{"In Refinement":1,"In Development":2,"undefined":1}}
+{"_id":{"$oid":"582e086b30a37f3c21c2865c"},"projectDate":"2016-11-16","status":{"In Refinement":1,"In Development":2}}
+{"_id":{"$oid":"582e086b30a37f3c21c2865d"},"projectDate":"2016-10-14","status":{"In Refinement":8,"undefined":10}}
+{"_id":{"$oid":"582e086b30a37f3c21c2865e"},"projectDate":"2016-10-15","status":{"In Refinement":8,"undefined":10}}
+{"_id":{"$oid":"582e086b30a37f3c21c2865f"},"projectDate":"2016-10-16","status":{"In Refinement":8,"undefined":10}}
+{"_id":{"$oid":"582e086b30a37f3c21c28660"},"projectDate":"2016-10-17","status":{"In Refinement":9,"undefined":9}}
+{"_id":{"$oid":"582e086b30a37f3c21c28661"},"projectDate":"2016-10-18","status":{"In Refinement":9,"undefined":8,"Blocked":1}}
+{"_id":{"$oid":"582e086b30a37f3c21c28662"},"projectDate":"2016-10-19","status":{"In Refinement":9,"undefined":8,"Blocked":1}}
+{"_id":{"$oid":"582e086b30a37f3c21c28663"},"projectDate":"2016-10-20","status":{"In Development":1,"undefined":8,"In Refinement":8,"Blocked":1}}
+{"_id":{"$oid":"582e086b30a37f3c21c28664"},"projectDate":"2016-10-21","status":{"In Development":1,"undefined":8,"In Refinement":8,"Blocked":1}}
+{"_id":{"$oid":"582e086b30a37f3c21c28665"},"projectDate":"2016-10-22","status":{"In Development":1,"undefined":8,"In Refinement":8,"Blocked":1}}
+{"_id":{"$oid":"582e086b30a37f3c21c28666"},"projectDate":"2016-10-23","status":{"In Development":1,"undefined":8,"In Refinement":8,"Blocked":1}}
+{"_id":{"$oid":"582e086b30a37f3c21c28667"},"projectDate":"2016-10-12","status":{"undefined":12,"In Refinement":4}}
+{"_id":{"$oid":"582e086b30a37f3c21c28668"},"projectDate":"2016-10-13","status":{"undefined":12,"In Refinement":4}}
+{"_id":{"$oid":"582e086b30a37f3c21c28669"},"projectDate":"2016-10-11","status":{"undefined":14,"In Refinement":5}}
+{"_id":{"$oid":"582e086b30a37f3c21c2866a"},"projectDate":"2016-10-06","status":{"undefined":9,"In Refinement":4}}
+{"_id":{"$oid":"582e086b30a37f3c21c2866b"},"projectDate":"2016-10-07","status":{"undefined":9,"In Refinement":4}}
+{"_id":{"$oid":"582e086b30a37f3c21c2866c"},"projectDate":"2016-10-08","status":{"undefined":9,"In Refinement":4}}
+{"_id":{"$oid":"582e086b30a37f3c21c2866d"},"projectDate":"2016-10-09","status":{"undefined":9,"In Refinement":4}}
+{"_id":{"$oid":"582e086b30a37f3c21c2866e"},"projectDate":"2016-10-10","status":{"undefined":8,"In Refinement":5}}
+{"_id":{"$oid":"582e086b30a37f3c21c2866f"},"projectDate":"2016-09-27","status":{"undefined":9,"In Refinement":4}}
+{"_id":{"$oid":"582e086b30a37f3c21c28670"},"projectDate":"2016-09-28","status":{"undefined":9,"In Refinement":4}}
+{"_id":{"$oid":"582e086b30a37f3c21c28671"},"projectDate":"2016-09-29","status":{"undefined":9,"In Refinement":3}}
+{"_id":{"$oid":"582e086b30a37f3c21c28672"},"projectDate":"2016-09-30","status":{"undefined":9,"In Refinement":3}}
+{"_id":{"$oid":"582e086b30a37f3c21c28673"},"projectDate":"2016-10-01","status":{"undefined":9,"In Refinement":3}}
+{"_id":{"$oid":"582e086b30a37f3c21c28674"},"projectDate":"2016-10-02","status":{"undefined":9,"In Refinement":3}}
+{"_id":{"$oid":"582e086b30a37f3c21c28675"},"projectDate":"2016-10-03","status":{"undefined":9,"In Refinement":3}}
+{"_id":{"$oid":"582e086b30a37f3c21c28676"},"projectDate":"2016-10-04","status":{"undefined":8,"In Refinement":4}}
+{"_id":{"$oid":"582e086b30a37f3c21c28677"},"projectDate":"2016-10-05","status":{"undefined":8,"In Refinement":4}}
+{"_id":{"$oid":"582e086b30a37f3c21c28678"},"projectDate":"2016-09-26","status":{"undefined":9,"In Refinement":4}}
+{"_id":{"$oid":"582e086b30a37f3c21c28679"},"projectDate":"2016-09-25","status":{"undefined":9}}
+{"_id":{"$oid":"582e086b30a37f3c21c2867a"},"projectDate":"2016-09-23","status":{"undefined":6}}
+{"_id":{"$oid":"582e086b30a37f3c21c2867b"},"projectDate":"2016-09-24","status":{"undefined":6}}

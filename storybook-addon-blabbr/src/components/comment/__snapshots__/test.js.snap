@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Comment renders correctly 1`] = `
+<article
+  className="blabbr-comment"
+>
+  <header>
+    <h2>
+      username
+    </h2>
+    <span
+      className="blabbr-time"
+    >
+      at 
+      <time
+        dateTime="1-Jan-17"
+      >
+        1-Jan-17
+      </time>
+    </span>
+    
+    <span
+      className="controls"
+    >
+      <button
+        id="id123"
+        onClick={[Function]}
+      >
+        Edit
+      </button>
+      <button
+        className="remove"
+        id="id123"
+        onClick={[Function]}
+      >
+        Remove
+      </button>
+    </span>
+  </header>
+  <div
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<p>This is a comment</p>
+      ",
+      }
+    }
+  />
+  <p>
+    <small>
+      (edited - 
+      2-Jan-17
+      )
+    </small>
+  </p>
+</article>
+`;

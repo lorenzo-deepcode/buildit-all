@@ -1,0 +1,41 @@
+@import './mixins/flex';
+
+
+.bookings {
+  background-color: white;
+  color: black;
+
+  @include page;
+
+  flex-flow: column nowrap;
+  height: 100%;
+}
+
+.grouped-booking-list {
+  margin-bottom: 20px;
+
+  & + & {
+    margin-top: 20px;
+  }
+
+  .heading {
+    background-color: #d5d5d5;
+    margin-bottom: 20px;
+    padding: 10px;
+
+    &.headingGreen{
+      background-color: #068b80;
+    }
+
+    .title {
+      font-size: 14px;
+      padding-left: 10px;
+      color: #ffffff;
+    }
+  }
+
+  .no-booking {
+    padding-left: 20px;
+    color: gray;
+  }
+}

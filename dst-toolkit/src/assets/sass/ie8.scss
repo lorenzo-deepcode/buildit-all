@@ -1,0 +1,75 @@
+@import 'libs/vars';
+@import 'libs/functions';
+@import 'libs/mixins';
+@import 'libs/skel';
+
+/*
+	Landscape by Pixelarity
+	pixelarity.com | hello@pixelarity.com
+	License: pixelarity.com/license
+*/
+
+/* Button */
+
+	input[type="submit"],
+	input[type="reset"],
+	input[type="button"],
+	button,
+	.button {
+		border-color: inherit !important;
+
+		&.next {
+			padding-right: 2.5em;
+
+			&:after {
+				display: none;
+			}
+		}
+	}
+
+/* Form */
+
+	form {
+		.field {
+			float: none;
+			padding-left: 0 !important;
+		}
+	}
+
+	input[type="text"],
+	input[type="password"],
+	input[type="email"],
+	select,
+	textarea {
+		border-color: inherit !important;
+	}
+
+/* Main */
+
+	#main {
+		.slide {
+			&:before {
+				display: none;
+			}
+		}
+
+		nav {
+			> * {
+				line-height: 2.25em;
+				width: auto;
+				padding: 0 2em;
+			}
+
+			> .next {
+				&:before {
+					content: 'Next';
+				}
+			}
+
+			> .previous {
+				&:before {
+					content: 'Prev';
+				}
+			}
+		}
+	}

@@ -1,0 +1,26 @@
+.code {
+  color: #EEE;
+  background: #444;
+  font-family: monospace;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.code:hover {
+  color: #FFF;
+  background: #111;
+  cursor: pointer;
+}
+
+.code-snippet {
+  font-family: monospace;
+  background: #444;
+  color: #EEE;
+  padding: 20px;
+  margin-top: 20px;
+  transition: .2s ease opacity;
+}
+
+.hidden {
+  opacity: 0;
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Npm build too",
+  "description": "A barebones Node.js app using Express 4",
+  "repository": "https://github.com/FiF0o/npm-build-tool-react.git",
+  "keywords": ["node", "express", "static"]
+}

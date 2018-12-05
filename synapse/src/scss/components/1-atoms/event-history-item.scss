@@ -1,0 +1,32 @@
+.event-history-item {
+  margin: $event-history-item-margin;
+  padding: 0 0 0 0.5rem;
+  border-left: 3px solid #555;
+
+  &.success { border-left: 3px solid $button-success-colour; }
+  &.failed { border-left: 3px solid $brand-colour-red; }
+
+  .event-history-item-header {
+    padding: 0.5rem 0;
+    &:hover {
+      background: $brand-colour-blue;
+      color: white;
+      transition: 0.2s ease;
+    }
+    .event-body-item-label {
+      margin-right: 2rem;
+      display: inline-block;
+      width: 100px;
+    }
+    .status {
+    }
+  }
+
+  .body-item {
+    span {
+      margin-right: 1rem;
+    }
+    .event-body-item-label {
+    }
+  }
+}

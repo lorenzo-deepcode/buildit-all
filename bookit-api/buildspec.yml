@@ -1,0 +1,41 @@
+version: 0.2
+
+#env:
+#  parameter-store:
+#    GRGIT_USER: "${SSM_BUILD_NAMESPACE}/REPO_TOKEN"
+
+phases:
+  install:
+    commands:
+      - apt-get update -y
+      - apt-get install -y software-properties-common
+      - add-apt-repository ppa:openjdk-r/ppa
+      - apt-get update -y
+      - apt-get install -y openjdk-8-jdk
+      - update-ca-certificates -f
+  pre_build:
+    commands:
+      - $(aws ecr get-login --region ${AWS_REGION} --no-include-email)
+      - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-${CODEBUILD_BUILD_ID##*:}"
+  build:
+    commands:
+      - java -version
+      - chmod +x ./gradlew
+      - ./gradlew -Dorg.gradle.daemon=false build
+      - docker build --tag "${REPOSITORY_URI}:${TAG}" .
+  post_build:
+    commands:
+      - aws s3 cp --recursive --acl public-read ./build/reports ${REPORTS_BUCKET}/
+      - aws s3 cp --acl public-read ./reports/index.html ${REPORTS_BUCKET}/index.html
+      - test $CODEBUILD_BUILD_SUCCEEDING -eq 0 || docker push "${REPOSITORY_URI}:${TAG}"
+      - printf '{"tag":"%s"}' $TAG > build.json
+artifacts:
+  files:
+    - build.json
+cache:
+  paths:
+    - '/root/.gradle/**/*'
+    - '/root/.gradle/wrapper/**/*'
+    - '/root/.gradle/caches/**/*'
+    - '/var/cache/apt/**/*'
+    - '.gradle/**/*'

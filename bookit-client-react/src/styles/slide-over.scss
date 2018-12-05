@@ -1,0 +1,26 @@
+.slide-over-appear,
+.slide-over-enter {
+  transform: translate3d(100%, 0, 0);
+  transition: transform .4s ease-in-out;
+  z-index: 1;
+
+  &.slide-over-appear-active,
+  &.slide-over-enter-active {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.slide-over-exit {
+  height: 100vh;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: translate3d(0, 0, 0);
+  transition: transform .4s ease-in-out;
+  width: 100vw;
+  z-index: -1;
+
+  &.slide-over-exit-active {
+    // transform: translate3d(100%, 0, 0);
+  }
+}

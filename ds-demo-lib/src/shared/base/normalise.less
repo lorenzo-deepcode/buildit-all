@@ -1,0 +1,92 @@
+* {
+  /* Box model */
+  box-sizing: border-box;
+}
+
+body {
+  /* Box model */
+  margin: 0;
+  padding: 0;
+
+  /* Typography */
+  color: @dsdemo-color-fg;
+  font-family: @dsdemo-body-font-family;
+  font-weight: @dsdemo-body-font-weight;
+  font-size: @dsdemo-body-font-size;
+
+  /* Visual */
+  background-color: @dsdemo-color-bg;
+}
+
+// Inline hyperlinks
+a {
+  color: @dsdemo-color-link;
+
+  &:visited {
+    color: @dsdemo-color-link-visited;
+  }
+
+  &:hover {
+    color: @dsdemo-color-link-hover;
+  }
+
+  &:focus {
+    color: @dsdemo-color-link-focus;
+  }
+
+  &:active {
+    color: @dsdemo-color-link-active;
+  }
+}
+
+// Images
+img {
+  /* Box model */
+  display: block;
+  width: 100%;
+}
+
+
+// Block text
+p,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure {
+  /* Box model */
+  margin: @dsdemo-space-stack-md;
+}
+
+ul,
+ol,
+li,
+dl,
+dt,
+dd {
+  /* Box model */
+  padding: 0;
+}
+
+h1 {
+  /* Box model */
+  margin: @dsdemo-space-stack-md;
+
+  /* Typography */
+  font-family: @dsdemo-h1-font-family;
+  font-weight: @dsdemo-h1-font-weight;
+  font-size: @dsdemo-h1-font-size;
+}
+
+h2 {
+  /* Box model */
+  margin: @dsdemo-space-stack-md;
+
+  /* Typography */
+  font-family: @dsdemo-h2-font-family;
+  font-weight: @dsdemo-h2-font-weight;
+  font-size: @dsdemo-h2-font-size;
+}

@@ -1,0 +1,34 @@
+<doctype html>
+<!-- TODO This page is obsolete -->
+<html>
+  <head>
+    <title>User Report</title>
+  </head>
+  <body>
+    <div id="user-report">
+      <div id="header">
+        <h1>Dropbox usage report for account: {{ accountName }}</h1>
+        <p>Select user to show report for: <select required="true" v-model="selected" v-on:change="showBarChart(interactions[selected].interactions)">
+          <option disabled="disabled" selected="true">Please select a user</option>
+          <option v-for="user in users" v-bind:value="user.id">
+            {{user.name}}
+          </option>
+        </select>
+      </p>
+        <div id="bar-chart">
+
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue-router"></script>
+    <script src="https://unpkg.com/vue-ls"></script>
+    <script src="config.js"></script>
+    <script src="common.js"></script>
+    <script src="dropbox-usage.js"></script>
+  </body>
+</html>

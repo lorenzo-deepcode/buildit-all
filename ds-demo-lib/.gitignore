@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+dist
+.idea/
+.DS_Store
+.storybook/blabbr-config.js
+brandai.config.js
+downloads
+storybook-static

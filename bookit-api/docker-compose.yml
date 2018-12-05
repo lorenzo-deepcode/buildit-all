@@ -1,0 +1,9 @@
+version: "3"
+services:
+  bookit-api:
+    build:
+      context: .
+      dockerfile: docker/local.Dockerfile
+    command: "./gradlew bootRun"
+    ports:
+      - 8080:8080

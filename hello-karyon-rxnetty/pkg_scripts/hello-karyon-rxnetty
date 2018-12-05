@@ -1,0 +1,8 @@
+/var/log/hello-karyon-rxnetty/hello.log {
+    copytruncate
+    daily
+    rotate 10
+    compress
+    missingok
+    create 0644 root root
+}

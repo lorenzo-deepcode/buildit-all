@@ -1,0 +1,14 @@
+:host {
+
+  $indent: 15px;
+
+  .indent {
+    left: $indent;
+    max-width: calc(100% - #{$indent});
+    position: relative;
+  }
+
+  select {
+    margin-bottom: 5px;
+  }
+}

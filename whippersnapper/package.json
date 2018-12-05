@@ -1,0 +1,35 @@
+{
+  "name": "whippersnapper",
+  "version": "0.0.27",
+  "description": "A React component library, a liar and a thief, immortal in kind, nothing if not futile and ephemeral in effect, an upstart.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BillyZac/whippersnapper.git"
+  },
+  "scripts": {
+    "test": "NODE_ENV=test nyc mocha --recursive --compilers js:babel-core/register --require babel-polyfill test",
+    "build": "babel src/lib/react -d build"
+  },
+  "keywords": [
+    "react",
+    "javascript"
+  ],
+  "author": {
+    "name": "Z Smith",
+    "email": "billyzacsmith@gmail.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "chai": "^3.5.0",
+    "enzyme": "^2.6.0",
+    "mocha": "^3.2.0",
+    "nyc": "^10.0.0",
+    "react": "^15.4.1",
+    "react-addons-test-utils": "^15.4.1",
+    "react-dom": "^15.4.1"
+  }
+}

@@ -1,0 +1,15 @@
+.menu-item {
+  width: 172px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #ffffff;
+
+  .info {
+    margin: 7px;
+    margin-top: -25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

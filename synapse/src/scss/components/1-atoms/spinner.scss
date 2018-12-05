@@ -1,0 +1,29 @@
+@keyframes SPIN {
+  from   {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  .circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 5px solid lighten($brand-colour-blue, 10%);
+    border-right-color: transparent;
+
+    animation: SPIN 1s infinite linear;
+  }
+  .inner-circle {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 5px solid $brand-colour-blue;
+    border-left-color: transparent;
+
+    animation: SPIN 2s infinite;
+  }
+}

@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - apt-get update -y
+      - apt-get install -y software-properties-common
+      - add-apt-repository ppa:openjdk-r/ppa
+      - apt-get update -y
+      - apt-get install -y openjdk-8-jdk
+      - update-ca-certificates -f
+  build:
+    commands:
+      - chmod +x ./gradlew
+      - ./gradlew -Dorg.gradle.daemon=false test-e2e
+  post_build:
+    commands:
+      - aws s3 cp --recursive --acl public-read ./build/reports ${REPORTS_BUCKET}/
+cache:
+  paths:
+    - '/root/.gradle/**/*'
+    - '/root/.gradle/wrapper/**/*'
+    - '/root/.gradle/caches/**/*'
+    - '/var/cache/apt/**/*'
+    - '.gradle/**/*'

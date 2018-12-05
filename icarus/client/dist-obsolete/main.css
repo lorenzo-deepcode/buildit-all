@@ -1,0 +1,42 @@
+body {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.main-login,
+.logout,
+.integrations{
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}
+.container-narrow > hr {
+  margin: 10px 0;
+}
+.jumbotron {
+  text-align: center;
+}
+
+
+.glyphicon.spinning {
+  animation: spin 1s infinite linear;
+  -webkit-animation: spin2 1s infinite linear;
+}
+
+@keyframes spin {
+  from { transform: scale(1) rotate(0deg);}
+  to { transform: scale(1) rotate(360deg);}
+}
+
+@-webkit-keyframes spin2 {
+  from { -webkit-transform: rotate(0deg);}
+  to { -webkit-transform: rotate(360deg);}
+}
+
+.glyphicon-left {
+  margin-right: 7px;
+}

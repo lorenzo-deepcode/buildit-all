@@ -1,0 +1,395 @@
+---
+
+Description: Application Deployment on ECS
+AWSTemplateFormatVersion: 2010-09-09
+
+Parameters:
+  Environment:
+    Description: Stack environment
+    Type: String
+
+  FoundationStackName:
+    Description: Foundation stack name
+    Type: String
+
+  ComputeStackName:
+    Description: Compute stack name
+    Type: String
+
+  InfraDevBucket:
+    Description: App S3 Bucket
+    Type: String
+
+  PublicDomainName:
+    Description: Public Domain Name for sites and services created by this stack.
+    Type: String
+
+  SsmEnvironmentNamespace:
+    Description: Namespace in parameter store from which configuration values will be taken.
+    Type: String
+
+  Repository:
+    Description: ECR Repository
+    Type: String
+
+  ApplicationName:
+    Description: Name of the application (part of hostname)
+    Type: String
+
+  Prefix:
+    Description: Discrimiator for other "owners."  The real environments will be blank
+    Type: String
+    Default: ""
+
+  ContainerPort:
+    Type: Number
+
+  TaskDesiredCount:
+    Type: Number
+    Default: 0
+
+  ListenerRulePriority:
+    Description: The priority for the listener rule
+    Type: Number
+
+  Tag:
+    Type: String
+    Default: latest
+
+Conditions:
+  ShouldCreatePreferredCname: !And
+    - !Equals [ !Ref Environment, production ]
+    - !Equals [ !Ref Prefix, "" ]
+  ShouldCreateErrorLogAlarm: !Not [ !Equals [ !Ref Environment, integration ] ]
+
+Resources:
+  # LoadBalancer:
+  #   Type: AWS::CloudFormation::Stack
+  #   Properties:
+  #     TemplateURL: !Sub https://s3.amazonaws.com/${InfraDevBucket}/templates/load-balancer.yaml
+  #     Parameters:
+  #       FoundationStackName: !Ref FoundationStackName
+  #       DnsHostedZoneName: !Ref PublicDomainName
+  #       DnsSubdomainName: !Sub ${Prefix}${Environment}-${ApplicationName}
+  TargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      VpcId:
+        Fn::ImportValue: !Sub "${FoundationStackName}--VpcId"
+      Port: 80
+      Protocol: HTTP
+      Matcher:
+        HttpCode: 200-299
+      HealthCheckIntervalSeconds: 10
+      HealthCheckPath: /
+      HealthCheckProtocol: HTTP
+      HealthCheckTimeoutSeconds: 5
+      HealthyThresholdCount: 2
+      TargetGroupAttributes:
+        - Key: deregistration_delay.timeout_seconds
+          Value: 30
+
+  AppEnvDns:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneName: !Sub "${PublicDomainName}."
+      Comment: DNS for ELB.
+      RecordSets:
+      - Name: !Sub "${Prefix}${Environment}-${ApplicationName}.${PublicDomainName}."
+        Type: A
+        AliasTarget:
+          HostedZoneId:
+            Fn::ImportValue: !Sub "${FoundationStackName}--ALB--CanonicalHostedZoneID"
+          DNSName:
+            Fn::ImportValue: !Sub "${FoundationStackName}--ALB--DNSName"
+
+  ListenerRuleHttp:
+    Type: AWS::ElasticLoadBalancingV2::ListenerRule
+    Properties:
+      ListenerArn:
+        Fn::ImportValue: !Sub "${FoundationStackName}--ALB--HttpListener"
+      Priority: !Ref ListenerRulePriority
+      Conditions:
+        - Field: host-header
+          Values:
+            - !Sub "${Prefix}${Environment}-${ApplicationName}.${PublicDomainName}"
+      Actions:
+        - TargetGroupArn: !Ref TargetGroup
+          Type: forward
+
+  ListenerRuleHttps:
+    Type: AWS::ElasticLoadBalancingV2::ListenerRule
+    Properties:
+      ListenerArn:
+        Fn::ImportValue: !Sub "${FoundationStackName}--ALB--HttpsListener"
+      Priority: !Ref ListenerRulePriority
+      Conditions:
+        - Field: host-header
+          Values:
+            - !Sub "${Prefix}${Environment}-${ApplicationName}.${PublicDomainName}"
+      Actions:
+        - TargetGroupArn: !Ref TargetGroup
+          Type: forward
+
+  PreferredAppDns:
+    Condition: ShouldCreatePreferredCname
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneName: !Sub "${PublicDomainName}."
+      Comment: Preferred ProductionDNS for ALB.
+      RecordSets:
+      - Name: !Sub "${Prefix}${ApplicationName}.${PublicDomainName}."
+        Type: A
+        AliasTarget:
+          HostedZoneId:
+            Fn::ImportValue: !Sub "${FoundationStackName}--ALB--CanonicalHostedZoneID"
+          DNSName:
+            Fn::ImportValue: !Sub "${FoundationStackName}--ALB--DNSName"
+
+  PreferredListenerRuleHttp:
+    Condition: ShouldCreatePreferredCname
+    Type: AWS::ElasticLoadBalancingV2::ListenerRule
+    Properties:
+      ListenerArn:
+        Fn::ImportValue: !Sub "${FoundationStackName}--ALB--HttpListener"
+      Priority: !Sub "${ListenerRulePriority}9"
+      Conditions:
+        - Field: host-header
+          Values:
+            - !Sub "${Prefix}${ApplicationName}.${PublicDomainName}"
+      Actions:
+        - TargetGroupArn: !Ref TargetGroup
+          Type: forward
+
+  PreferredListenerRuleHttps:
+    Condition: ShouldCreatePreferredCname
+    Type: AWS::ElasticLoadBalancingV2::ListenerRule
+    Properties:
+      ListenerArn:
+        Fn::ImportValue: !Sub "${FoundationStackName}--ALB--HttpsListener"
+      Priority: !Sub "${ListenerRulePriority}9"
+      Conditions:
+        - Field: host-header
+          Values:
+            - !Sub "${Prefix}${ApplicationName}.${PublicDomainName}"
+      Actions:
+        - TargetGroupArn: !Ref TargetGroup
+          Type: forward
+
+  ExternalHealthCheck:
+    Type: AWS::Route53::HealthCheck
+    Properties:
+      HealthCheckConfig:
+        Type: HTTPS
+        FullyQualifiedDomainName: !Sub "${Prefix}${Environment}-${ApplicationName}.${PublicDomainName}."
+        EnableSNI: true
+        FailureThreshold: 3
+      HealthCheckTags:
+      - Key: "Name"
+        Value: !Sub "${Prefix}${Environment}-${ApplicationName}.${PublicDomainName}."
+
+  ExternalHealthAlarm:
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      ActionsEnabled: true
+      AlarmName: !Sub "${Prefix}${Environment}-${ApplicationName}.${PublicDomainName}."
+      AlarmDescription: "Alarm when site not reachable"
+      AlarmActions:
+        - Fn::ImportValue: !Sub "${FoundationStackName}--SNS--Topic"
+      MetricName: HealthCheckStatus
+      Namespace: AWS/Route53
+      Statistic: Minimum
+      Threshold: 1.0
+      ComparisonOperator: LessThanThreshold
+      Period: 60
+      EvaluationPeriods: 1
+      Dimensions:
+        - Name: HealthCheckId
+          Value: !Ref ExternalHealthCheck
+
+  PreferredExternalHealthCheck:
+    Condition: ShouldCreatePreferredCname
+    Type: AWS::Route53::HealthCheck
+    Properties:
+      HealthCheckConfig:
+        Type: HTTPS
+        FullyQualifiedDomainName: !Sub "${Prefix}${ApplicationName}.${PublicDomainName}."
+        EnableSNI: true
+        FailureThreshold: 3
+      HealthCheckTags:
+      - Key: "Name"
+        Value: !Sub "${Prefix}${ApplicationName}.${PublicDomainName}."
+
+  PreferredExternalHealthAlarm:
+    Condition: ShouldCreatePreferredCname
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      ActionsEnabled: true
+      AlarmName: !Sub "${Prefix}${ApplicationName}.${PublicDomainName}."
+      AlarmDescription: "Alarm when preferred site not reachable"
+      AlarmActions:
+        - Fn::ImportValue: !Sub "${FoundationStackName}--SNS--Topic"
+      MetricName: HealthCheckStatus
+      Namespace: AWS/Route53
+      Statistic: Minimum
+      Threshold: 1.0
+      ComparisonOperator: LessThanThreshold
+      Period: 60
+      EvaluationPeriods: 1
+      Dimensions:
+        - Name: HealthCheckId
+          Value: !Ref PreferredExternalHealthCheck
+
+  LogErrorCountMetricFilter:
+    Condition: ShouldCreateErrorLogAlarm
+    Type: AWS::Logs::MetricFilter
+    Properties:
+      LogGroupName: !Ref CloudWatchLogsGroup
+      FilterPattern: "[date, time, level=ERROR, process, separator, thread_name, logger_name, ...]"
+      MetricTransformations:
+        - MetricValue: 1
+          MetricNamespace: Buildit/Application
+          MetricName: !Sub "${Prefix}${ApplicationName}${Environment}ErrorCount"
+
+  LogErrorCountAlarm:
+    Condition: ShouldCreateErrorLogAlarm
+    Type: AWS::CloudWatch::Alarm
+    Properties:
+      ActionsEnabled: true
+      AlarmName: !Sub "${AWS::StackName} - Log Error count"
+      AlarmDescription: "Alarm when application logs an error"
+      AlarmActions:
+        - Fn::ImportValue: !Sub "${FoundationStackName}--SNS--Topic"
+      MetricName: !Sub "${Prefix}${ApplicationName}${Environment}ErrorCount"
+      Namespace: Buildit/Application
+      Statistic: Sum
+      Threshold: 0.0
+      ComparisonOperator: GreaterThanThreshold
+      Period: 60
+      EvaluationPeriods: 1
+
+  # ECSService:
+  #   Type: AWS::CloudFormation::Stack
+  #   Properties:
+  #     TemplateURL: !Sub https://s3.amazonaws.com/${InfraDevBucket}/templates/service.yaml
+  #     Parameters:
+  #       Tag: !Sub "${Environment}"
+  #       TaskDesiredCount: 0
+  #       Cluster: !Ref Cluster
+  #       TargetGroup: !GetAtt LoadBalancer.Outputs.TargetGroup
+  #       Repository: !Ref Repository
+  #       ContainerPort: !Ref ContainerPort
+  #       ParameterStoreNamespace: !Ref ParameterStoreNamespace
+  ECSServiceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      Path: /
+      AssumeRolePolicyDocument: |
+        {
+            "Statement": [{
+                "Effect": "Allow",
+                "Principal": { "Service": [ "ecs.amazonaws.com" ]},
+                "Action": [ "sts:AssumeRole" ]
+            }]
+        }
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceRole
+
+  Service:
+    Type: AWS::ECS::Service
+    Properties:
+      Cluster:
+        Fn::ImportValue: !Sub "${ComputeStackName}--Cluster"
+      Role: !Ref ECSServiceRole
+      DesiredCount: !Ref TaskDesiredCount
+      TaskDefinition: !Ref TaskDefinition
+      LoadBalancers:
+        - ContainerName: !Ref ApplicationName
+          ContainerPort: !Ref ContainerPort
+          TargetGroupArn: !Ref TargetGroup
+
+  CloudWatchLogsGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Ref AWS::StackName
+      RetentionInDays: 60
+
+  TaskDefinitionServiceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      Path: /
+      AssumeRolePolicyDocument: |
+        {
+            "Statement": [{
+                "Effect": "Allow",
+                "Principal": { "Service": [ "ecs-tasks.amazonaws.com" ]},
+                "Action": [ "sts:AssumeRole" ]
+            }]
+        }
+      Policies:
+        - PolicyName: root
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              # TODO:  this needs to be tightened-up.
+              - Resource: !Sub arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter${SsmEnvironmentNamespace}
+                Effect: Allow
+                Action:
+                  - ssm:GetParameters
+                  - ssm:GetParametersByPath
+              - Resource: !Sub arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter${SsmEnvironmentNamespace}/*
+                Effect: Allow
+                Action:
+                  - ssm:GetParameters
+                  - ssm:GetParametersByPath
+
+  TaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Family: !Sub ${AWS::StackName}-${ApplicationName}
+      TaskRoleArn: !Ref TaskDefinitionServiceRole
+      ContainerDefinitions:
+        - Name: !Ref ApplicationName
+          Image: !Sub ${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${Repository}:${Tag}
+          # Command:
+          #   - /bin/sh
+          #   - ./run-in-aws.sh #special bootstrapping startup that pulls secrets from SSM parameter store
+          Essential: true
+          Memory: 256
+          PortMappings:
+            - ContainerPort: !Ref ContainerPort
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-group: !Ref AWS::StackName
+              awslogs-region: !Ref AWS::Region
+              awslogs-stream-prefix: !Ref ApplicationName
+          Environment:
+            - Name: Tag
+              Value: !Ref Tag
+            - Name: AWS_REGION
+              Value: !Ref AWS::Region
+            - Name: AWS_ENV_PATH
+              Value: !Ref SsmEnvironmentNamespace
+            - Name: BOOKIT_DATABASE_USER
+              Value: admin
+            - Name: BOOKIT_DATABASE_URL
+              Value: "jdbc:mysql:aurora://aurora.bookit.internal/bookit"
+            - Name: BOOKIT_DATABASE_DRIVER
+              Value: org.mariadb.jdbc.Driver
+            # - Name: USE_AZURE
+            #   Value: true
+            # - Name: ACTUAL_BOOKIT_API_URL  # This is the actual/true HTTP URL of the running service (DNS Name-based).
+            #   Value: !Ref BookitApiDomainName
+            # - Name: BOOKIT_API_BASE_URL   # This is a logical URL used by the Bookit app itself to define the endpoint it talks to.
+            #   Value: /api  # Mapped to the ACTUAL_BOOKIT_API_URL via a reverse proxy config in nginx.
+
+Outputs:
+  ApplicationUrl:
+    Description: URL of the application
+    Value: !Sub "https://${Prefix}${Environment}-${ApplicationName}.${PublicDomainName}"
+
+  PreferredApplicationUrl:
+    Condition: ShouldCreatePreferredCname
+    Description: URL of the application
+    Value: !Sub "https://${Prefix}${ApplicationName}.${PublicDomainName}"

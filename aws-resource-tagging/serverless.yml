@@ -1,0 +1,65 @@
+service: auto-resource-tagging
+
+provider:
+  name: aws
+  runtime: java8
+
+  region: ${opt:region}
+
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "s3:GetBucketTagging"
+        - "s3:PutBucketTagging"
+        - "lambda:ListTags"
+        - "lambda:TagResource"
+        - "ec2:DescribeTags"
+        - "ec2:CreateTags"
+      Resource: "*"
+
+package:
+  artifact: build/distributions/auto-resource-tagging.zip
+
+resources:
+  Resources:
+    AutoTaggingTopic:
+      Type: AWS::SNS::Topic
+      Properties:
+        DisplayName: AutoTagEventTopic
+        TopicName: auto-tag-event-topic
+    AutoTaggingRule:
+      Type: AWS::Events::Rule
+      Properties:
+        Description: EventRule
+        EventPattern:
+          source:
+          - aws.ec2
+          - aws.lambda
+          - aws.s3
+          detail-type:
+          - AWS API Call via CloudTrail
+          detail:
+            eventName:
+            - CreateBucket
+            - CreateFunction20150331
+            - RunInstances
+            - CreateNetworkInterface
+            - CreateInternetGateway
+            - CreateRouteTable
+            - CreateSubnet
+            - CreateVpc
+        State: ENABLED
+        Targets:
+        - Id: 1
+          Arn:
+            Ref: AutoTaggingTopic
+
+
+functions:
+  awstagging:
+    handler: digital.buildit.resourcetagging.Handler
+    events:
+      - sns:
+          arn:
+            Ref: AutoTaggingTopic
+          topicName: AutoTaggingTopic

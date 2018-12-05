@@ -1,0 +1,43 @@
+$axis: #666666;
+$dark-matter-opacity: 0.7;
+
+.projection-chart {
+  height: 500px;
+  margin-bottom: 40px;
+  width: 1100px;
+
+  .axis {
+    color: $axis;
+    font: 10px sans-serif;
+    path,
+    line {
+      fill: none;
+      stroke: $axis;
+    }
+    path {
+      display: none;
+    }
+  }
+
+  .label {
+    color: $axis;
+    font: 10px sans-serif;
+  }
+
+
+  .area {
+    fill: $completed;
+    stroke: none;
+  }
+
+  .backlog {
+    fill: $backlog;
+    stroke: none;
+  }
+
+  .dark-matter {
+    fill: $dark-matter;
+    opacity: $dark-matter-opacity;
+    stroke: none;
+  }
+}

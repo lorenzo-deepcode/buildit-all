@@ -1,0 +1,28 @@
+{
+  "extends": "airbnb",
+  "rules": {
+    "indent": ["error", 2],
+    "no-class-assign": "warn",
+  },
+  "globals": {
+    "describe": false,
+    "it": false,
+    "xit": false,
+    "expect": false,
+    "browser": false,
+    "api": false,
+    "starterProjectsApi": false,
+    "beforeEach": false,
+    "after": false,
+    "afterEach": false,
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "settings": {
+    "import/resolver": webpack,
+  },
+}

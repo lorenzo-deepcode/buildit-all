@@ -1,0 +1,9 @@
+////
+/// @group Components
+////
+
+label {
+  /// Display type for `<label>`s
+  $label-display: block !default;
+  display: $label-display;
+}

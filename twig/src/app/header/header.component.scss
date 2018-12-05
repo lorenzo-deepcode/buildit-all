@@ -1,0 +1,29 @@
+@import '../../styles_colors';
+
+:host {
+  background-color: $buildit-coal;
+  color: $buildit-white;
+  display: block;
+  font-size: 14px;
+  margin: 0;
+  text-align: center;
+}
+
+.simulating {
+  font-family: 'Lucida Console', Monaco, monospace;
+}
+
+p {
+  cursor: pointer;
+  display: inline;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+h5 {
+  padding-left: 15px;
+}
+
+.nav {
+  cursor: pointer;
+}

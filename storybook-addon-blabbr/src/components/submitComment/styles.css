@@ -1,0 +1,36 @@
+.blabbr-submitComment {
+  position: relative;
+  padding: 0 0 16px;
+  margin-bottom: 20px;
+
+  border-bottom: 1px solid #eeeeee;
+  font-family:
+    -apple-system,
+    ".SFNSText-Regular",
+    "San Francisco",
+    Roboto,
+    "Segoe UI",
+    "Helvetica Neue",
+     "Lucida Grande",
+     sans-serif;
+}
+
+.blabbr-submitComment textarea {
+  min-height: 5em;
+  font-size: 1em;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  width: 100%;
+  vertical-align: middle;
+  outline: none;
+  border: 1px solid rgb(247, 244, 244);
+  border-radius: 2px;
+  color: rgb(85, 85, 85);
+}
+
+.blabbr-submitComment h2 {
+  font-size: 1em;
+  font-weight: normal;
+  padding: 0;
+  margin: 12px 0 8px 2px;
+}

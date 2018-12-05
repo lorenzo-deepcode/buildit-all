@@ -1,0 +1,13 @@
+{
+  "search.exclude": {
+    "node_modules": true,
+    "reports": true,
+    "coverage": true,
+    "build": true,
+    ".vscode/chrome/**": true
+  },
+  "cucumberautocomplete.steps": [
+    "test/e2e/features/step-definitions/**/*.js"
+  ],
+  "cucumberautocomplete.syncfeatures": "test/e2e/features/*feature"
+}

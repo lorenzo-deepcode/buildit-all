@@ -1,0 +1,23 @@
+.projectsTable {
+  font-size: 1rem;
+
+  @media (min-width: $screen-md-min) {
+    font-size: 1.4rem;
+  }
+
+  .delete-project-control {
+    cursor: pointer;
+  }
+
+  .projectsHeader {
+    cursor: pointer;
+  }
+
+  i {
+    padding-left: 3px;
+  }
+
+  th {
+    white-space: nowrap;
+  }
+}
